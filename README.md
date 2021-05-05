@@ -1,7 +1,7 @@
 # Electronize
 Template to start an Electron project!
 
-### Directories:
+### Directories 
 
 **./src** - development codes;
 
@@ -12,6 +12,16 @@ Template to start an Electron project!
 **./assets** - "external" files added to the distribution package (not compressed in the ASA).
 
 <sub><i>TODO: write usage documentation and settings (next commits).</i></sub> 
+
+### Application
+
+The **application** is divided into three parts, which can be seen in the ./src folder:
+
+**./src/app** - Electron's encapsulation (systray, boot, OS configurations ...). This is the base that supports the application on your OS;
+
+**./src/desktop** - if the application will have one (or more) windows on the desktop, this will be programmed here (eg: admin, user access management, data monitoring ...);
+
+**./src/host** - if the application has a web server, where other network users can access via API, Socket or simple PWA/WEB applications, here is your working directory. 
 
 
 ## Install
