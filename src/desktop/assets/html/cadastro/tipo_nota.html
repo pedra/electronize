@@ -1,0 +1,50 @@
+<div class="list" id="list"></div>
+	 
+<div class="edit" id="edit">	 
+	<form class="ui small form formedit">
+
+		<input type="hidden" id="id" value="0">	
+
+		<div class="field">
+			<label>Nome *</label>
+			<input id="nome" placeholder="Nome" maxlength="255">
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="four field">
+					<label for="tipo_nota">Tipo *</label>
+					<select class="ui search selection dropdown" id="tipo_nota">
+						<option value="0" selected>Selecione...</option>
+	  					<option value="P">Pagar</option>
+	  					<option value="R">Receber</option>
+					</select>
+				</div>
+
+				<div class="four field">
+					<label for="origem">Origem</label>
+					<select class="ui search selection dropdown" id="origem">
+						<option value="G">Genérico</option>
+			  			<option value="I">Infração</option>
+			  			<option value="V">Venda</option>
+			  			<option value="O">OS</option>
+			  			<option value="C">Contrato</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui divider"></div>
+
+		<div class="field control">
+			<button type="reset" onclick="APP_PAGE.cancel()" class="ui mini circular button">Cancelar</button>
+			<button type="button" onclick="APP_PAGE.save()" class="ui circular button primary">Salvar</button>
+		</div>
+	</form>
+</div>
+
+<script src="js/module/cadastro/tipo_nota.js"></script>
+<script>
+	$('.icon.browse').popup({on: 'hover', hoverable: true})
+	$('.ui.dropdown').dropdown({fullTextSearch: true});
+</script>

@@ -1,0 +1,274 @@
+<div class="list" id="list"></div>
+
+<div class="edit" id="edit">
+	<form class="ui small form formedit">
+		<input type="hidden" id="id" value="0">		
+		
+		<div class="field">
+			<div class="fields">
+				<div class="three wide field">
+					<label>Placa *</label>
+					<input id="placa" class="placa" placeholder="AAA9999" style="text-align:right">
+				</div>
+				<div class="six wide field">
+					<label>Chassi *</label>
+					<input type="text" id="chassi" placeholder="chassi">
+				</div>
+				<div class="seven wide field">
+					<label>Renavam *</label>
+					<input type="text" id="renavam" placeholder="Número do Renavam">
+				</div>
+			</div>
+		</div>
+		
+		<div class="field">
+			<label for="modelo">Fabricante e Modelo *</label>					
+			<div class="ui search modelo">
+				<div class="ui icon input">
+					<input class="prompt" type="text" id="modelo_nome" placeholder="Modelo">
+					<i class="search icon"></i>
+		  			<input type="hidden" id="modelo">							
+		  		</div>
+				<div class="results"></div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="eight wide field">
+					<label>Combustível *</label>
+					<input type="text" id="modelo_combustivel" placeholder="Gasolina" readonly>
+				</div>
+				<div class="four wide field">
+					<label>Ano do Modelo *</label>
+					<input type="number" min="0" id="modelo_ano" placeholder="2018" readonly style="text-align:right">
+				</div>
+				<div class="four wide field">
+					<label>Ano de Fabricação *</label>
+					<input type="number" min="0" id="fabricacao" placeholder="2018" style="text-align:right">
+				</div>
+			</div>
+		</div>
+
+		<div class="ui divider"></div>
+		<h3>Concessionária</h3>
+
+		<div class="field">
+			<label>Nome da Empresa</label>	
+			<div class="ui search concessionaria">
+				<div class="ui icon input">
+					<input class="prompt" type="text" id="concessionaria_nome" placeholder="Concessionária">
+					<i class="search icon"></i> 
+					<input type="hidden" id="concessionaria">
+				</div>
+				<div class="results"></div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="six wide field">
+					<label>Tipo de Compra</label>
+					<select class="ui search selection dropdown" id="tipo_compra">
+  						<option value="A">A Vista</option>
+  						<option value="F">Financiado</option>
+					</select>
+				</div>				
+				<div class="five wide field">
+					<label>Código do DANFe</label>
+					<input type="text" id="danfe">
+				</div>
+				<div class="five wide field">
+					<label>Nota Fiscal</label>
+					<input type="text" id="nota_fiscal">
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label>Contrato de Financiamento</label>
+			<input id="contrato_financiamento" placeholder="">
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="four wide field">
+					<label>Parcelas</label>
+					<input id="numero_parcela" class="text-right">
+				</div>	
+				<div class="six wide field">
+					<label>Valor da Parcela</label>
+					<div class="ui right labeled input">
+		  				<label class="ui label">R$</label>					
+						<input id="valor_parcela" class="money text-right">
+					</div>
+				</div>				
+				<div class="six wide field">
+					<label>Valor da Compra</label>
+					<div class="ui right labeled input">
+		  				<label class="ui label">R$</label>	
+						<input id="valor_compra" class="money text-right">
+		  			</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label>Vendedor</label>
+			<input id="vendedor" placeholder="">
+		</div>
+
+		<div class="ui divider"></div>
+		<h3>Seguradora</h3>
+
+		<div class="field">
+			<label>Nome da Empresa</label>
+			<div class="ui search seguradora">
+				<div class="ui icon input">
+					<input class="prompt" type="text" id="seguradora_nome" placeholder="Seguradora">
+					<i class="search icon"></i>
+					<input type="hidden" id="seguradora">
+				</div>
+				<div class="results"></div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="five wide field">
+					<label>Data de Início</label>
+					<input type="date" id="inicio_seguro" class="text-right">
+				</div>	
+				<div class="five wide field">
+					<label>Data Final</label>
+					<input type="date" id="fim_seguro" class="text-right">
+				</div>				
+				<div class="ten wide field">
+					<label>Valor do Seguro</label>
+					<div class="ui right labeled input">
+		  				<label class="ui label">R$</label>
+						<input type="text" id="valor_seguro" class="money text-right">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label>Ítem Seguro</label>
+			<input id="item_seguro" placeholder="">
+		</div>
+
+		<div class="ui divider"></div>
+		<h3>Cliente</h3>
+
+		<div class="field">
+			<label>Nome da Empresa</label>
+			<div class="ui search cliente">
+				<div class="ui icon input">
+					<input class="prompt" type="text" id="cliente_nome" placeholder="Cliente">
+					<i class="search icon"></i>
+					<input type="hidden" id="cliente">
+				</div>
+				<div class="results"></div>
+			</div>
+		</div>
+		
+		<div class="field">
+			<label>Contrato</label>
+			<input id="contrato_cliente" placeholder="">
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="five wide field">
+					<label>Data de Início</label>
+					<input type="date" id="inicio_contrato" class="text-right">
+				</div>	
+				<div class="five wide field">
+					<label>Data Final</label>
+					<input type="date" id="fim_contrato" class="text-right">
+				</div>				
+				<div class="ten wide field">
+					<label>Valor da Locação</label>
+					<div class="ui right labeled input">
+		  				<label class="ui label">R$</label>
+						<input type="text" id="valor_locacao" class="money text-right">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="fields">
+				<div class="five wide field">
+					<label>Data de Entrada</label>
+					<input type="date" id="data_entrada" class="text-right">
+				</div>	
+				<div class="five wide field">
+					<label>Data de Saída</label>
+					<input type="date" id="data_saida" class="text-right">
+				</div>				
+				<div class="ten wide field">
+					<label>Kilometragem</label>
+					<input type="number" id="km" class="text-right">
+				</div>
+			</div>
+		</div>
+
+		<div class="five wide field">
+			<label>Situação do Veículo (status)</label>
+			<select class="ui search selection dropdown" id="status">
+  				<option value="A">Alugado</option>
+  				<option value="L">Livre</option>
+  				<option value="V">Vendido</option>
+			</select>
+		</div>
+
+		<div class="ui divider"></div>
+		<h3>Anexos</h3>	
+		
+		<div class="field file">
+			<div class="ui middle aligned divided list file_attached"></div>
+			<button type="button" class="ui button large"><i class="paperclip icon"></i> Click ou arraste e solte arquivos aqui.</button>
+			<input type="file" class="ui button" id="file" multiple="true">			
+			<div class="ui middle aligned divided list file_results"></div>
+			<div class="filesenddownloadstatus" id="filesenddownloadstatus"></div>
+		</div>
+
+		<div class="field">
+			<label>Observação</label>
+			<textarea id="obs" rows="3"></textarea>
+		</div>
+		
+		<div class="fields" id="deleted_dsp">
+			<div class="ui divider"></div>
+			<div class="inline field">
+				<div class="ui toggle checkbox">
+					<input type="checkbox" id="deleted" tabindex="0" class="hidden">
+					<label>Resgatar da lixeira</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="ui divider"></div>
+
+		<div class="field control">
+			<button type="reset" onclick="APP_PAGE.cancel()" class="ui mini circular button">Cancelar</button>
+			<button type="button" onclick="APP_PAGE.save()" class="ui circular button primary">Salvar</button>
+		</div>
+
+	</form>
+</div>
+
+
+
+
+
+<script src="js/module/cadastro/veiculo.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.icon.browse').popup({on: 'hover', hoverable: true})
+		$('.money').mask('000.000.000.000.000,00', {reverse: true});
+		$('.placa').mask('AAA9999', {reverse: true});
+	})
+</script>

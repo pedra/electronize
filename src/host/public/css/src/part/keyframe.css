@@ -1,0 +1,53 @@
+/* ---------------- ANIMATION ----------------= */
+@keyframes reportOn {
+    from {
+        opacity: 0;
+        transform: rotateZ(30deg);
+        transform-origin: right;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(7vh);
+    }
+}
+
+@keyframes reportOff {
+    from {
+        opacity: 1;
+        transform: translateY(7vh);
+        transform-origin: left;
+    }
+
+    to {
+        opacity: 0;
+        transform: rotateZ(20deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}

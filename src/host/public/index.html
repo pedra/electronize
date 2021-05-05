@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronize</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <link rel="manifest" href="/icon/site.webmanifest">
+    <link rel="mask-icon" href="/icon/safari-pinned-tab.svg" color="#4b4a89">
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Electronize">
+    <meta name="application-name" content="Electronize">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/icon/browserconfig.xml">
+    <meta name="theme-color" content="#4b4a89">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/src/theme-light.css" id="themeStyle">
+    <link rel="stylesheet" href="css/src/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Parts -->
+    <link rel=" stylesheet" href="css/src/part/keyframe.css">
+    <link rel="stylesheet" href="css/src/part/bmenu.css">
+    <link rel="stylesheet" href="css/src/part/report.css">
+    <link rel="stylesheet" href="css/src/part/page.css">
+
+    <!-- Páginas -->
+    <link rel="stylesheet" href="css/src/page/empty.css">
+    <link rel="stylesheet" href="css/src/page/auth.css">
+    <link rel="stylesheet" href="css/src/page/profile.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/file.css">
+
+    <!-- Javascript -->
+    <script src="js/src/utils.js" defer></script>
+    <script src="js/src/config.js" defer></script>
+    <script src="js/src/lib/storage.js" defer></script>
+    <script src="js/src/lib/event.js" defer></script>
+    <script src="js/src/lib/page.js" defer></script>
+    <script src="js/src/lib/bmenu.js" defer></script>
+    <script src="js/src/ctrl/home.js" defer></script>
+    <script src="js/src/ctrl/auth.js" defer></script>
+    <script src="js/src/ctrl/user.js" defer></script>
+    <script src="js/src/ctrl/chat.js" defer></script>
+    <script src="js/src/ctrl/file.js" defer></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="js/src/main.js" defer></script>
+</head>
+
+<body>
+
+    <main>
+        <div class="page empty on" id="pg-empty">
+            <div class="container">
+                <img src="\icon\favicon-32x32.png" class="pulse" alt="loading...">
+                <span id="ept-title">Carregando...</span>
+            </div>
+        </div>
+
+        <!-- USER-LOGIN - PAGE --------------------------------------------------------------- -->
+        <div class="page auth" id="pg-auth">
+            <div class="container">
+                <form onsubmit="return false" class="aut-form" id="aut-form">
+
+                    <div class="aut-logo" id="aut-logo">
+                        <i class="material-icons">account_circle</i>
+                    </div>
+
+                    <label for="aut-login">Login</label>
+                    <input type="text" id="aut-login" placeholder="Login...">
+
+                    <label for="aut-password">Senha</label>
+                    <input type="text" id="aut-password" placeholder="Senha...">
+
+                    <div class="control right">
+                        <button type="submit">Entrar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- USER-INDEX - PAGE --------------------------------------------------------------- -->
+        <div class="page index" id="pg-index">
+            <div class="container">INDEX PAGE
+            </div>
+        </div>
+
+        <!-- USER-PROFILE - PAGE ------------------------------------------------------------- -->
+        <div class="page profile" id="pg-profile">
+            <div class="container">
+                <div class="pfl-avatar" id="pfl-avatar"></div>
+                <div class="pfl-name" id="pfl-name">Délcio Guedes Alencar</div>
+                <div class="pfl-status" id="pfl-status">
+                    <div>
+                        <i class="material-icons">cloud_download</i>
+                        <span id="pfl-status-download">0</span>
+                    </div>
+                    <div>
+                        <i class="material-icons">cloud_upload</i>
+                        <span id="pfl-status-upload">0</span>
+                    </div>
+                    <div>
+                        <i class="material-icons">notifications</i>
+                        <span id="pfl-status-notify">0</span>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <button type="button" onclick="App.User.mode()">Dark</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HOME - PAGE --------------------------------------------------------------------- -->
+        <div class="page home" id="pg-home">
+            <div class="container">
+                <h1>HOME PAGE</h1>
+                <p id="hom-title"></p>
+            </div>
+        </div>
+
+        <!-- FILE - PAGE --------------------------------------------------------------------- -->
+        <div class="page file" id="pg-file">
+            <div class="container">
+                <div class="breadcumbs" id="file-breadcumbs"></div>
+                <ul class="file-list" id="file-list"></ul>
+                <div class="file-menu" id="file-menu">
+                    <div class="file-menu-content">
+                        <div class="file-menu-title" id="file-menu-title">Nome do arquivo</div>
+                        <ul class="file-menu-control">
+                            <li onclick="App.File.editMenu()">
+                                <i class="material-icons">edit</i>
+                                <span>Editar</span>
+                            </li>
+                            <li onclick="App.File.deleteMenu()">
+                                <i class="material-icons">delete_forever</i>
+                                <span>Excluir</span>
+                            </li>
+                            <li onclick="App.File.downloadMenu()">
+                                <i class="material-icons">save_alt</i>
+                                <span>Baixar</span>
+                            </li>
+                            <li onclick="App.File.closeMenu()">
+                                <i class="material-icons">close</i>
+                                <span>Fechar</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT - PAGE --------------------------------------------------------------------- -->
+        <div class="page chat" id="pg-chat">
+            <div class="container">
+                <div class="chat-userdata" id="chat-userdata"></div>
+
+                <img src="/img/l.gif" class="chat-loader hide" id="chat-loader" />
+                <div class="chat-msg" id="chat-msg">
+                    <div class="chat-content" id="chat-content"></div>
+                </div>
+                <div class="chat-sendform">
+                    <div class="chat-emojis" id="chat-emojis">
+                        <span>&#128512;</span><span>&#128513;</span><span>&#128514;</span><span>&#128515;</span><span>&#128516;</span><span>&#128517;</span><span>&#128518;</span><span>&#128519;</span><span>&#128520;</span><span>&#128521;</span><span>&#128522;</span><span>&#128523;</span><span>&#128524;</span><span>&#128525;</span><span>&#128526;</span><span>&#128527;</span><span>&#128528;</span><span>&#128529;</span><span>&#128530;</span><span>&#128531;</span><span>&#128532;</span><span>&#128533;</span><span>&#128534;</span><span>&#128535;</span><span>&#128536;</span><span>&#128537;</span><span>&#128538;</span><span>&#128539;</span><span>&#128540;</span><span>&#128541;</span><span>&#128542;</span><span>&#128543;</span><span>&#128544;</span><span>&#128545;</span><span>&#128546;</span><span>&#128547;</span><span>&#128548;</span><span>&#128549;</span><span>&#128550;</span><span>&#128551;</span><span>&#128552;</span><span>&#128553;</span><span>&#128554;</span><span>&#128555;</span><span>&#128556;</span><span>&#128557;</span><span>&#128558;</span><span>&#128559;</span><span>&#128560;</span><span>&#128561;</span><span>&#128562;</span><span>&#128563;</span><span>&#128564;</span><span>&#128565;</span><span>&#128566;</span><span>&#128567;</span><span>&#128577;</span><span>&#128578;</span><span>&#128579;</span><span>&#128580;</span><span>&#129296;</span><span>&#129297;</span><span>&#129298;</span><span>&#129299;</span><span>&#129300;</span><span>&#129301;</span><span>&#129312;</span><span>&#129313;</span><span>&#129314;</span><span>&#129315;</span><span>&#129316;</span><span>&#129317;</span><span>&#129319;</span><span>&#129320;</span><span>&#129321;</span><span>&#129322;</span><span>&#129323;</span><span>&#129324;</span><span>&#129325;</span><span>&#129326;</span><span>&#129327;</span><span>&#129488;</span>
+                        <i class="material-icons">close</i>
+                    </div>
+                    <button id="chat-show-emoji"><i class="material-icons">mood</i></button>
+                    <div contenteditable="true" id="chat-text"></div>
+                    <button id="chat-send"><i class="material-icons">send</i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

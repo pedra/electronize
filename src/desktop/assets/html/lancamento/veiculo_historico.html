@@ -1,0 +1,53 @@
+<div class="list" id="list"></div>
+	 
+<div class="edit" id="edit">	 
+	<form class="ui small form formedit">
+
+		<input type="hidden" id="id" value="0">	
+
+
+		<div class="ten wide field">
+			<label for="veiculo">Veículo *</label>
+			<select class="ui search selection dropdown" id="veiculo"></select>
+		</div>
+
+		<div class="ten wide field">
+			<label>Data *</label>
+			<input type="date" id="data" class="text-right" placeholder="data" maxlength="10">
+		</div>
+
+		<div class="ten wide field">
+			<label for="acao">Ação *</label>
+			<select class="ui search selection dropdown" id="acao"></select>
+		</div>
+
+		<div class="ui divider"></div>
+		<h3>Anexos</h3>	
+		
+		<div class="field file">
+			<div class="ui middle aligned divided list file_attached"></div>
+			<button type="button" class="ui button large"><i class="paperclip icon"></i> Click ou arraste e solte arquivos aqui.</button>
+			<input type="file" class="ui button" id="file" multiple="true">
+			<div class="ui middle aligned divided list file_results"></div>
+			<div class="filesenddownloadstatus" id="filesenddownloadstatus"></div>
+		</div>		
+
+		<div class="field">
+			<label>Observação *</label>
+			<textarea id="obs" rows="3"></textarea>
+		</div>
+
+		<div class="ui divider"></div>
+
+		<div class="field control">
+			<button type="reset" onclick="APP_PAGE.cancel()" class="ui mini circular button">Cancelar</button>
+			<button type="button" onclick="APP_PAGE.save()" class="ui circular button primary">Salvar</button>
+		</div>
+	</form>
+</div>
+
+<script src="js/module/lancamento/veiculo_historico.js"></script>
+<script>
+	$('.icon.browse').popup({on: 'hover', hoverable: true})
+	$('.ui.dropdown').dropdown({fullTextSearch: true})
+</script>

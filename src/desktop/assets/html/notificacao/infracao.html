@@ -1,0 +1,59 @@
+<style>#form { height: calc(100vh - 36px)}</style>
+<div class="list" id="list"></div>
+	 
+<div class="edit" id="edit">	 
+	<form class="ui small form formedit">
+
+		<div class="eight wide field">
+			<label for="cliente">Cliente *</label>
+			<select class="ui search selection dropdown" id="cliente"></select>
+		</div>
+
+		<div id="listagem"></div>
+
+		<div id="formulario" class="hidden"> <!-- ----------------HIDDEN------------------ -->
+			<div class="field">
+			    <div class="wide field">
+					<label for="titulo">Titulo*</label>
+					<input id="titulo" placeholder="Título do E-mail" />
+				</div>
+			</div>
+
+			<div class="field">
+			    <div class="wide field">
+					<label for="mensagem">Mensagem*</label>
+					<textarea id="mensagem" placeholder="Corpo do E-mail"></textarea>
+				</div>
+			</div>
+
+			<div class="field">
+				<div class="wide field">
+					<label for="destinatario">Destinatário* <i class="circular question circle icon link" data-content="Escolha um e-mail da lista ou digite um novo com o seguinte formato NOME | EMAIL ou simplesmente o EMAIL" data-variation="inverted"></i></label>
+                    <select id="destinatario" multiple="true" class="ui fluid dropdown search"></select>
+				</div>
+			</div>
+
+			<div class="field">
+				<div class="wide field">
+					<label for="from">Conta para envio* <i class="circular question circle icon link" data-content="Escolha um e-mail da lista ou digite um novo com o seguinte formato NOME | EMAIL ou simplesmente o EMAIL" data-variation="inverted"></i></label>
+                    <select id="from" class="ui fluid dropdown search"></select>
+				</div>
+			</div>
+
+			<div class="ui divider"></div>
+
+			<div class="field control">
+				<button type="reset" onclick="APP_PAGE.cancel()" class="ui mini circular button">Cancelar</button>
+				<button type="button" onclick="APP_PAGE.save()" class="ui circular button primary">Enviar</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<script src="js/module/notificacao/infracao.js"></script>
+<script>
+	$('.icon.question').popup({on: 'hover', hoverable: true})
+	$('.ui.dropdown').dropdown({fullTextSearch: true, allowAdditions: true});
+	$('.money').mask('000.000.000,00', {reverse: true});
+</script>

@@ -1,0 +1,46 @@
+<div class="report_form" id="report_form">
+
+	<h2>Configuração do Relatório</h2> 
+
+	<form class="ui small form">
+	    <div class="field">
+			<div class="fields">
+				<div class="five wide field">
+					<label>Data de Início *</label>
+					<input type="date" id="inicio" placeholder="Início" maxlength="10">
+				</div>
+
+				<div class="five wide field">
+					<label>Data de Fim *</label>
+					<input type="date" id="fim" placeholder="Fim" maxlength="10">
+				</div>
+			</div>
+		</div>
+
+		<div class="ten wide field">
+			<label for="veiculo">Veículo</label>
+			<select class="ui search selection dropdown" id="veiculo"></select>
+		</div>
+		
+		<div class="ten wide field">
+			<label for="cliente">Cliente</label>
+			<select class="ui search selection dropdown" id="cliente"></select>
+		</div>
+
+		<div class="ui divider"></div>
+
+       	<div class="field control left">
+			<button 
+	        	type="button" 
+	            class="ui circular labeled primary icon button"
+	            onclick="APP_PAGE.generate()"><i class="stack overflow large icon"></i> Gerar Relatório</button> O relatório abrirá em uma nova janela.
+        </div>
+	</form> 
+
+</div> 
+
+<script src="js/module/relatorio/infracao.js"></script>
+<script>
+	$('.icon.browse').popup({on: 'hover', hoverable: true})
+	$('.ui.dropdown').dropdown({fullTextSearch: true});
+</script>
