@@ -11,15 +11,14 @@ Template to start an Electron project!
 
 **./assets** - "external" files added to the distribution package (not compressed in the ASA).
 
-*TODO: write usage documentation and settings (next commits)*. 
+<sub><i>TODO: write usage documentation and settings (next commits).</i></sub> 
 
-## Start
-
-```
-npm start 
-```
 
 ## Install
+
+Electronize has two layers: the **development** layer, which is installed in the ./src folder and the **build** layer, at the root of the project.
+
+You need to install NPM dependencies on these two layers:
 
 ```
 npm i
@@ -27,7 +26,17 @@ cd src
 npm i
 ```
 
+## Start
+
+To run the code under development, type this at the root of the project (not inside ./src): 
+
+```
+npm start 
+```
+
 ## Build
+
+To create a test build, type: 
 
 ```
 npm run build
@@ -36,6 +45,8 @@ npm run build
 Check ./dist directory.
 
 ## Pack
+
+This command creates the packaged files to be sent to users to install the application. We will soon have more details in the documentation on packaging particularities for different operating systems (MacOs, Linux and Windows).
 
 ```
 npm run dist
