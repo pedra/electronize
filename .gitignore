@@ -62,5 +62,6 @@ typings/
 
 # Electronize --------------- [begin]
 dist/
+.vscode/
 
 # Electronize --------------- [end]
