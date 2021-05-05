@@ -1,5 +1,14 @@
 # Electronize
-Template to start an Electron project! 
+Template to start an Electron project!
+
+### Directories:
+
+**./src** - development codes;
+**./dist** - compiled distribution files;
+**./icon** - application icon required by Electron-Builder;
+**./assets** - "external" files added to the distribution package (not compressed in the ASA).
+
+*TODO: write usage documentation and settings (next commits)*. 
 
 ## Start
 
@@ -37,6 +46,6 @@ And check the ./dist directory.
 Coming soon in https://github.com/pedra/elize
 
 --- 
-The code is partially in Brazilian **Portuguese**.
-Help to **translate** is very much desired!
+<p>The code is partially in Brazilian <b>Portuguese</b>.<br>
+Help to <b>translate</b> is very much desired!</p>
 
