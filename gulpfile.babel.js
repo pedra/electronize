@@ -84,7 +84,10 @@ const html = () => {
 }
 
 const vendor = () =>
-	src(['src/node_modules/socket.io/client-dist/socket.io.min.js'])
+	src([
+		'src/node_modules/socket.io/client-dist/socket.io.min.js',
+		'src/node_modules/idb/build/iife/index-min.js'
+	])
 		.pipe(dest('src/host/public/js/src/vendor'))
 
 

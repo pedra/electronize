@@ -4,12 +4,15 @@
 
 const _File = function (config) {
 
-    let path = '/'
+    let path = '/',
+        atualId = 0,
+        atualFile = ''
+
 
     const show = () => {
         path = path.replace('//', '/')
 
-        __get('file/list?path=' + path).then(l => {
+        __get(config.list + '?path=' + path).then(l => {
 
             if (l.error) return __report(`Ocorreu um erro com a listagem de arquivos!<br>Error: [${l.error}]`)
 
@@ -43,7 +46,7 @@ const _File = function (config) {
                 }
 
                 i += `<li class="file-item ${type}" data-id="234" 
-                          onclick="App.File.click(${c}, '${type == 'folder' ? f.name : ''}')" 
+                          onclick="App.File.click(${c}, '${type}', '${f.name}')" 
                           oncontextmenu="return App.File.menu(${c})">
                         <i class="material-icons">${icon}</i>
                         <div class="file-info">
@@ -64,13 +67,14 @@ const _File = function (config) {
         })
     }
 
-    const click = (id, dir) => {
-        if (dir !== '') {
-            path = path + '/' + dir
+    const click = (id, type, name) => {
+        if (type == 'folder') {
+            path = path + '/' + name
             return show()
         }
+        atualFile = path + '/' + name
         showMenu(id)
-        console.log("Clicou em " + id)
+        console.log("Clicou em " + id, name, atualFile)
     }
 
     const menu = (id, dir) => {
@@ -98,6 +102,7 @@ const _File = function (config) {
     }
 
     const showMenu = (id) => {
+        atualId = id
         _(config.html.menuTitle).innerHTML = _a(config.html.fileName)[id].innerHTML
         _(config.html.menu).classList.add('on')
     }
@@ -109,7 +114,13 @@ const _File = function (config) {
 
     const editMenu = () => console.log('Menu : edit')
 
-    const downloadMenu = () => console.log('Menu : download')
+    const downloadMenu = () => {
+        let af = atualFile
+        atualFile = ''
+        atualId = 0
+        closeMenu()
+        window.location = config.download + '?path=' + af
+    }
 
     const deleteMenu = () => console.log('Menu : delete')
 

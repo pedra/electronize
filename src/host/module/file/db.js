@@ -2,25 +2,18 @@ const path = require('path')
 const { app } = require('electron')
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database(path.resolve(app.Config.external.db, 'magic.db'))
-const USER_TABLE = 'user'
+const FILE_TABLE = 'file'
+const CONFIG_TABLE = 'config'
 
 module.exports = function () {
 
-    // Verifica login + password
-    const login = ($login, $password, cb) =>
-        db.all(`select access,avatar,download,id,key,level,name,theme,token,upload
-        from ${USER_TABLE} 
-        where login=$login and password=$password`,
-            { $login, $password },
-            (e, r) => cb(e ? [] : r)
-        )
 
     /** Set colum/param
      *  param = {param: value, pn: vn ...}
      */
-    const set = (param, $id, cb) => {
+    const setConfig = (param, cb) => {
         if (param.constructor !== Object) return cb(true)
-        let params = '', values = { $id }
+        let params = '', values = {}
 
         Object.keys(param).forEach(p => {
             params += p + '=$' + p + ','
@@ -28,7 +21,7 @@ module.exports = function () {
         })
         params = params.replace(/(,)$/g, '')//retira a última vírgula
 
-        db.run(`update ${USER_TABLE} set ${params} where id=$id`,
+        db.run(`update ${CONFIG_TABLE} set ${params} where id=1`,
             values,
             e => cb(e ? true : false)
         )
@@ -37,16 +30,15 @@ module.exports = function () {
     /** Get colum/param
      * param = ['param', 'pn' ...]
      */
-    const get = (param, $id, cb) => {
+    const getConfig = (param, cb) => {
         if (!Array.isArray(param)) param = [param]
-        db.all(`select ${param.toString()} from ${USER_TABLE} where id=$id`,
-            { $id },
+        db.all(`select ${param.toString()} from ${CONFIG_TABLE} where id=1`,
+            {},
             (e, r) => cb(e ? [] : r)
         )
     }
 
     return {
-        set, get,
-        login
+        setConfig, getConfig
     }
 }

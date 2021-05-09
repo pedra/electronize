@@ -10,7 +10,7 @@ const App = {}
 window.onload = () => {
     // Iniciando os objetos do sistema...
     App.Event = new _Event()
-    App.Storage = new _Storage()
+    App.Storage = new _Storage('elize')
     App.Page = new _Page(Config.pages)
     App.Bmenu = new _Bmenu(Config)
 
@@ -30,9 +30,12 @@ window.onload = () => {
                 console.log("[SW: Instalado]")
 
                 // Carregando as configurações e a página correspondente...
-                App.Storage.init().then(data =>
-                    App.Page.show(data.user && data.user.id > 0 ? 'profile' : 'auth')
-                )
+                App.Storage.me().then(a => App.Page.show(a && a.id > 0 ? 'profile' : 'auth'))
+
+
+                // App.Storage.init().then(data =>
+                //     App.Page.show(data.user && data.user.id > 0 ? 'profile' : 'auth')
+                // )
             })
     } else {
         console.log("[SW: Não instalado]")

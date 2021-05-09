@@ -2,29 +2,16 @@
 
 const _Auth = function (config) {
 
-    let userName = 'Convidado'
-
     const show = (name) => {
-        //if (!name) return (_(config.html.logo).innerHTML = __avt('👽', 150, 'transparent'))
 
-        name = name || userName
-        var names = name.split(' ')
-        var alias = ''
-        if (names.length <= 1) {
-            alias = name[0] + name[name.length - 1].toLowerCase()
-            console.log('Menor', name, names.length)
-        } else {
-            console.log('Maior', names)
-            alias = names[0].substr(0, 1) + names[names.length - 1].substr(0, 1).toLowerCase()
-        }
-        //_(config.html.logo).innerHTML = __avt(alias, 80)
     }
 
     const login = async (login, password) => {
         login = (login || '').trim()
         password = (password || '').trim()
 
-        App.Storage.set('user', { id: 0, name: '' })
+        //App.Storage.set('user', { id: 0, name: '' })
+        App.Storage.clear() // clear all packet
 
         if (login == '' || password == '')
             return __report('Você precisa digitar o LOGIN e a SENHA!')
@@ -34,22 +21,26 @@ const _Auth = function (config) {
 
         if (!p || p.error) return __report('Não consegui autenticar seu usuário!<br>Verifique seus dados ou entre em contato com o administrador.')
 
-        App.Storage.set('user', p)
+        p.auth = true
+        App.Storage.add(p) // add user "me" data
+
         App.Page.show('profile')
         __report(`Bem vindo!`, 'info', 2000)
     }
 
     const logout = async () => {
-        var data = await App.Storage.set('user', { id: 0, name: '' })
-        __post(config.logout, { id: data.user.id })
+        var uid = (await App.Storage.me()).id
+        __post(config.logout, { id: uid })
+
+        App.Storage.clear()
 
         App.Page.show('auth')
         __report('Você está anônimo.')
     }
 
-    const isLogged = () => App.Storage.get('user').id > 0 && App.Storage.get('user').token ? true : false
+    const isLogged = async () => (await App.Storage.me()) ? true : false
 
-    const getMe = () => App.Storage.get('user')
+    const getMe = async () => await App.Storage.me()
 
     const construct = (config) => {
 

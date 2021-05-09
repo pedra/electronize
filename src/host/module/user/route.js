@@ -1,8 +1,8 @@
 
 const path = require('path')
 const { app } = require('electron')
+const { route } = require('../file/route')
 var router = require('express').Router()
-const MobileDetect = require('mobile-detect')
 const Utils = require(path.resolve(app.Config.app.module, 'utils'))()
 const db = new require('./db')()
 
@@ -23,20 +23,31 @@ router.post('/login', (req, res) => {
 
     db.login(login, password, data => {
         if (data.length > 0) {
-            data[0].token = Utils.tokey()
-            db.set('token', data[0].id, data[0].token, () => res.json(data[0]))
+            r = data[0]
+            r.token = Utils.tokey()
+            r.access++
+            db.set({ token: r.token, access: r.access }, r.id, () => res.json(r))
         } else {
             res.json({ error: 'u2' })
         }
     })
 })
 
+// Logout the user
+router.post('/logout', (req, res) => {
+    const id = (req.body.id || 0)
+    if (id == 0) return res.json({ error: 'u3' })
+    db.set({ token: '', key: '', socket: '' }, id, error => res.json({ error }))
+})
 
-router.get('/', (req, res) =>
-    res.render(
-        (new MobileDetect(req.headers['user-agent'])).mobile() ?
-            'index-mobile' :
-            'index'))
+
+// Change user theme... 
+router.post('/theme', (req, res) => {
+    const theme = (req.body.theme || 'light').trim()
+    const id = (req.body.id || 0)
+    if (id == 0) return res.json({ error: 'u4' })
+    db.set({ theme }, id, error => res.json({ error }))
+})
 
 
 

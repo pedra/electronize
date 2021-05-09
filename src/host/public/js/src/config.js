@@ -34,6 +34,8 @@ const Config = {
     },
 
     file: {
+        list: 'file/list',
+        download: '/file/download',
         html: {
             fileName: '.file-name',
             menu: '#file-menu',
@@ -57,9 +59,14 @@ const Config = {
     },
 
     user: {
+        setTheme: '/user/theme',
         html: {
             name: '#pfl-name',
             avatar: '#pfl-avatar',
+            theme: '#pfl-theme',
+            access: '#pfl-status-access',
+            download: '#pfl-status-download',
+            upload: '#pfl-status-upload'
         }
     },
 

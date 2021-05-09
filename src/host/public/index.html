@@ -54,6 +54,7 @@
     <script src="js/src/ctrl/file.js" defer></script>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/src/vendor/index-min.js"></script>
 
     <script src="js/src/main.js" defer></script>
 </head>
@@ -65,6 +66,7 @@
             <div class="container">
                 <img src="\icon\favicon-32x32.png" class="pulse" alt="loading...">
                 <span id="ept-title">Carregando...</span>
+                <button onclick="App.Page.show('file')">File</button>
             </div>
         </div>
 
@@ -103,22 +105,26 @@
                 <div class="pfl-avatar" id="pfl-avatar"></div>
                 <div class="pfl-name" id="pfl-name">Délcio Guedes Alencar</div>
                 <div class="pfl-status" id="pfl-status">
-                    <div>
+                    <div title="Downloads">
                         <i class="material-icons">cloud_download</i>
                         <span id="pfl-status-download">0</span>
                     </div>
-                    <div>
+                    <div title="Uploads">
                         <i class="material-icons">cloud_upload</i>
                         <span id="pfl-status-upload">0</span>
                     </div>
-                    <div>
+                    <div title="Acessos">
+                        <i class="material-icons">lock</i>
+                        <span id="pfl-status-access">0</span>
+                    </div>
+                    <div title="Notificações">
                         <i class="material-icons">notifications</i>
                         <span id="pfl-status-notify">0</span>
                     </div>
                 </div>
 
                 <div class="control">
-                    <button type="button" onclick="App.User.mode()">Dark</button>
+                    <button type="button" id="pfl-theme" onclick="App.User.theme()">Dark</button>
                 </div>
 
             </div>
