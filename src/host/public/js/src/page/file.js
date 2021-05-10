@@ -5,14 +5,15 @@
 const _File = function (config) {
 
     let path = '/',
-        atualId = 0,
-        atualFile = ''
+        file = '',
+        html = {},
+        url = {}
 
 
     const show = () => {
         path = path.replace('//', '/')
 
-        __get(config.list + '?path=' + path).then(l => {
+        __get(url.list + '?path=' + path).then(l => {
 
             if (l.error) return __report(`Ocorreu um erro com a listagem de arquivos!<br>Error: [${l.error}]`)
 
@@ -62,8 +63,8 @@ const _File = function (config) {
             bc.map(a => b += `<a onclick="return App.File.go('${d += '/' + a}')">${a}</a>/`)
             b = b.substring(0, b.lastIndexOf("/"))
 
-            _('#file-breadcumbs').innerHTML = `${path == '/' ? '<i class="material-icons">home</i>' : '<i class="material-icons" onclick="App.File.back()">arrow_back</i><i class="material-icons" onclick="App.File.home()">home</i>'}<div class="file-path" id="file-path">${b}</div>`
-            _('#file-list').innerHTML = i
+            _(html.breadcrumbs).innerHTML = `${path == '/' ? '<i class="material-icons">home</i>' : '<i class="material-icons" onclick="App.File.back()">arrow_back</i><i class="material-icons" onclick="App.File.home()">home</i>'}<div class="file-path" id="file-path">${b}</div>`
+            _(html.list).innerHTML = i
         })
     }
 
@@ -72,9 +73,9 @@ const _File = function (config) {
             path = path + '/' + name
             return show()
         }
-        atualFile = path + '/' + name
+        file = path + '/' + name
         showMenu(id)
-        console.log("Clicou em " + id, name, atualFile)
+        console.log("Clicou em " + id, name, file)
     }
 
     const menu = (id, dir) => {
@@ -101,33 +102,45 @@ const _File = function (config) {
         return show()
     }
 
+
+    // ------------- SUBMENU -------------------------- [begin]
     const showMenu = (id) => {
-        atualId = id
-        _(config.html.menuTitle).innerHTML = _a(config.html.fileName)[id].innerHTML
-        _(config.html.menu).classList.add('on')
+        _(html.menuTitle).innerHTML = _a(html.fileName)[id].innerHTML
+        _(html.menu).classList.add('on')
     }
 
     const closeMenu = () => {
-        _(config.html.menuTitle).innerHTML = ''
-        _(config.html.menu).classList.remove('on')
+        _(html.menuTitle).innerHTML = ''
+        _(html.menu).classList.remove('on')
     }
 
-    const editMenu = () => console.log('Menu : edit')
+    // ------------- SUBMENU - actions ---------------- [begin]
+    const editMenu = () => __report('Edição não implementada!', 'info', 2000)
 
     const downloadMenu = () => {
-        let af = atualFile
-        atualFile = ''
-        atualId = 0
+        let f = file
+        file = ''
         closeMenu()
-        window.location = config.download + '?path=' + af
+        window.location = url.download + '?path=' + f
     }
 
-    const deleteMenu = () => console.log('Menu : delete')
+    const deleteMenu = () => __report('Delete não implementado.', 'info', 2000)
+
+    // ------------- SUBMENU - actions ---------------- [end]
+
+    const construct = () => {
+        path = '/'
+        file = ''
+        html = config.html
+        url = config.url
+        show()
+    }
+
+    construct()
 
     return {
         show, click, menu, back, home, go,
         // Menu ---- 
         closeMenu, editMenu, downloadMenu, deleteMenu
     }
-
 }

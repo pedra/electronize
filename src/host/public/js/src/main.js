@@ -8,17 +8,14 @@ const App = {}
 
 
 window.onload = () => {
-    // Iniciando os objetos do sistema...
+    // Iniciando as libs ...
     App.Event = new _Event()
     App.Storage = new _Storage('elize')
     App.Page = new _Page(Config.pages)
     App.Bmenu = new _Bmenu(Config)
 
-    // Controllers...
-    App.Home = new _Home(Config.home)
-    App.Auth = new _Auth(Config.auth)
-    App.File = new _File(Config.file)
-    App.User = new _User(Config)
+    // Entities ...
+    App.Me = new _Me(Config)
     App.Chat = new _Chat(Config.chat)
 
     //Installing Service Worker...
@@ -28,17 +25,12 @@ window.onload = () => {
             .register(location.origin + '/sw.js', { scope: '/' })
             .then(sw => {
                 console.log("[SW: Instalado]")
-
-                // Carregando as configurações e a página correspondente...
-                App.Storage.me().then(a => App.Page.show(a && a.id > 0 ? 'profile' : 'auth'))
-
-
-                // App.Storage.init().then(data =>
-                //     App.Page.show(data.user && data.user.id > 0 ? 'profile' : 'auth')
-                // )
             })
     } else {
         console.log("[SW: Não instalado]")
-        return alert('Não consegui instalar o Serviço!')
+        alert('Não consegui instalar o Serviço!<br>A aplicação rodará sem muitos problemas, porém, sem acesso ao cache de rede.')
     }
+
+    // Carregando as configurações e a página correspondente...
+    App.Storage.me().then(a => App.Page.show(a && a.id > 0 ? 'profile' : 'auth'))
 }

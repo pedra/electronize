@@ -9,22 +9,18 @@ const Config = {
         core: 'http://localhost',
         assets: 'http://localhost',
         html: {
-            theme: '#themeStyle'
+            themestyle: '#themeStyle'
         }
     },
 
-    home: {
-        title: '#hom-title'
+    user: {
+        url: {
+            login: '/auth/login',
+            logout: '/auth/logout',
+        }
     },
 
     auth: {
-        login: '/auth/login',
-        logout: '/auth/logout',
-        resetPassword: '/auth/password',
-        profile: '/auth/profile',
-        update: '/auth/update',
-        add: '/auth/add',
-        remove: '/auth/remove',
         html: {
             logo: '#aut-logo',
             form: '#aut-form',
@@ -34,12 +30,17 @@ const Config = {
     },
 
     file: {
-        list: 'file/list',
-        download: '/file/download',
+        url: {
+            list: 'file/list',
+            download: '/file/download'
+        },
         html: {
             fileName: '.file-name',
             menu: '#file-menu',
             menuTitle: '#file-menu-title',
+            breadcrumbs: '#file-breadcrumbs',
+            list: '#file-list',
+
         }
     },
 
@@ -58,7 +59,7 @@ const Config = {
         url: '/msg/qzm'
     },
 
-    user: {
+    profile: {
         setTheme: '/user/theme',
         html: {
             name: '#pfl-name',
@@ -77,28 +78,22 @@ const Config = {
             efect: 'down',
             trail: false,
             bmenu: false
-        },
-        {
-            id: 'home',
-            title: 'Welcome',
-            efect: 'down',
-            trail: false,
-            bmenu: 'user',
-            onShow: () => App.Home.init()
         }, {
             id: 'auth',
             title: 'Login',
             efect: 'up',
             trail: false,
             bmenu: false,
-            onShow: () => App.Auth.show()
+            onShow: () => App.Auth = new _Auth(Config.auth),
+            onHide: () => App.Auth = null
         }, {
             id: 'file',
             title: 'File Manager',
             efect: 'backward',
             trail: ['home'],
             bmenu: 'file',
-            onShow: () => App.File.show()
+            onShow: () => App.File = new _File(Config.file),
+            onHide: () => App.File = null
         }, {
             id: 'chat',
             title: 'Chat',
@@ -112,8 +107,12 @@ const Config = {
             title: 'Profile',
             efect: 'backward',
             trail: ['home'],
-            bmenu: 'user',
-            onShow: () => App.User.show()
+            bmenu: 'profile',
+            onShow: () => {
+                App.Profile = new _Profile(Config)
+                App.Profile.show()
+            },
+            onHide: () => App.Profile = null
         }, {
             id: 'index',
             title: 'Mensagens',
@@ -127,7 +126,7 @@ const Config = {
     bmenu: [
         { id: 'file', icon: 'folder', title: 'Arquivos', action: () => App.Page.show('file') },
         { id: 'msg', icon: 'chat', title: 'Mensagens', action: () => App.Page.show('chat') },
-        { id: 'user', icon: 'account_box', title: 'Home', action: () => App.Page.show('profile') },
-        { id: 'auth', icon: 'exit_to_app', title: 'Sair', action: () => App.Auth.logout() }
+        { id: 'profile', icon: 'account_box', title: 'Home', action: () => App.Page.show('profile') },
+        { id: 'auth', icon: 'exit_to_app', title: 'Sair', action: () => App.Me.logout() }
     ]
 }
