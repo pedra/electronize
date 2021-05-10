@@ -22,6 +22,7 @@ const _Auth = function (config) {
         url = config.url
         html = config.html
         _(html.form).onsubmit = login
+        App.Me.logout(true) //Faz logout em Me sem chamar Page.show('auth')
     }
 
     construct(config)

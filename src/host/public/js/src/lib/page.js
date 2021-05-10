@@ -20,6 +20,8 @@ const _Page = function (config) {
 
     const show = (page, efect) => {
         if (!pages[page] || page == currentPage) return false
+        if (pages[page].auth == true && !App.Me.isLogged()) return false // Não autenticado?
+
         eft = efects[efect] || efects[pages[page].efect]
 
         App.Event.trigger('PageBefore', page) // Dispara evento

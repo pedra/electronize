@@ -77,13 +77,15 @@ const Config = {
             title: 'Electronize',
             efect: 'down',
             trail: false,
-            bmenu: false
+            bmenu: false,
+            auth: false
         }, {
             id: 'auth',
             title: 'Login',
             efect: 'up',
             trail: false,
             bmenu: false,
+            auth: false,
             onShow: () => App.Auth = new _Auth(Config.auth),
             onHide: () => App.Auth = null
         }, {
@@ -92,6 +94,7 @@ const Config = {
             efect: 'backward',
             trail: ['home'],
             bmenu: 'file',
+            auth: true,
             onShow: () => App.File = new _File(Config.file),
             onHide: () => App.File = null
         }, {
@@ -100,6 +103,7 @@ const Config = {
             efect: 'backward',
             trail: ['index'],
             bmenu: false,
+            auth: true,
             onShow: () => App.Chat.show(),
             onHide: () => App.Chat.hide()
         }, {
@@ -108,10 +112,8 @@ const Config = {
             efect: 'backward',
             trail: ['home'],
             bmenu: 'profile',
-            onShow: () => {
-                App.Profile = new _Profile(Config)
-                App.Profile.show()
-            },
+            auth: true,
+            onShow: () => App.Profile = new _Profile(Config),
             onHide: () => App.Profile = null
         }, {
             id: 'index',
@@ -119,6 +121,7 @@ const Config = {
             efect: 'backward',
             trail: ['home'],
             bmenu: 'msg',
+            auth: true,
             onShow: () => App.User.index()
         }
     ],

@@ -32,12 +32,9 @@ const _Profile = function (config) {
     const construct = () => {
         html = config.profile.html
         html.themestyle = config.app.html.themestyle
+        show()
     }
-
     construct()
 
-
-    return {
-        show, theme
-    }
+    return { theme }
 }

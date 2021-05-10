@@ -25,14 +25,14 @@ const _Me = function (config) {
         return true
     }
 
-    const logout = async () => {
-        var uid = (await App.Storage.me()).id
-        __post(config.logout, { id: uid })
+    const logout = async (silent) => {
+        var me = await App.Storage.me()
+        if (me && me.id) __post(url.logout, { id: me.id })
 
         await App.Storage.clear()// clear all data
         prop = {} // Local properties
 
-        App.Page.show('auth')
+        if (silent === true) App.Page.show('auth')
     }
 
     const isLogged = () => prop.auth || false
