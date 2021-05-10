@@ -42,13 +42,14 @@ const _Chat = function (config) {
     }
 
     const show = async (id, name) => {
-        me = App.Auth.getMe()
+        console.log('Chat', id)
+        me = App.Me.get()
         //_('#pg-chat').classList.add('on')
         _(config.content).innerHTML = ''
         _(config.content).scrollTop = 0
         _(config.text).focus()
 
-        init()
+        // init() <----------- IMPORTANT
 
         //if ('undefined' != typeof to) {
         to.id = me.id
@@ -71,7 +72,7 @@ const _Chat = function (config) {
 
     const hide = () => {
         console.log('CHAT - hide!!')
-        socket.close()
+        //socket.close()
         _(config.content).innerHTML = ''
     }
 

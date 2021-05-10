@@ -138,7 +138,7 @@ const __get = (url, data) => __req(url, data, 'GET')
 const __req = (url, data, mtd) => {
 
     if ("undefined" != typeof data && (data == null || "object" != typeof data)) data = { data: data }
-    if (url != null && "object" == typeof url) url = _u(url.url) + '/' + encodeURIComponent(JSON.stringify(url.param))
+    if (url != null && "object" == typeof url) url = __u(url.url) + '/' + encodeURIComponent(JSON.stringify(url.param))
 
     let req = {
         headers: new Headers({

@@ -16,6 +16,6 @@ module.exports = function () {
     // Teste de SQLite ...
 
 
-    db.teste(3, (r) => console.log("App - init: ", r))
+    //db.teste(3, (r) => console.log("App - init: ", r))
 
 }

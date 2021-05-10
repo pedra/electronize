@@ -110,7 +110,7 @@
     color: var(--text-inverted);
     padding: 0;
     top: 5rem;
-    margin: -70px 0 0 0;
+    margin: -70px 1rem 0 1rem;
     transform-style: preserve-3d;
     z-index: -100;
     opacity: 0;
@@ -120,7 +120,6 @@
     box-shadow: var(--elevation-6);
     max-width: 400px;
     min-width: 260px;
-    xanimation: delayOn 1s reverse backwards;
 }
 
 .file-menu.on .file-menu-content {

@@ -44,19 +44,33 @@ const Config = {
         }
     },
 
+    notify: {
+        url: {
+            list: '/msg/list'
+        },
+        html: {
+            container: '.page.notify .container',
+            card: '.ntf-card',
+            cardId: '#ntf-card-'
+
+        }
+    },
+
     chat: {
-        content: '#chat-content',
-        msg: '#chat-msg',
-        loader: '#chat-loader',
-        text: '#chat-text',
-        send: '#chat-send',
-        emojiBtn: '#chat-show-emoji',
-        emoji: '#chat-emojis',
-        msgId: '#chat-msgid',
-
-
-        chanel: 'qzc',
-        url: '/msg/qzm'
+        url: {
+            chanel: 'qzc',
+            url: '/msg/qzm'
+        },
+        html: {
+            content: '#chat-content',
+            msg: '#chat-msg',
+            loader: '#chat-loader',
+            text: '#chat-text',
+            send: '#chat-send',
+            emojiBtn: '#chat-show-emoji',
+            emoji: '#chat-emojis',
+            msgId: '#chat-msgid'
+        }
     },
 
     profile: {
@@ -104,7 +118,7 @@ const Config = {
             trail: ['index'],
             bmenu: false,
             auth: true,
-            onShow: () => App.Chat.show(),
+            onShow: (id) => App.Chat.show(id),
             onHide: () => App.Chat.hide()
         }, {
             id: 'profile',
@@ -116,19 +130,20 @@ const Config = {
             onShow: () => App.Profile = new _Profile(Config),
             onHide: () => App.Profile = null
         }, {
-            id: 'index',
+            id: 'notify',
             title: 'Mensagens',
             efect: 'backward',
             trail: ['home'],
             bmenu: 'msg',
             auth: true,
-            onShow: () => App.User.index()
+            onShow: () => App.Notify = new _Notify(Config.notify),
+            onHide: () => App.Notify = null
         }
     ],
 
     bmenu: [
         { id: 'file', icon: 'folder', title: 'Arquivos', action: () => App.Page.show('file') },
-        { id: 'msg', icon: 'chat', title: 'Mensagens', action: () => App.Page.show('chat') },
+        { id: 'msg', icon: 'chat', title: 'Mensagens', action: () => App.Page.show('notify') },
         { id: 'profile', icon: 'account_box', title: 'Home', action: () => App.Page.show('profile') },
         { id: 'auth', icon: 'exit_to_app', title: 'Sair', action: () => App.Me.logout() }
     ]

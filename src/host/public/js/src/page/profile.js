@@ -14,7 +14,7 @@ const _Profile = function (config) {
             _(html.upload).innerHTML = me.upload
             _(html.name).innerHTML = me.name
             _(html.avatar).innerHTML = me.avatar
-                ? `<img src="${me.avatar}" alt="avatar">`
+                ? `<img src="${me.avatar.replace('.png', '_3.png')}" alt="avatar">`
                 : __avt(__nm(me.name), 150, '#F00')
         })
     }

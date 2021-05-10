@@ -45,6 +45,8 @@ const App = {
         }
 
         // Call page by user login/out ...
-        App.Storage.me().then(a => App.Page.show(a && a.id > 0 ? 'profile' : 'auth'))
+        App.Storage.me().then(a =>
+            App.Page.show(a && a.id > 0 ? 'profile' : 'auth')
+        )
     }
 }

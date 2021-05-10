@@ -65,8 +65,11 @@ const _Me = function (config) {
     /**
      * Monta esta Entity
      */
-    const construct = () => {
+    const construct = async () => {
         url = config.user.url
+
+        var me = await App.Storage.me()
+        if (me && me.id) prop = me
     }
     construct()
 

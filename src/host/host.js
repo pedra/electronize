@@ -39,6 +39,7 @@ module.exports = () => {
     Host.use('/file', require(path.resolve(__dirname, 'module', 'file', 'route')))
     Host.use('/auth', require(path.resolve(__dirname, 'module', 'user', 'route')))
     Host.use('/user', require(path.resolve(__dirname, 'module', 'user', 'route')))
+    Host.use('/msg', require(path.resolve(__dirname, 'module', 'message', 'route')))
 
     // Creating server ...
     const PORT = app.Config.host.port

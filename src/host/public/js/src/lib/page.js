@@ -18,7 +18,7 @@ const _Page = function (config) {
 
     var pages = {}
 
-    const show = (page, efect) => {
+    const show = (page, param, efect) => {
         if (!pages[page] || page == currentPage) return false
         if (pages[page].auth == true && !App.Me.isLogged()) return false // Não autenticado?
 
@@ -41,7 +41,7 @@ const _Page = function (config) {
 
         // Running actions
         if ("function" == typeof pages[currentPage].onHide) pages[currentPage].onHide()
-        if ("function" == typeof pages[page].onShow) pages[page].onShow()
+        if ("function" == typeof pages[page].onShow) pages[page].onShow(param)
 
         // Se o ROOT estiver na última posição de trail, simplifica a rota...
         var last = trail[trail.length - 1]
