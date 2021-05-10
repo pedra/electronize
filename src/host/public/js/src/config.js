@@ -56,7 +56,7 @@ const Config = {
         }
     },
 
-    chat: {
+    chat_deleteme: {
         url: {
             chanel: 'qzc',
             url: '/msg/qzm'
@@ -70,6 +70,16 @@ const Config = {
             emojiBtn: '#chat-show-emoji',
             emoji: '#chat-emojis',
             msgId: '#chat-msgid'
+        }
+    },
+
+    chat: {
+        ulr: {
+
+        },
+
+        html: {
+            content: '#cht-content'
         }
     },
 
@@ -106,7 +116,7 @@ const Config = {
             id: 'file',
             title: 'File Manager',
             efect: 'backward',
-            trail: ['home'],
+            trail: ['profile'],
             bmenu: 'file',
             auth: true,
             onShow: () => App.File = new _File(Config.file),
@@ -114,8 +124,8 @@ const Config = {
         }, {
             id: 'chat',
             title: 'Chat',
-            efect: 'backward',
-            trail: ['index'],
+            efect: 'back',
+            trail: ['notify'],
             bmenu: false,
             auth: true,
             onShow: (id) => App.Chat.show(id),
@@ -124,7 +134,7 @@ const Config = {
             id: 'profile',
             title: 'Profile',
             efect: 'backward',
-            trail: ['home'],
+            trail: false,
             bmenu: 'profile',
             auth: true,
             onShow: () => App.Profile = new _Profile(Config),
@@ -133,7 +143,7 @@ const Config = {
             id: 'notify',
             title: 'Mensagens',
             efect: 'backward',
-            trail: ['home'],
+            trail: ['profile'],
             bmenu: 'msg',
             auth: true,
             onShow: () => App.Notify = new _Notify(Config.notify),

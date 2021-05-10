@@ -5,6 +5,16 @@
  */
 const _Chat = function (config) {
 
+    let msg = [
+        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
+        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
+        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
+        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' }
+    ],
+        url = {},
+        html = {}
+
     let socket = null,
         mem_msg = '***',
         qzc = {
@@ -43,6 +53,25 @@ const _Chat = function (config) {
 
     const show = async (id, name) => {
         console.log('Chat', id)
+
+
+        let h = ''
+
+        msg.map(m => {
+            h += `<div class="cht-msg${m.uid == 1 ? ' me' : ''}" id="cht-msg-${m.id}">
+                        <div class="cht-msg-text">${m.msg}</div>
+                        <div class="cht-msg-data">
+                            <span class="cht-date">${(new Date).toLocaleString()}</span>
+                            <span class="cht-status">
+                                <i class="material-icons">check_circle_outline</i>
+                            </span>
+                        </div>
+                    </div>`
+        })
+
+        _(html.content).innerHTML = h
+
+        return false
         me = App.Me.get()
         //_('#pg-chat').classList.add('on')
         _(config.content).innerHTML = ''
@@ -271,11 +300,12 @@ const _Chat = function (config) {
         }
     }
 
-    const construct = (config) => {
-
+    const construct = () => {
+        url = config.url
+        html = config.html
     }
 
-    construct(config)
+    construct()
 
     return { open, view, show, hide }
 }
