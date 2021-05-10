@@ -1,13 +1,15 @@
 
 const _Page = function (config) {
 
-    var currentPage = 'empty'
-    var currentIn = 'up'
-    var currentOut = 'down'
+    let currentPage = 'empty',
+        currentIn = 'up',
+        currentOut = 'down'
 
-    var trail = []
+    let auth = '',
+        root = '',
+        trail = []
 
-    var efects = {
+    let efects = {
         next: { in: () => 'right', out: () => 'left' },
         back: { in: () => 'left', out: () => 'right' },
         up: { in: () => 'up', out: () => 'down' },
@@ -16,7 +18,7 @@ const _Page = function (config) {
         backward: { in: () => currentOut, out: () => currentIn }
     }
 
-    var pages = {}
+    let pages = {}
 
     const show = (page, param, efect) => {
         if (!pages[page] || page == currentPage) return false
@@ -45,16 +47,21 @@ const _Page = function (config) {
 
         // Se o ROOT estiver na última posição de trail, simplifica a rota...
         var last = trail[trail.length - 1]
-        if (last == 'auth' || last == 'dashboard') trail = [last]
+        if (last == auth || last == root) trail = [last]
+
+        //console.log('1 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
 
         // Se a página for um ROOT ou não aceitar trail...
-        if (pages[page].trail === false || page == 'auth' || page == 'dashboard') trail = [page]
+        if (pages[page].trail === false || page == auth || page == root) trail = [page]
+        //console.log('2 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
 
         // Se a página tiver um trail fixo...
         if ("string" == typeof pages[page].trail) trail = [pages[page].trail]
+        //console.log('3 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
 
         // Se a página aceitar trail livremente...
         if (pages[page].trail === true) trail.push(currentPage)
+        console.log('4 - Trail: ', trail)
 
         // Atualizando a página selecionada, efeitos & disparando o evento final
         currentIn = eft.in()
@@ -80,7 +87,14 @@ const _Page = function (config) {
     // Construindo ...
     const construct = (config) => {
         if (!config) return false
-        config.map(a => pages[a.id] = a)
+        config.map(a => {
+            if (a.id === false) {
+                auth = a.auth
+                root = a.root
+            } else {
+                pages[a.id] = a
+            }
+        })
 
         history.pushState(null, null, '/')
         history.pushState(null, null, '/')
@@ -89,8 +103,12 @@ const _Page = function (config) {
             e.preventDefault()
             history.pushState(null, null, '/')
 
+            console.log('1 - Trial', trail)
+
             // Se tiver trilha...
             var prev = trail.pop()
+
+            console.log('2 - Trial', trail)
 
             if (prev) show(prev)
             return false

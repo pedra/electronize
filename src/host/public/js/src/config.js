@@ -97,6 +97,11 @@ const Config = {
 
     pages: [
         {
+            id: false,
+            auth: 'auth',
+            root: 'profile'
+        },
+        {
             id: 'empty',
             title: 'Electronize',
             efect: 'down',
@@ -113,6 +118,15 @@ const Config = {
             onShow: () => App.Auth = new _Auth(Config.auth),
             onHide: () => App.Auth = null
         }, {
+            id: 'profile',
+            title: 'Profile',
+            efect: 'backward',
+            trail: false,
+            bmenu: 'profile',
+            auth: true,
+            onShow: () => App.Profile = new _Profile(Config),
+            onHide: () => App.Profile = null
+        }, {
             id: 'file',
             title: 'File Manager',
             efect: 'backward',
@@ -125,20 +139,11 @@ const Config = {
             id: 'chat',
             title: 'Chat',
             efect: 'back',
-            trail: ['notify'],
+            trail: ['profile', 'notify'],
             bmenu: false,
             auth: true,
             onShow: (id) => App.Chat.show(id),
             onHide: () => App.Chat.hide()
-        }, {
-            id: 'profile',
-            title: 'Profile',
-            efect: 'backward',
-            trail: false,
-            bmenu: 'profile',
-            auth: true,
-            onShow: () => App.Profile = new _Profile(Config),
-            onHide: () => App.Profile = null
         }, {
             id: 'notify',
             title: 'Mensagens',

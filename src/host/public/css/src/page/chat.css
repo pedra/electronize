@@ -11,7 +11,9 @@
     height: 54px;
     padding: 0;
     background: var(--color-5);
-    box-shadow: var(--elevation-1);
+    color: var(--color-2);
+    box-shadow: var(
+    --elevation-1);
 }
 
 .cht-top-bar .avatar {
@@ -31,7 +33,7 @@
 
 .cht-top-bar .data h2 {
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
     padding: 0;
     margin: 0;
 }
@@ -137,7 +139,9 @@
     color: var(--color-4);
 }
 
-.cht-bottom-bar i {}
+.cht-bottom-bar i {
+    color: var(--color-2);
+}
 
 .cht-emoji, .cht-send {
     width: 4rem;
