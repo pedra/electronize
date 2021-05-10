@@ -5,6 +5,11 @@ const _Auth = function (config) {
     let url = {},
         html = {}
 
+    /**
+     * Pega os valores digitados no form, filtra e chama Me.login()
+     * @param {Object} e Evento submit do form
+     * @returns {void}
+     */
     const login = e => {
         e.preventDefault()
 
@@ -18,6 +23,10 @@ const _Auth = function (config) {
             .then(l => !l ? __report('Não consegui autenticar com os dados informados!') : true)
     }
 
+    /**
+     * Monta o objeto Auth
+     * @param {Array} config Folha de configuração da aplicação  
+     */
     const construct = (config) => {
         url = config.url
         html = config.html

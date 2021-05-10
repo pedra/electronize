@@ -1,5 +1,8 @@
-
-
+/**
+ * Interface de controle da página de CHAT com socket
+ * @param {Array} config Configuração da aplicação
+ * @returns {void} 
+ */
 const _Chat = function (config) {
 
     let socket = null,

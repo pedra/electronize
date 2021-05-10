@@ -1,8 +1,7 @@
 /**
- * Event register
- * 
+ * Event register.
+ * @returns {Object} Retorna o objeto.
  */
-
 const _Event = function () {
 
     let events = {},
@@ -12,11 +11,11 @@ const _Event = function () {
     /**
      * insere uma ação para um determinado evento
      * 
-     * @param {string} event  Nome do evento
-     * @param {string} id Nome da ação
-     * @param {function} action Ação a ser executada quando o Evento for disparado
+     * @param {String} event  Nome do evento
+     * @param {String} id Nome da ação
+     * @param {Function} action Ação a ser executada quando o Evento for disparado
      * 
-     * @return {boolean}
+     * @return {Boolean} Success or fail
      */
     const subscribe = (event, id, action) => {
         if (!events[event]) events[event] = {}
@@ -30,23 +29,23 @@ const _Event = function () {
     /**
      * Apaga um determinado evento indicado pelo seu id
      * 
-     * @param {string} event 
-     * @param {string} id 
+     * @param {String} event 
+     * @param {String} id 
      * 
-     * @return {boolean}
+     * @return {Boolean}
      */
     const unsubscribe = (event, id) => {
         if (!events[event]) return false
-        return delete (events[event][id])
+        return delete (events[event][id]) ? true : false
     }
 
     /**
      * Executa TODAS as ações registradas para um "event" e "id" 
      * 
-     * @param {string} event Nome do evento
-     * @param {object|string|number|boolean} data dados passados como argumento (opcional) 
+     * @param {String} event Nome do evento
+     * @param {object|String|Number|Boolean} data dados passados como argumento (opcional) 
      * 
-     * @return {boolean} 
+     * @return {Boolean} 
      */
     const trigger = (event, data) => {
         if (!events[event]) return false
@@ -59,14 +58,14 @@ const _Event = function () {
     /**
      * Retorna os eventos registrados (debug)
      * 
-     * @param {string} e 
+     * @param {String} e 
      */
     const getEvent = e => !e ? events : events[e]
 
     /**
      * Apaga um evento ou limpa o registro de eventos
      * 
-     * @param {string|void} e 
+     * @param {String|void} e 
      */
     const clear = e => {
         e = e || false
@@ -78,8 +77,8 @@ const _Event = function () {
     }
 
     /**
-     * Reseta o contador (não reseta o watchdog)
-     * @param {number} c 
+     * Counter reset (but, not watchdog reset)
+     * @param {Number} c 
      */
     const reset = c => {
         c = parseInt(c) || 0
@@ -88,26 +87,18 @@ const _Event = function () {
 
     /**
      * Inicia o watchdog timer como um Evento
-     * @param {} e 
-     * @returns 
+     * @returns void
      */
     const watchdogStart = () => setInterval(() => trigger('watchdog', count++), 100)
 
     /**
-  * Iniciador do objeto
-  */
+     * Initialize this
+     */
     const init = () => {
         clear()
         watchdogStart()
     }
-
     init()
-    return {
-        subscribe,
-        unsubscribe,
-        trigger,
-        reset,
-        clear,
-        getEvent
-    }
+
+    return { subscribe, unsubscribe, trigger, reset, clear, getEvent }
 }
