@@ -45,7 +45,7 @@ const _Me = function (config) {
         await App.Storage.clear()// clear all data
         prop = {} // Local properties
 
-        if (silent === true) App.Page.show('auth')
+        if (!silent) App.Page.show('auth')
     }
 
     /**
