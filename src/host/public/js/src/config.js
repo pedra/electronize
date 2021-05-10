@@ -111,7 +111,7 @@ const Config = {
         }, {
             id: 'auth',
             title: 'Login',
-            efect: 'up',
+            efect: 'next',
             trail: false,
             bmenu: false,
             auth: false,
@@ -129,8 +129,8 @@ const Config = {
         }, {
             id: 'file',
             title: 'File Manager',
-            efect: 'backward',
-            trail: ['profile'],
+            efect: 'up',
+            trail: true,
             bmenu: 'file',
             auth: true,
             onShow: () => App.File = new _File(Config.file),
@@ -139,7 +139,7 @@ const Config = {
             id: 'chat',
             title: 'Chat',
             efect: 'back',
-            trail: ['profile', 'notify'],
+            trail: true,
             bmenu: false,
             auth: true,
             onShow: (id) => App.Chat.show(id),

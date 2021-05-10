@@ -5,8 +5,6 @@ const _Notify = function (config) {
     html = {}
 
     const show = (msg) => {
-        console.log("msg".msg)
-        TMP = msg
         var h = ''
 
         if (!msg || msg == []) {

@@ -49,19 +49,16 @@ const _Page = function (config) {
         var last = trail[trail.length - 1]
         if (last == auth || last == root) trail = [last]
 
-        //console.log('1 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
-
         // Se a página for um ROOT ou não aceitar trail...
         if (pages[page].trail === false || page == auth || page == root) trail = [page]
-        //console.log('2 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
 
         // Se a página tiver um trail fixo...
         if ("string" == typeof pages[page].trail) trail = [pages[page].trail]
-        //console.log('3 - Auth: ' + auth, 'Root: ' + root, 'Trail: ', trail)
 
         // Se a página aceitar trail livremente...
         if (pages[page].trail === true) trail.push(currentPage)
-        console.log('4 - Trail: ', trail)
+
+        history.pushState(null, null, '/') // Adiciona um novo "Trail"
 
         // Atualizando a página selecionada, efeitos & disparando o evento final
         currentIn = eft.in()
@@ -103,13 +100,8 @@ const _Page = function (config) {
             e.preventDefault()
             history.pushState(null, null, '/')
 
-            console.log('1 - Trial', trail)
-
             // Se tiver trilha...
             var prev = trail.pop()
-
-            console.log('2 - Trial', trail)
-
             if (prev) show(prev)
             return false
         }
