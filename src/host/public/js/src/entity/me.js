@@ -1,7 +1,7 @@
 /**
  * Entity para controle do usuário da aplicação.
  * @param {Array} config Configurações da aplicação.
- * @returns {void} Retorna métodos do objeto.
+ * @returns {Object} Retorna métodos do objeto.
  */
 const _Me = function (config) {
 
@@ -68,7 +68,6 @@ const _Me = function (config) {
     const construct = () => {
         url = config.user.url
     }
-
     construct()
 
     return {
