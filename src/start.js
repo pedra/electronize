@@ -16,6 +16,7 @@ app.UpTimer = null
 app.Tray = null
 app.Config = require(path.join(__dirname, 'app', 'config'))()
 app.Window = require(path.join(app.Config.desktop.module, 'window'))()
+app.Menu = require(path.join(app.Config.desktop.module, 'menu'))()
 
 // Load modules...
 const Boot = require(path.join(app.Config.app.path, 'boot'))
