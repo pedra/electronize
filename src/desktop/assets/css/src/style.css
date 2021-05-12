@@ -138,6 +138,8 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: .9rem;
+    padding: 0 1rem;
 }
 
 button:hover {

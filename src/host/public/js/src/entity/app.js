@@ -36,13 +36,8 @@ const App = {
             navigator
                 .serviceWorker
                 .register(location.origin + '/sw.js', { scope: '/' })
-                .then(sw => {
-                    console.log("[SW: Instalado]")
-                })
-        } else {
-            console.log("[SW: Não instalado]")
-            alert('Não consegui instalar o Serviço!<br>A aplicação rodará sem muitos problemas, porém, sem acesso ao cache de rede.')
-        }
+                .then(sw => console.log("[SW: Instalado]"))
+        } else { console.log("[SW: Não instalado]") }
 
         // Call page by user login/out ...
         App.Storage.me().then(a =>

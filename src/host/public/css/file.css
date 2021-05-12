@@ -9,7 +9,7 @@
     align-items: center;
     padding: .5rem;
     width: 100%;
-    box-shadow: var(--elevation-2);
+    border-bottom: 1px solid var(--color-4);
 }
 
 .breadcrumbs i {
@@ -23,6 +23,8 @@
 
 .breadcrumbs .file-path {
     font-size: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .breadcrumbs a {
@@ -120,6 +122,7 @@
     box-shadow: var(--elevation-6);
     max-width: 400px;
     min-width: 260px;
+    user-select: none;
 }
 
 .file-menu.on .file-menu-content {

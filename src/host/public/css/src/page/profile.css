@@ -33,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    /* max-width: 280px; */
+    max-width: 380px;
     padding: 1rem 2rem;
     margin: 0;
     color: var(--white-4);
@@ -55,4 +55,14 @@
 
 #pfl-mode {
     text-transform: capitalize;
+}
+
+@media screen and (min-width: 600px) {
+	.pfl-avatar {
+        border-radius: var(--radius-50);
+        width: 50%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 4rem;
+	}
 }

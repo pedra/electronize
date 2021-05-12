@@ -37,7 +37,6 @@
 	max-width: 768px;
 	width: 100%;
 	margin: 0 auto;
-	box-shadow: var(--elevation-6);
 	min-height: 100vh !important;
 }
 

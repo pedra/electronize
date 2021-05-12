@@ -74,12 +74,21 @@ const Config = {
     },
 
     chat: {
+        channel: 'qzc',
         ulr: {
-
+            get: '/msg/get'
         },
 
         html: {
-            content: '#cht-content'
+            name: '#cht-top-bar-name',
+            avatar: '#cht-top-bar-avatar',
+            content: '#cht-content',
+            msg: 'cht-msg',
+            loader: '#cht-loader',
+            text: '#cht-text',
+            send: '#cht-send',
+            emojis: '#cht-emojis',
+            emoji: '#cht-emoji',
         }
     },
 

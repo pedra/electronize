@@ -10,10 +10,28 @@ const _Chat = function (config) {
         { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
         { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
         { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
+        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
+        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
+        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
+        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
+        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
+        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
+        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
+        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
+        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
+        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
+        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
+        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
+        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
         { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' }
     ],
         url = {},
-        html = {}
+        html = {},
+        channel = ''
 
     let socket = null,
         mem_msg = '***',
@@ -43,7 +61,7 @@ const _Chat = function (config) {
 
     const open = () => {
         socket.connect()
-        _(config.text).focus() // Foco na barra de texto
+        _(html.text).focus() // Foco na barra de texto
     }
 
     const view = (id, name, avatar) => {
@@ -51,12 +69,13 @@ const _Chat = function (config) {
         //Menu('chat', false, {id, name, avatar})
     }
 
-    const show = async (id, name) => {
-        console.log('Chat', id)
+    const show = async (data) => {
+        console.log('Chat', data.id, data.name)
 
+        _(html.name).innerHTML = data.name
+        _(html.avatar).src = data.avatar
 
         let h = ''
-
         msg.map(m => {
             h += `<div class="cht-msg${m.uid == 1 ? ' me' : ''}" id="cht-msg-${m.id}">
                         <div class="cht-msg-text">${m.msg}</div>
@@ -69,40 +88,31 @@ const _Chat = function (config) {
                     </div>`
         })
 
-        _(html.content).innerHTML = h
+        let c = _(html.content)
+        c.innerHTML = h
+        c.scrollTop = 0
 
-        return false
-        me = App.Me.get()
-        //_('#pg-chat').classList.add('on')
-        _(config.content).innerHTML = ''
-        _(config.content).scrollTop = 0
-        _(config.text).focus()
+        // Gravando o usuário da conversa 
+        to.id = msg[0].id
+        to.name = msg[0].name
+        to.avatar = msg[0].avatar
 
-        // init() <----------- IMPORTANT
+        // Efeito "scroll"
+        scroll()
 
-        //if ('undefined' != typeof to) {
-        to.id = me.id
-        to.name = me.name
-        to.avatar = Config.app.assets + me.avatar
-        //pagemode = 'chat'
-        // } else {
-        // 	//Menu('message')
-        // }
+        // Limpando o campo de digitação de mensagem.
+        _(html.text).innerHTML = ''
+        _(html.text).focus()
 
+        // Ligando o socket
+        init() //<----------- IMPORTANT
 
-        _('#chat-userdata').innerHTML =
-            '<img src="' +
-            to.avatar +
-            '"><span>' +
-            to.name + //.substr(0, 30) +
-            '</span><button onclick="Chat.hide()"><i class="material-icons">close</i></button>'
-        _('#pg-chat').classList.add('on')
     }
 
     const hide = () => {
         console.log('CHAT - hide!!')
         //socket.close()
-        _(config.content).innerHTML = ''
+        _(html.content).innerHTML = ''
     }
 
     // -------------------------------------- CHAT
@@ -113,40 +123,40 @@ const _Chat = function (config) {
         if (socket != null) close()
         socket = io() // Criando a conexão MSG
 
-        _(config.send).onclick = send
-        _(config.text).onkeypress = function (e) {
+        _(html.send).onclick = send
+        _(html.text).onkeypress = function (e) {
             if (e.shiftKey && e.charCode == 13) return true
             if (e.charCode == 13) {
                 send()
                 return false
             }
         }
-        _(config.text).onkeyup = e => {
+        _(html.text).onkeyup = e => {
             if (e.shiftKey && (e.keyCode == 40 || e.keyCode == 38)) {
-                _(config.text).innerHTML = mem_msg
+                _(html.text).innerHTML = mem_msg
             }
         }
 
         // Emojis Panel
-        _(config.emojiBtn).onclick = () => _(config.emoji).classList.add('on')
+        _(html.emoji).onclick = () => _(html.emojis).classList.add('on')
 
 
-        _(config.emoji).onclick = e => {
+        _(html.emojis).onclick = e => {
             if (e.target.nodeName == 'SPAN') {
-                _(config.text).innerHTML += e.target.innerHTML
+                _(html.text).innerHTML += e.target.innerHTML
             }
             e.currentTarget.classList.remove('on')
         }
 
-        _(config.content).onscroll = onScroll
+        _(html.content).onscroll = onScroll
 
-        socket.on(config.chanel, on)
+        socket.on(channel, on)
     }
 
     const on = msg => {
         TMPX = socket
         console.log('[SOCKET]', msg, socket)
-        if (msg.type == 'init') return socket.emit(config.chanel, { type: 'initClient', id: 1, to: to.id })
+        if (msg.type == 'init') return socket.emit(channel, { type: 'initClient', id: 1, to: to.id })
         if (msg.type == 'list') return msgList(msg.data, true)
         if (msg.type == 'viewed') return msgSetViewed(msg)
 
@@ -154,12 +164,12 @@ const _Chat = function (config) {
 
         stamp(msg, 'click')
         // if(msg.to == me.id) {
-        //     socket.emit(config.chanel, {type: 'viewed', id: msg.id, from: msg.from})
+        //     socket.emit(html.chanel, {type: 'viewed', id: msg.id, from: msg.from})
         // }
     }
 
     const msgSetViewed = msg => {
-        var i = _(config.msgId + msg.id + ' .chat-msg-header i')
+        var i = _(html.msg + '-' + msg.id + ' .cht-status')
         if (i === false) {
             i.classList.add('on')
             i.innerHTML = 'visibility'
@@ -169,7 +179,7 @@ const _Chat = function (config) {
     const stamp = (msg, sound, before) => {
         if (msg.to == me.id
             && msg.viewed == null) {
-            socket.emit(config.chanel, { type: 'viewed', id: msg.id, from: msg.from })
+            socket.emit(channel, { type: 'viewed', id: msg.id, from: msg.from })
         }
 
         var sound = sound || false
@@ -201,19 +211,19 @@ const _Chat = function (config) {
         //formatdate(msg.created)
 
         if (before === true) {
-            _(config.content).innerHTML = m + _(config.content).innerHTML
+            _(html.content).innerHTML = m + _(html.content).innerHTML
         } else {
-            _(config.content).innerHTML += m
+            _(html.content).innerHTML += m
             scroll(sound)
         }
 
         setTimeout(() => {
-            _(config.msgId + msg.id).classList.add('on')
+            _(html.msg + '-' + msg.id).classList.add('on')
         }, 10)
     }
 
     const send = () => {
-        var txt = _(config.text).innerHTML.trim().toString()
+        var txt = _(html.text).innerHTML.trim().toString()
         if (txt.length == 2 && txt.charCodeAt(0) > 55356) {
             txt = '<span class="emojis-one">' + txt + '</span>'
         }
@@ -221,7 +231,7 @@ const _Chat = function (config) {
         mem_msg = txt
 
         if (txt == '') return false
-        _(config.text).innerHTML = ''
+        _(html.text).innerHTML = ''
 
         var msg = { ...qzc } // clonando o padrão
         msg.from = me.id
@@ -232,7 +242,7 @@ const _Chat = function (config) {
 
         //console.log('SEND', msg)
         //stamp(msg, 'glass')
-        socket.emit(config.chanel, msg)
+        socket.emit(channel, msg)
     }
 
     const msgList = (data, init) => {
@@ -241,7 +251,7 @@ const _Chat = function (config) {
         for (var i in data.msg) {
             stamp(data.msg[i], false, true)
             if (data.msg[i].to == me.id) {
-                socket.emit(config.chanel, { type: 'viewed', id: data.msg[i].id })
+                socket.emit(channel, { type: 'viewed', id: data.msg[i].id })
             }
         }
 
@@ -252,33 +262,42 @@ const _Chat = function (config) {
         }, 400)
 
         if (init === true) {
-            scrollH = _(config.msg).scrollHeight
+            scrollH = _(html.msg).scrollHeight
             scroll()
         } else {
-            _(config.content).scrollTop = parseInt(_(config.content).scrollHeight - scrollH - 100)
-            scrollH = _(config.content).scrollHeight
+            _(html.content).scrollTop = parseInt(_(html.content).scrollHeight - scrollH - 100)
+            scrollH = _(html.content).scrollHeight
         }
     }
 
-    const scroll = sound => {
-        _(config.content).scrollTop = _(config.content).scrollHeight
-        //if("undefined" != typeof SOUND[sound]) SOUND[sound].play()
-        // $(config.msg).animate({scrollTop: _('chat-msg').scrollHeight - 100}, 100, 'swing', function () {
-        // 	//_('chat-text').focus()
-        // 	if ('undefined' != typeof SOUND[sound]) SOUND[sound].play()
-        // })
+    /**
+     * Efeito de scroll
+     * @param {Number} tm Fator de aceleração do scroll a
+     */
+    const scroll = (tm) => {
+        tm = tm || 0.2
+        let c = _(html.content),
+            f = c.scrollHeight - c.offsetHeight,
+            t = setTimeout(() => {
+                if (c.scrollTop < f) {
+                    c.scrollTop += 10
+                    scroll(tm / (3000 / f))
+                } else {
+                    clearTimeout(t)
+                }
+            }, tm)
     }
 
     const onScroll = a => {
         if (loading || firstMsgId - lowerMsgId <= 0) return false
 
-        if (_(config.content).scrollTop == 0) {
-            _(config.content).innerHTML = '<div class="separator"></div>' + _(config.content).innerHTML
-            _(config.loader).classList.remove('hide')
+        if (_(html.content).scrollTop == 0) {
+            _(html.content).innerHTML = '<div class="separator"></div>' + _(html.content).innerHTML
+            _(html.loader).classList.remove('hide')
 
             loading = true
 
-            __get(`${config.url}/${me.id}/${to.id}/${(firstMsgId - 1)}/20`,
+            __get(`${url.get}/${me.id}/${to.id}/${(firstMsgId - 1)}/20`,
                 (e, d) => {
                     var data
                     try {
@@ -289,18 +308,19 @@ const _Chat = function (config) {
 
                     if (data.msg.length == 0) {
                         lowerMsgId = firstMsgId
-                        _(config.content).innerHTML =
-                            '<div class="chat-final">That\'s all folks!</div>' + _(config.content).innerHTML
+                        _(html.content).innerHTML =
+                            '<div class="chat-final">That\'s all folks!</div>' + _(html.content).innerHTML
                     } else {
                         msgList(data)
                     }
 
-                    _(config.loader).classList.add('hide')
+                    _(html.loader).classList.add('hide')
                 })
         }
     }
 
     const construct = () => {
+        channel = config.channel
         url = config.url
         html = config.html
     }

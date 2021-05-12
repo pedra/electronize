@@ -1,5 +1,5 @@
 .bmenu {
-    position: absolute;
+    position: fixed;
     display: none;
     bottom: 0;
     left: 0;
@@ -9,6 +9,7 @@
     border-top: var(--color-4) 2px solid;
     background: var(--color-5);
     color: var(--color-4);
+    user-select: none;
 }
 
 .bmenu.on {
@@ -46,4 +47,19 @@
 		width: 300px;
 		margin: auto;
 	}
+}
+
+
+@media screen and (min-width: 600px) {
+
+.bmenu ul {
+		width: 500px;
+}
+
+	.bmenu ul li span {
+    font-size: 1rem;
+}
+.bmenu ul li i {
+    font-size: 2rem;
+}
 }

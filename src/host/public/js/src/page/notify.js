@@ -12,7 +12,7 @@ const _Notify = function (config) {
         } else {
             msg.map(m => {
                 var online = m.token && m.token != ''
-                h += `<div class="ntf-card" id="ntf-card-${m.id}" onclick="App.Notify.on(${m.id})">
+                h += `<div class="ntf-card" id="ntf-card-${m.id}" onclick="App.Notify.on(${m.id}, '${m.name}', '${m.avatar}')">
                     <div class="avatar">
                         <img src="${m.avatar}" alt="avatar">
                     </div>
@@ -33,9 +33,9 @@ const _Notify = function (config) {
         _(html.container).innerHTML = h
     }
 
-    const on = id => {
+    const on = (id, name, avatar) => {
         _(html.cardId + id).classList.add('on')
-        App.Page.show('chat', id)
+        App.Page.show('chat', { id, name, avatar })
     }
 
     const getMessages = async () => {

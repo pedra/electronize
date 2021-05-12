@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 54px;
+    min-height: 54px;
     padding: 0;
     background: var(--color-5);
     color: var(--color-2);
@@ -45,7 +45,9 @@
     justify-content: center;
 }
 
-.cht-top-bar .icon i {}
+.cht-top-bar .icon i {
+    cursor: pointer;
+}
 
 
 /* --------------- MESSAGES ---------------- */
@@ -61,6 +63,7 @@
 .cht-msg {
     margin: 0 0 1rem 0;
     max-width: 80%;
+    /* font-size: .9rem; */
 }
 
 .cht-msg.me {
@@ -73,12 +76,12 @@
     color: var(--color-2);
     padding: .5rem;
     border-radius: var(--radius-1);
-    box-shadow: var(--elevation-1);
+    border: 1px solid var(--color-5);
 }
 
 .cht-msg.me .cht-msg-text {
     background: transparent !important;
-    box-shadow: none;
+    border: none;
     padding: .5rem 0;
 }
 
@@ -124,7 +127,7 @@
 
 /* --------------- BOTTOM BAR -------------- */
 .cht-bottom-bar {
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,6 +140,11 @@
     border-top: var(--color-4) 2px solid;
     background: var(--color-5);
     color: var(--color-4);
+}
+
+.cht-bottom-bar .container {
+    flex-direction: row;
+    min-height: auto !important;
 }
 
 .cht-bottom-bar i {
@@ -154,13 +162,16 @@
 
 .cht-text {
     display: flex;
+    flex-direction: column;
     flex: 1;
     background: var(--white);
-    min-height: calc(100% - 2.4rem);
-    max-height: 100%;
+    color: var(--color-2);
+    min-height: calc(78px - 2.6rem);
+    max-height: calc(78px - .6rem);
     overflow: auto;
     padding: .5rem;
-    border-radius: var(--radius-1);
+    border-radius: var(
+    --radius-1);
 }
 
 .cht-send {}
