@@ -69,6 +69,8 @@ const _Chat = function (config) {
         //Menu('chat', false, {id, name, avatar})
     }
 
+    const closeEmoji = e => _(html.emojis).classList.remove('on')
+
     const show = async (data) => {
         console.log('Chat', data.id, data.name)
 
@@ -105,8 +107,7 @@ const _Chat = function (config) {
         _(html.text).focus()
 
         // Ligando o socket
-        init() //<----------- IMPORTANT
-
+        return init()
     }
 
     const hide = () => {
@@ -138,10 +139,12 @@ const _Chat = function (config) {
         }
 
         // Emojis Panel
-        _(html.emoji).onclick = () => _(html.emojis).classList.add('on')
-
-
+        _(html.emoji).onclick = () => {
+            console.log('Emoji')
+            _(html.emojis).classList.add('on')
+        }
         _(html.emojis).onclick = e => {
+            console.log('Emojis', e.target.nodeName)
             if (e.target.nodeName == 'SPAN') {
                 _(html.text).innerHTML += e.target.innerHTML
             }
@@ -327,5 +330,5 @@ const _Chat = function (config) {
 
     construct()
 
-    return { open, view, show, hide }
+    return { open, view, show, hide, closeEmoji }
 }

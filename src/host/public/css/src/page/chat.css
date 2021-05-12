@@ -143,11 +143,11 @@
 }
 
 .cht-bottom-bar .container {
-    flex-direction: row;
+    flex-direction: column;
     min-height: auto !important;
 }
 
-.cht-bottom-bar i {
+.cht-bottom-bar .cht-control i {
     color: var(--color-2);
 }
 
@@ -160,6 +160,41 @@
 
 .cht-emoji i {}
 
+.cht-emojis {
+    position: absolute;
+    bottom: 0px;
+    background: var(--color-2);
+    padding: 1rem;
+    display: none;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+}
+
+.cht-emojis.on {
+    display: flex;
+}
+
+.cht-emojis span, .cht-emojis i {
+    font-size: 1.5rem;
+    padding: 1px;
+}
+
+.cht-emojis i {
+    color: var(--white);
+    border-radius: var(--radius-50);
+    border: 1px solid var(--color-6);
+    margin: .5rem .2rem 0 0;
+}
+
+.cht-control {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
+
 .cht-text {
     display: flex;
     flex-direction: column;
@@ -168,6 +203,7 @@
     color: var(--color-2);
     min-height: calc(78px - 2.6rem);
     max-height: calc(78px - .6rem);
+    min-width: 60%;
     overflow: auto;
     padding: .5rem;
     border-radius: var(
