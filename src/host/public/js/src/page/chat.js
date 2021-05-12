@@ -139,12 +139,8 @@ const _Chat = function (config) {
         }
 
         // Emojis Panel
-        _(html.emoji).onclick = () => {
-            console.log('Emoji')
-            _(html.emojis).classList.add('on')
-        }
+        _(html.emoji).onclick = () => _(html.emojis).classList.add('on')
         _(html.emojis).onclick = e => {
-            console.log('Emojis', e.target.nodeName)
             if (e.target.nodeName == 'SPAN') {
                 _(html.text).innerHTML += e.target.innerHTML
             }
@@ -152,7 +148,6 @@ const _Chat = function (config) {
         }
 
         _(html.content).onscroll = onScroll
-
         socket.on(channel, on)
     }
 

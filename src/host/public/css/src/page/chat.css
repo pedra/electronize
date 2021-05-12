@@ -129,7 +129,7 @@
 .cht-bottom-bar {
     position: fixed;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0;
     bottom: 0;
@@ -147,16 +147,6 @@
     min-height: auto !important;
 }
 
-.cht-bottom-bar .cht-control i {
-    color: var(--color-2);
-}
-
-.cht-emoji, .cht-send {
-    width: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items; center;
-}
 
 .cht-emoji i {}
 
@@ -188,9 +178,18 @@
     margin: .5rem .2rem 0 0;
 }
 
+/* ---------------------BOTTOM BAR CONTROL --------------------*/
 .cht-control {
     display: flex;
-    flex-direction:row;
+    width: 100%;
+}
+.cht-control i {
+    color: var(--color-2);
+}
+
+.cht-emoji, .cht-send {
+    width: 4rem;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -203,7 +202,6 @@
     color: var(--color-2);
     min-height: calc(78px - 2.6rem);
     max-height: calc(78px - .6rem);
-    min-width: 60%;
     overflow: auto;
     padding: .5rem;
     border-radius: var(
