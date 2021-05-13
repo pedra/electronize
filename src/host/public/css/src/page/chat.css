@@ -148,8 +148,6 @@
     font-size: .8rem;
 }
 
-
-
 .cht-content .separator {
     border-top: 1px dashed var(--color-4);
     height: 0;
@@ -258,3 +256,17 @@
 .cht-send {}
 
 .cht-send i {}
+
+
+@media screen and (min-width: 600px) {
+
+    .cht-emojis span,
+    .cht-emojis i {
+        font-size: 2.5rem;
+        padding: 1px;
+    }
+
+    .cht-msg.emojis-tr.me .cht-msg-text span.emojis-one {
+        font-size: 3rem;
+    }
+}
