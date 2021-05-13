@@ -44,7 +44,8 @@ module.exports = () => {
             port: 80
         },
         socket: {
-            path: path.join(root, 'host', 'module', 'socket'),
+            path: path.join(root, 'host', 'module', 'message'),
+            channel: 'qzc',
             enable: true
         }
     }

@@ -17,6 +17,7 @@ const Config = {
         url: {
             login: '/auth/login',
             logout: '/auth/logout',
+            avatar: '/msg/u/avatar.png'
         }
     },
 
@@ -75,7 +76,7 @@ const Config = {
 
     chat: {
         channel: 'qzc',
-        ulr: {
+        url: {
             get: '/msg/get'
         },
 
@@ -83,12 +84,13 @@ const Config = {
             name: '#cht-top-bar-name',
             avatar: '#cht-top-bar-avatar',
             content: '#cht-content',
-            msg: 'cht-msg',
+            msg: '#cht-msg',
             loader: '#cht-loader',
             text: '#cht-text',
             send: '#cht-send',
             emojis: '#cht-emojis',
             emoji: '#cht-emoji',
+            status: '.cht-status'
         }
     },
 
@@ -151,7 +153,7 @@ const Config = {
             trail: true,
             bmenu: false,
             auth: true,
-            onShow: (id) => App.Chat.show(id),
+            onShow: (data) => App.Chat.init(data),
             onHide: () => App.Chat.hide()
         }, {
             id: 'notify',

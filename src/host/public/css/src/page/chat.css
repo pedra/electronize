@@ -12,8 +12,7 @@
     padding: 0;
     background: var(--color-5);
     color: var(--color-2);
-    box-shadow: var(
-    --elevation-1);
+    box-shadow: var(--elevation-1);
 }
 
 .cht-top-bar .avatar {
@@ -55,6 +54,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    width: 100%;
     padding: 1rem;
     margin: 0 0 78px 0;
     overflow-x: auto;
@@ -79,8 +79,33 @@
     border: 1px solid var(--color-5);
 }
 
+/* EMOJI SOZINHO - ------------- [begin] */
+.cht-msg.emojis-tr .cht-msg-text {
+    background: none;
+    border: none;
+    padding: .5rem 0 0 0;
+    width: 7rem;
+    text-align: center;
+}
+
+.cht-msg.emojis-tr.me .cht-msg-text {
+    width: initial;
+}
+
+.cht-msg-text span.emojis-one {
+    font-size: 4rem;
+    animation: heart 1s infinite ease-out;
+    border-radius: var(--radius-50);
+    display: block;
+}
+.cht-msg.emojis-tr.me .cht-msg-text span.emojis-one {
+    font-size: 2rem;
+    animation: none;
+}
+/* EMOJI SOZINHO - ------------- [end] */
+
 .cht-msg.me .cht-msg-text {
-    background: transparent !important;
+    background: none;
     border: none;
     padding: .5rem 0;
 }
@@ -125,6 +150,26 @@
 
 
 
+.cht-content .separator {
+    border-top: 1px dashed var(--color-4);
+    height: 0;
+    margin: 0 0 2rem 0;
+}
+
+.cht-content .chat-final {
+    background: var(--color-2);
+    color: var(--white);
+    height: 4rem;
+}
+
+.cht-loader {
+    position: absolute;
+    z-index: 1;
+    margin-top: -1rem;
+}
+
+
+
 /* --------------- BOTTOM BAR -------------- */
 .cht-bottom-bar {
     position: fixed;
@@ -156,7 +201,7 @@
     background: var(--color-2);
     padding: 1rem;
     display: none;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
     align-items: center;
@@ -166,7 +211,8 @@
     display: flex;
 }
 
-.cht-emojis span, .cht-emojis i {
+.cht-emojis span,
+.cht-emojis i {
     font-size: 1.5rem;
     padding: 1px;
 }
@@ -183,11 +229,13 @@
     display: flex;
     width: 100%;
 }
+
 .cht-control i {
     color: var(--color-2);
 }
 
-.cht-emoji, .cht-send {
+.cht-emoji,
+.cht-send {
     width: 4rem;
     display: flex;
     justify-content: center;
@@ -204,8 +252,7 @@
     max-height: calc(78px - .6rem);
     overflow: auto;
     padding: .5rem;
-    border-radius: var(
-    --radius-1);
+    border-radius: var(--radius-1);
 }
 
 .cht-send {}

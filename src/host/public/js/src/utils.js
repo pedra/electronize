@@ -50,7 +50,7 @@ const __rpass = chars => {
 // Substitue *, _ e - por <b>, <i> e <s>, respectivamente
 // Ex.: ttoh("Texto em *negrito* e em _itálico_.") ==> "Texto em <b>negrito</b> e em <i>itálico</i>."
 const __ttoh = t => t.replace(/(<([^>]+)>)/gi, "")
-    //.replace(/<br>/g, "\n")
+    .replace(/\n/g, "<br>")
     //.replace(/\n(\*)(\s)(.*?)\n/g, '<li>$3</li>\n')
     .replace(/([^\w]|\s)(\*([^/s]|.*?)\*)([^\w]|\s)/g, '$1<b>$3</b>$4')
     .replace(/([^\w]|\s)(\_([^/s]|.*?)\_)([^\w]|\s)/g, '$1<i>$3</i>$4')

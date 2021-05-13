@@ -5,35 +5,10 @@
  */
 const _Chat = function (config) {
 
-    let msg = [
-        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
-        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
-        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
-        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
-        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
-        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
-        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
-        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
-        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
-        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
-        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
-        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' },
-        { id: 1, uid: 0, msg: 'Olá!<br>Tudo bem com você?' },
-        { id: 2, uid: 1, msg: 'Sim, tudo bem por aqui' },
-        { id: 3, uid: 0, msg: 'Então...<br>Precisamos falar sobre o Tony!' },
-        { id: 4, uid: 1, msg: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Quem num gosta di mim que vai caçá sua turmis! Interagi no mé, cursus quis, vehicula ac nisi.Posuere libero varius.Nullam a nisl ut ante blandit hendrerit.Aenean sit amet nisi.' },
-        { id: 5, uid: 0, msg: 'Vamos marcar para amanhã na parte da manhã?' }
-    ],
-        url = {},
+    let url = {},
         html = {},
-        channel = ''
-
-    let socket = null,
+        channel = '',
+        socket = null,
         mem_msg = '***',
         qzc = {
             type: 'msg',
@@ -48,80 +23,46 @@ const _Chat = function (config) {
                 cite: 0
             }
         },
-        to = {},
+        me = { id: 0, name: '', avatar: '' },
+        to = { id: 0, name: '', avatar: '' },
         loading = true,
         scrollH = 0,
-        lowerMsgId = -1,
-        firstMsgId = 0,
-        me = { id: 0, name: '', avatar: '' }
+        lowerMsgId = 1,
+        firstMsgId = 1,
+        amount = 10
 
-    const close = () => {
-        socket.close()
-    }
 
-    const open = () => {
-        socket.connect()
-        _(html.text).focus() // Foco na barra de texto
-    }
-
-    const view = (id, name, avatar) => {
-        if (!id || !name || !avatar) return __report('Ocorreu um erro na busca de mensagens no servidor!')
-        //Menu('chat', false, {id, name, avatar})
-    }
-
-    const closeEmoji = e => _(html.emojis).classList.remove('on')
-
-    const show = async (data) => {
-        console.log('Chat', data.id, data.name)
-
-        _(html.name).innerHTML = data.name
-        _(html.avatar).src = data.avatar
-
-        let h = ''
-        msg.map(m => {
-            h += `<div class="cht-msg${m.uid == 1 ? ' me' : ''}" id="cht-msg-${m.id}">
-                        <div class="cht-msg-text">${m.msg}</div>
-                        <div class="cht-msg-data">
-                            <span class="cht-date">${(new Date).toLocaleString()}</span>
-                            <span class="cht-status">
-                                <i class="material-icons">check_circle_outline</i>
-                            </span>
-                        </div>
-                    </div>`
-        })
-
-        let c = _(html.content)
-        c.innerHTML = h
-        c.scrollTop = 0
-
-        // Gravando o usuário da conversa 
-        to.id = msg[0].id
-        to.name = msg[0].name
-        to.avatar = msg[0].avatar
-
-        // Efeito "scroll"
-        scroll()
-
-        // Limpando o campo de digitação de mensagem.
-        _(html.text).innerHTML = ''
-        _(html.text).focus()
-
-        // Ligando o socket
-        return init()
-    }
-
+    /**
+     * Fecha a conexão com o socket
+     */
     const hide = () => {
-        console.log('CHAT - hide!!')
-        //socket.close()
+        if (socket != null) socket.close()
         _(html.content).innerHTML = ''
     }
 
-    // -------------------------------------- CHAT
+    /**
+     * Inicializa o chat (socket, etc)
+     * @param {Object} data Objeto contendo os dados do usuário no chat.
+     * @returns void
+     */
+    const init = data => {
+        if (data === false) return false
 
-    const init = () => {
-        lowerMsgId = -1
+        // Gravando o usuário da conversa 
+        to.id = data.id
+        to.name = data.name
+        to.avatar = data.avatar
+        _(html.name).innerHTML = data.name
+        _(html.avatar).src = data.avatar
 
-        if (socket != null) close()
+        // Eu (usuário logado)
+        me.id = App.Me.get('id')
+        me.name = App.Me.get('name')
+        me.avatar = App.Me.get('avatar')
+        firstMsgId = 1
+        lowerMsgId = 1
+
+        if (socket != null) socket.close()
         socket = io() // Criando a conexão MSG
 
         _(html.send).onclick = send
@@ -151,109 +92,71 @@ const _Chat = function (config) {
         socket.on(channel, on)
     }
 
+    /**
+     * Recebe e gerencia as mensagens do SOCKET.
+     * @param {Object} msg Dados da mensagem 
+     * @returns void
+     */
     const on = msg => {
-        TMPX = socket
-        console.log('[SOCKET]', msg, socket)
-        if (msg.type == 'init') return socket.emit(channel, { type: 'initClient', id: 1, to: to.id })
+        if (msg.type == 'init') {
+            _(html.content).innerHTML = ''
+            firstMsgId = 1
+            lowerMsgId = 1
+            return socket.emit(channel, { type: 'initClient', id: me.id, to: to.id })
+        }
         if (msg.type == 'list') return msgList(msg.data, true)
         if (msg.type == 'viewed') return msgSetViewed(msg)
-
-        //if(msg.to != me.id || msg.from != to.id) return false
-
-        stamp(msg, 'click')
-        // if(msg.to == me.id) {
-        //     socket.emit(html.chanel, {type: 'viewed', id: msg.id, from: msg.from})
-        // }
+        if (msg.type == 'msg') return stamp(msg)
     }
 
+    /**
+     * Recebe o aviso de que uma mensagem foi visualizada e 
+     * modifica no display do chat daquela mensagem (se estiver carregada)
+     * @param {Object} msg Dados da mensagem a ser modificadas
+     */
     const msgSetViewed = msg => {
-        var i = _(html.msg + '-' + msg.id + ' .cht-status')
-        if (i === false) {
-            i.classList.add('on')
-            i.innerHTML = 'visibility'
-        }
+        var s = _(`${html.msg}-${msg.id} ${html.status}`)
+        if (s) s.classList.add('viewed')
     }
 
-    const stamp = (msg, sound, before) => {
-        if (msg.to == me.id
-            && msg.viewed == null) {
-            socket.emit(channel, { type: 'viewed', id: msg.id, from: msg.from })
-        }
-
-        var sound = sound || false
-        var e = msg.to == me.id ? '' : ' you'
-        var i = msg.to == me.id ? to.avatar : '/img/user.jpg'
-        e += msg.content.text.indexOf('<span class="emojis-one"') != -1 ? ' emojis-tr' : ''
-        var d =
-            msg.to == me.id
-                ? ''
-                : '<i class="material-icons' +
-                (msg.viewed == null ? '' : ' on') +
-                '">' +
-                (msg.viewed == null ? 'done' : 'visibility') +
-                '</i>'
-
-        var m =
-            '<div class="chat-emsg' +
-            e +
-            '" id="chat-msgid' +
-            msg.id +
-            '"><div class="chat-msg-header">' +
-            d +
-            '<date>' +
-            new Date(msg.created).toLocaleString() +
-            '</date></div><div class="chat-text">' +
-            msg.content.text +
-            '</div></div>'
-
-        //formatdate(msg.created)
-
-        if (before === true) {
-            _(html.content).innerHTML = m + _(html.content).innerHTML
-        } else {
-            _(html.content).innerHTML += m
-            scroll(sound)
-        }
-
-        setTimeout(() => {
-            _(html.msg + '-' + msg.id).classList.add('on')
-        }, 10)
-    }
-
+    /**
+     * Envia mensagem digitada pelo usuário.
+     * @returns void
+     */
     const send = () => {
-        var txt = _(html.text).innerHTML.trim().toString()
+        var txt = __ttoh(_(html.text).innerText.trim().toString())
         if (txt.length == 2 && txt.charCodeAt(0) > 55356) {
             txt = '<span class="emojis-one">' + txt + '</span>'
         }
 
-        mem_msg = txt
+        mem_msg = txt // Gravando a última mensagem na memória
 
         if (txt == '') return false
         _(html.text).innerHTML = ''
 
         var msg = { ...qzc } // clonando o padrão
         msg.from = me.id
-        msg.to = 2 //to.id
-        msg.content.text = __ttoh(txt)
-        var d = new Date()
-        msg.created = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.toLocaleTimeString()
+        msg.to = to.id
+        msg.content.text = txt
+        msg.created = new Date()
 
-        //console.log('SEND', msg)
-        //stamp(msg, 'glass')
         socket.emit(channel, msg)
     }
 
+    /**
+     * Recebe a listagem de mensagens e gerencia a exibição
+     * @param {Array} data Array de mensagens
+     * @param {Boolean} init True se estiver vindo da função INITO
+     * @returns void
+     */
     const msgList = (data, init) => {
-        if (undefined == typeof data['msg'] || data.msg.length == 0) return false
+        if (!data || data.length == 0) return false
 
-        for (var i in data.msg) {
-            stamp(data.msg[i], false, true)
-            if (data.msg[i].to == me.id) {
-                socket.emit(channel, { type: 'viewed', id: data.msg[i].id })
-            }
+        for (var i in data) {
+            stamp(data[i], true)
         }
 
-        firstMsgId = data.msg[data.msg.length - 1].id
+        firstMsgId = data[data.length - 1].id
 
         setTimeout(() => {
             loading = false
@@ -266,6 +169,39 @@ const _Chat = function (config) {
             _(html.content).scrollTop = parseInt(_(html.content).scrollHeight - scrollH - 100)
             scrollH = _(html.content).scrollHeight
         }
+    }
+
+    /**
+     * Imprime uma mensagem na corpo do chat
+     * @param {Object} msg Dados da mensagem a ser impressa
+     * @param {Boolean} before True indica que essa mensagem será colocada ANTES das demais
+     */
+    const stamp = (msg, before) => {
+        if (msg.to == me.id && msg.viewed == null)
+            socket.emit(channel, { type: 'viewed', id: msg.id, from: msg.from })
+
+        var e = msg.content.text.indexOf('<span class="emojis-one"') != -1 ? ' emojis-tr' : ''
+
+        var m = `<div class="cht-msg${msg.from == me.id ? ' me' : ''}${e}" id="cht-msg-${msg.id}">
+                    <div class="cht-msg-text">${msg.content.text}</div>
+                    <div class="cht-msg-data">
+                        <span class="cht-date">${(new Date(msg.created)).toLocaleString()}</span>
+                        <span class="cht-status${msg.viewed == null ? '' : ' viewed'}">
+                            <i class="material-icons">check_circle_outline</i>
+                        </span>
+                    </div>
+                </div>`
+
+        if (before === true) {
+            _(html.content).innerHTML = m + _(html.content).innerHTML
+        } else {
+            _(html.content).innerHTML += m
+            scroll()
+        }
+
+        setTimeout(() => {
+            _(html.msg + '-' + msg.id).classList.add('on')
+        }, 10)
     }
 
     /**
@@ -286,44 +222,43 @@ const _Chat = function (config) {
             }, tm)
     }
 
-    const onScroll = a => {
+    /**
+     * Observa o scroll até que atinja o TOP: carrega mensagens mais antigas, se tiver.
+     * @returns void
+     */
+    const onScroll = () => {
+
         if (loading || firstMsgId - lowerMsgId <= 0) return false
 
         if (_(html.content).scrollTop == 0) {
             _(html.content).innerHTML = '<div class="separator"></div>' + _(html.content).innerHTML
             _(html.loader).classList.remove('hide')
 
-            loading = true
+            loading = true // Liga a flag
 
-            __get(`${url.get}/${me.id}/${to.id}/${(firstMsgId - 1)}/20`,
-                (e, d) => {
-                    var data
-                    try {
-                        data = JSON.parse(d).data
-                    } catch (e) {
-                        data = { msg: [] }
-                    }
+            __get(`${url.get}/${me.id}/${to.id}/${(firstMsgId - 1)}/${amount}`).then(m => {
 
-                    if (data.msg.length == 0) {
-                        lowerMsgId = firstMsgId
-                        _(html.content).innerHTML =
-                            '<div class="chat-final">That\'s all folks!</div>' + _(html.content).innerHTML
-                    } else {
-                        msgList(data)
-                    }
+                if (m.length == 0) {
+                    lowerMsgId = firstMsgId
+                    _(html.content).innerHTML =
+                        '<div class="chat-final">That\'s all folks!</div>' + _(html.content).innerHTML
+                } else {
+                    msgList(m)
+                }
 
-                    _(html.loader).classList.add('hide')
-                })
+                _(html.loader).classList.add('hide')
+                loading = false
+            })
         }
     }
 
     const construct = () => {
-        channel = config.channel
-        url = config.url
-        html = config.html
+        channel = config.chat.channel
+        avatar = config.user.url.avatar
+        url = config.chat.url
+        html = config.chat.html
     }
-
     construct()
 
-    return { open, view, show, hide, closeEmoji }
+    return { init, hide }
 }

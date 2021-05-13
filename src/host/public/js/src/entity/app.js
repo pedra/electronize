@@ -21,7 +21,7 @@ const App = {
 
         // Entities ...
         App.Me = new _Me(Config)
-        App.Chat = new _Chat(Config.chat)
+        App.Chat = new _Chat(Config)
     },
 
     /**
