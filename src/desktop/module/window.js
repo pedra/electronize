@@ -38,7 +38,7 @@ module.exports = function () {
         const win = new BrowserWindow({
             width: 480,
             minWidth: 360,
-            maxWidth: 780,
+            maxWidth: 1000,
 
             height: 720,
             minHeight: 640,
