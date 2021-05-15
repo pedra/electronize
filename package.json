@@ -7,7 +7,7 @@
         "postinstall": "install-app-deps",
         "build": "electron-builder --dir",
         "dist": "electron-builder",
-        "start": "set ELECTRON_ENV=1 && cls && electron src/start"
+        "start": "export ELECTRON_ENV=1 && electron src/start"
     },
     "babel": {
         "presets": [
@@ -50,13 +50,6 @@
                 "url": "http://localhost:5000/update",
                 "channel": "latest"
             }
-        },
-        "win2": {
-            "target": "NSIS",
-            "publish": {
-                "provider": "github",
-                "channel": "latest"
-            }
         }
     },
     "keywords": [
@@ -82,10 +75,10 @@
         "@babel/preset-env": "^7.13.12",
         "@babel/register": "^7.13.14",
         "del": "^6.0.0",
-        "electron": "^12.0.2",
+        "electron": "12.0.6",
         "electron-builder": "^22.10.5",
         "gulp": "^4.0.2",
-        "gulp-autoprefixer": "^7.0.1",
+        "gulp-autoprefixer": "^5.0.0",
         "gulp-babel": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
@@ -94,9 +87,8 @@
         "gulp-if": "^3.0.0",
         "gulp-imagemin": "^7.1.0",
         "gulp-javascript-obfuscator": "^1.1.6",
-        "gulp-sass": "^4.1.0",
         "gulp-uglify": "^3.0.2",
-        "gulp-watch": "^5.0.1",
+        "gulp-watch": "^4.2.4",
         "install": "^0.13.0",
         "streamqueue": "^1.1.2",
         "uglify-es": "^3.3.9",

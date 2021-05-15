@@ -4,7 +4,8 @@
     "description": "Structure to start an electron project - Application",
     "main": "start.js",
     "scripts": {
-        "start": "set ELECTRON_ENV=1 && cls && electron start"
+        "postinstallxx": "install-app-deps",
+        "start": "set ELECTRON_ENV=1 && electron start"
     },
     "author": "Bill Rocha <prbr@ymail.com>",
     "license": "ISC",

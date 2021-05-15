@@ -1,0 +1,20 @@
+Atenção desenvolvedor no Windows!!!
+
+Altere a linha 10 para: 
+
+"start": "set ELECTRON_ENV=1 && electron src/start"
+
+No windows o comando para criar/modificar uma variável de ambiente é "set".
+
+
+-----------------------------------------------------
+
+Configuração para Electron-update via Github.com
+
+"win": {
+            "target": "NSIS",
+            "publish": {
+                "provider": "github",
+                "channel": "latest"
+            }
+        }

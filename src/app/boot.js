@@ -5,12 +5,15 @@
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
 
  */
+var os = require('os').platform()
 const path = require('path')
 const { app } = require('electron')
-const JList = require(path.join(app.Config.app.module, 'jumplist'))()
 const Ipc = require(path.join(app.Config.desktop.module, 'ipc'))
-const Update = require(path.join(app.Config.app.module, 'update'))
 const Apptray = require(path.join(app.Config.app.module, 'tray'))
+
+// Modules by platforms...
+const JList = os == "windows" ? require(path.join(app.Config.app.module, 'jumplist'))() : false
+const Update = os != "linux" ? require(path.join(app.Config.app.module, 'update')) : false
 
 // Host and Message
 const Host = require(path.join(app.Config.host.path, 'host'))
@@ -30,7 +33,7 @@ module.exports = async function () {
         //app.Socket = hst.Socket
     }
 
-    // Simgle instance
+    // Single instance
     if (!app.requestSingleInstanceLock()) app.quit()
     else app.on('second-instance', () => {
         console.log("second-instance!!!")
@@ -45,13 +48,10 @@ module.exports = async function () {
     app.on('window-all-closed', () => {
         console.log("\nWindow-all-closed: trabalhando em background!\n")
 
-
-
-        //Para NÃO MacOs
-        // if (process.platform !== 'darWindow') {
-        //     if (app.Tray) app.Tray.destroy()
-        //     app.quit()
-        // }
+        if (process.platform !== 'darWindow') {
+            if (app.Tray) app.Tray.destroy()
+            app.quit()
+        }
     })
 
     // Quando a aplicação é "ativada" (novamente?) - para MacOS
@@ -71,14 +71,14 @@ module.exports = async function () {
                     // Monta o Tray Menu
                     app.Tray = new Apptray()
 
-                    // Aciana o monitor de UPDATE
-                    app.UpTimer = Update().UpTimer
+                    // Aciana o monitor de UPDATE - Windows & Mac only
+                    app.UpTimer = Update === false ? false : Update().UpTimer
 
                     // Montando o IPC Center
                     const { ipcMain, Notify } = Ipc()
 
-                    // Montando a Jump List
-                    JList.set(app.Config.jumplist)
+                    // Montando a Jump List - Windows only
+                    JList && JList.set(app.Config.jumplist)
 
                 } catch (e) {
                     error = e

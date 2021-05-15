@@ -41,7 +41,7 @@ module.exports = () => {
             enable: true,
             view: path.join(root, 'host', 'view'),
             public: path.join(root, 'host', 'public'),
-            port: 80
+            port: 8080
         },
         socket: {
             path: path.join(root, 'host', 'module', 'message'),

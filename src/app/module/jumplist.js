@@ -10,9 +10,8 @@ const { app } = require('electron')
 
 module.exports = () => {
 
-    const set = (config) => {
-        return app.setJumpList(config)
-    }
+    const set = (config) => app.setJumpList(config)
+
 
     return { set }
 }
