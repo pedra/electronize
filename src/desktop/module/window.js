@@ -37,8 +37,8 @@ module.exports = function () {
         // novo Browser...
         const win = new BrowserWindow({
             width: 480,
-            minWidth: 360,
-            maxWidth: 1000,
+            minWidth: 370,
+            maxWidth: 800,
 
             height: 720,
             minHeight: 640,
@@ -63,9 +63,6 @@ module.exports = function () {
                 contextIsolation: false
             }
         })
-
-        // esconde o menu 
-        //Window.setMenu(null);
 
         // Abre o DevTools.
         //win.webContents.openDevTools()

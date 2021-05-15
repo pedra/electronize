@@ -1,7 +1,7 @@
 {
     "name": "electronize",
     "version": "0.0.1",
-    "description": "Cover for starting an electron projects - Application",
+    "description": "Structure to start an electron project - Application",
     "main": "start.js",
     "scripts": {
         "start": "set ELECTRON_ENV=1 && cls && electron start"

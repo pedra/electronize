@@ -79,9 +79,12 @@ module.exports = function () {
             {
                 label: 'Github do projeto',
                 icon: app.Config.desktop.tray + '/icon16.png',
-                click: () => require('electron').shell.openExternal('http://github.com/pedra/electronize')
+                click: () => require('electron').shell.openExternal('https://github.com/pedra/electronize')
             }, { label: 'Verificar atualização' },
-            { label: 'Ajuda (manual online)' },
+            {
+                label: 'Ajuda (online)',
+                click: () => require('electron').shell.openExternal('https://github.com/pedra/electronize#readme')
+            },
             { type: 'separator' },
             { role: 'reload' },
             { role: 'forcereload' },

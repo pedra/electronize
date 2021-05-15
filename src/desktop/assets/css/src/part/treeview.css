@@ -1,0 +1,34 @@
+/* TREE VIEW ----------------------------- */
+ul.tree-view details {
+    margin-top: 0;
+}
+
+summary {
+    user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.tree-view details>summary:before {
+    content: "folder";
+    margin: 0 .5rem 0 0;
+    color: var(--color-8);
+    font-family: 'Material Icons';
+    font-size: 1.3rem;
+}
+
+ul.tree-view details>summary:focus:before {}
+
+ul.tree-view,
+ul.tree-view li {
+    list-style: none;
+    margin: 0;
+    padding: .1rem 0;
+}
+
+ul.tree-view ul {
+    margin: 0;
+    padding: .1rem 0 .1rem 1.5rem;
+}

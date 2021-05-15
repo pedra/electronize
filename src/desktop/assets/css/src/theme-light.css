@@ -22,7 +22,15 @@
     --white-2: #E5E5E5;
     --white-3: #BFBCBC;
     --white-4: #B1B1B1;
+    --white-5: #999999;
+
+    --opac: #7777777a;
+
+    /* DARK SCALE */
     --black: #000000;
+    --black-1: #222222;
+    --black-2: #333333;
+    --black-3: #444444;
 
     /* ELEVATION */
     --elevation-1: 0 0 2px rgba(0, 0, 0, 0.2);

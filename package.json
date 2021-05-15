@@ -1,14 +1,13 @@
 {
     "name": "electronize",
     "version": "0.0.1",
-    "description": "Cover for starting an electron projects - Package",
+    "description": "Structure to start an electron project - Package",
     "main": "./",
     "scripts": {
         "postinstall": "install-app-deps",
         "build": "electron-builder --dir",
         "dist": "electron-builder",
-        "start": "set ELECTRON_ENV=1 && cls && electron src/start",
-        "docs": "jsdoc -c jsdoc.json"
+        "start": "set ELECTRON_ENV=1 && cls && electron src/start"
     },
     "babel": {
         "presets": [
@@ -49,6 +48,13 @@
             "publish": {
                 "provider": "generic",
                 "url": "http://localhost:5000/update",
+                "channel": "latest"
+            }
+        },
+        "win2": {
+            "target": "NSIS",
+            "publish": {
+                "provider": "github",
                 "channel": "latest"
             }
         }
