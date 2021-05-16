@@ -7,7 +7,7 @@ Template to start an Electron project!
 
 **./dist** - compiled distribution files;
 
-**./icon** - application icon required by Electron-Builder;
+**./pack** - application files required by Electron-Builder;
 
 **./assets** - "external" files added to the distribution package (not compressed in the ASA).
 
