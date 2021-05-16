@@ -12,9 +12,33 @@ No windows o comando para criar/modificar uma variável de ambiente é "set".
 Configuração para Electron-update via Github.com
 
 "win": {
-            "target": "NSIS",
+            "target": ["nsis"],
             "publish": {
                 "provider": "github",
                 "channel": "latest"
             }
         }
+
+Ou: 
+
+"win": {
+            "target": ["nsis"],
+            "requestedExecutionLevel": "requireAdministrator",
+            "publish": {
+                "provider": "generic",
+                "url": "http://localhost:5000/update",
+                "channel": "latest"
+            }
+        },
+        "nsis": {
+            "installerIcon": "pack/icon.ico",
+            "uninstallerIcon": "pack/icon.ico",
+            "installerSidebar": "pack/sidebar.bmp",
+            "uninstallDisplayName": "Electronize",
+            "license": "pack/license.txt",
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        }
+
+1 - O texto da licença tem que estar no formato ANSI, se usar caracteres acentuados.
+2 - O "sidebar" deve ser uma imagem de 164 x 314 pixels e no formato BMP.

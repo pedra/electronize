@@ -26,7 +26,7 @@
         "compression": "maximum",
         "directories": {
             "output": "dist",
-            "buildResources": "pack",
+            "buildResources": "icon",
             "app": "src"
         },
         "extraFiles": "assets",
@@ -44,23 +44,12 @@
             ]
         },
         "win": {
-            "target": [
-                "nsis"
-            ],
-            "requestedExecutionLevel": "requireAdministrator",
+            "target": "NSIS",
             "publish": {
-                "provider": "github",
+                "provider": "generic",
+                "url": "http://localhost:5000/update",
                 "channel": "latest"
             }
-        },
-        "nsis": {
-            "installerIcon": "pack/icon.ico",
-            "uninstallerIcon": "pack/icon.ico",
-            "installerSidebar": "pack/sidebar.bmp",
-            "uninstallDisplayName": "Electronize",
-            "license": "pack/license.txt",
-            "oneClick": false,
-            "allowToChangeInstallationDirectory": true
         }
     },
     "keywords": [
