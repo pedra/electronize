@@ -5,7 +5,7 @@
     "main": "start.js",
     "scripts": {
         "postinstallxx": "install-app-deps",
-        "start": "set ELECTRON_ENV=1 && electron start"
+        "start": "export ELECTRON_ENV=1 && electron start"
     },
     "author": "Bill Rocha <prbr@ymail.com>",
     "license": "ISC",
