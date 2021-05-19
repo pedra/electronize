@@ -4,7 +4,7 @@ const { Notify } = require(path.join(app.Config.app.module, 'notify'))
 
 module.exports = function () {
 
-    let Window = app.Window.getInstance()
+    let Window = app.Window.getInstance('main')
 
     // Carrega uma página na janela principal
     ipcMain.on('loadPage', (event, url) => Window.loadURL(url))
@@ -18,7 +18,7 @@ module.exports = function () {
     })
 
     // Fechar aplicação - mesmo
-    ipcMain.on('appquit', () => {
+    ipcMain.on('quit', () => {
         if (app.appTray) app.appTray.destroy()
         app.quit()
     })
@@ -33,7 +33,7 @@ module.exports = function () {
       exemplo: ipcRenderer.send('progressBar', valor)  
       --> valor de 0 a 1
       --> -1 desabilita a barra
-      --> 2 (maior que 1) coloca em modo "indefinido" (fica apulsando)
+      --> 2 (maior que 1) coloca em modo "indefinido" (fica pulsando)
     */
     ipcMain.on('progressBar', (e, value) => Window.setProgressBar(value))
 

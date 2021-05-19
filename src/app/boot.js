@@ -3,16 +3,18 @@
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
+    Git: https://github.com/pedra/electronize
 
  */
+
 var os = require('os').platform()
 const path = require('path')
 const { app } = require('electron')
 const Ipc = require(path.join(app.Config.desktop.module, 'ipc'))
-const Apptray = require(path.join(app.Config.app.module, 'tray'))
+const Tray = require(path.join(app.Config.app.module, 'tray', 'index'))
 
 // Modules by platforms...
-const JList = os == "windows" ? require(path.join(app.Config.app.module, 'jumplist'))() : false
+const JumpList = os == "win32" ? require(path.join(app.Config.app.module, 'jump-list', 'index')) : false
 const Update = os != "linux" ? require(path.join(app.Config.app.module, 'update')) : false
 
 // Host and Message
@@ -38,38 +40,31 @@ module.exports = async function () {
     else app.on('second-instance', () => {
         console.log("second-instance!!!")
 
-        var Window = app.Window.getInstance()
+        var Window = app.Window.getInstance('main')
         if (Window.isMinimized()) Window.restore()
         Window.show()
         Window.focus()
     })
 
     // Finaliza quando todas as janelas estiverem fechadas.
-    app.on('window-all-closed', () => {
-        console.log("\nWindow-all-closed: trabalhando em background!\n")
-
-        if (process.platform !== 'darWindow') {
-            if (app.Tray) app.Tray.destroy()
-            app.quit()
-        }
+    app.on('quit', () => {
+        console.log("Quit!")
+        if (app.Tray) app.Tray.destroy()
     })
 
     // Quando a aplicação é "ativada" (novamente?) - para MacOS
     app.on('activate', () => {
-        console.log("Activate", Window)
-        return app.Window.getInstance()
+        console.log("Activate")
     })
 
     // Aplicação pronta: Monta sysTray, Updater, JumpList e IPC
-
     return new Promise(
         function (resolve, reject) {
-            app.on('ready', (a, b, c) => {
-                let error = false
+            app.on('ready', () => {
 
                 try {
                     // Monta o Tray Menu
-                    app.Tray = new Apptray()
+                    app.Tray = new Tray()
 
                     // Aciana o monitor de UPDATE - Windows & Mac only
                     app.UpTimer = Update === false ? false : Update().UpTimer
@@ -78,12 +73,12 @@ module.exports = async function () {
                     const { ipcMain, Notify } = Ipc()
 
                     // Montando a Jump List - Windows only
-                    JList && JList.set(app.Config.jumplist)
+                    JumpList && new JumpList('default')
 
                 } catch (e) {
-                    error = e
+                    return reject(e)
                 }
-                return resolve(error)
+                return resolve()
             })
         })
 }

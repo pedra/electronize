@@ -6,8 +6,9 @@
 
  */
 
-const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const fs = require('fs')
+const { app, BrowserWindow } = require('electron')
 
 module.exports = function () {
 
@@ -26,13 +27,13 @@ module.exports = function () {
         TODO: criar mais janelas e gravar em um "pool" (array) de Windows.
            As janelas seriam referenciadas pela chamada a getInstance('nome da janela')          
     */
-    const getInstance = () =>
+    const getInstance = (html) =>
         Window == null || Window.isDestroyed() ?
-            (Window = new janela()) :
+            (Window = new janela(html)) :
             Window
 
     // Cria uma janela (Window)
-    const janela = function () {
+    const janela = function (html) {
 
         // novo Browser...
         const win = new BrowserWindow({
@@ -64,12 +65,13 @@ module.exports = function () {
             }
         })
 
-        // Abre o DevTools.
+        // Abre o DevTools - debug only
         //win.webContents.openDevTools()
-        //require('devtron').install()
 
         // e carrega index.html do app.
-        win.loadURL(path.join(app.Config.desktop.path, 'index.html'))
+        const htmlPath = path.join(app.Config.desktop.assets, 'html')
+        const htmlFile = fs.existsSync(`${htmlPath}/${html}.html`) ? `${htmlPath}/${html}.html` : `${htmlPath}/main.html`
+        win.loadFile(htmlFile)
 
         // Mostra a janela
         win.once('ready-to-show', () => win.show())
@@ -138,7 +140,7 @@ module.exports = function () {
             console.log('\nblur | A janela perdeu foco.')
             if (!win.isDestroyed()) {
                 win.flashFrame(true)
-                setTimeout(() => win.flashFrame(false), 1500)
+                setTimeout(() => !win.isDestroyed() ? win.flashFrame(false) : false, 1500)
             }
         })
 

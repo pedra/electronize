@@ -3,9 +3,9 @@
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
+    Git: https://github.com/pedra/electronize
 
  */
-
 
 module.exports = function () {
     const pool = '8u7zoicjgyaFrfb5VQG0OwNJTWAqknZItsER6S42pmxKL9CUlYHDdhB1M3veXP'

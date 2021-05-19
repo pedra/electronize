@@ -8,14 +8,11 @@
 
 const path = require('path')
 const { app } = require('electron')
-const db = require(app.Config.app.db)() // teste
-
+const Menu = require(path.join(app.Config.desktop.module, 'menu', 'index'))
 
 module.exports = function () {
 
-    // Teste de SQLite ...
-
-
-    //db.teste(3, (r) => console.log("App - init: ", r))
+    // Add a menu to Window
+    app.Menu = new Menu(process.platform == 'darwin' ? 'mac' : 'default')
 
 }
