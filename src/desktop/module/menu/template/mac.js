@@ -10,8 +10,9 @@
 const { app, shell } = require('electron')
 
 module.exports = [
+
     {
-        label: app.getName(),
+        label: app.name,
         submenu: [
             { role: 'about' },
             { type: 'separator' },
@@ -23,67 +24,61 @@ module.exports = [
             { type: 'separator' },
             { role: 'quit' }
         ]
-    },
-    {
-        label: 'Arquivo',
+    }, {
+        label: 'File',
         submenu: [
-            { label: 'Diretório base' },
+            { role: 'close' }
+        ]
+    }, {
+        label: 'Edit',
+        submenu: [
+            { role: 'undo' },
+            { role: 'redo' },
             { type: 'separator' },
-            { label: 'Salvar backup', enabled: false },
-            { label: 'Carregar backup', enabled: false },
-            { label: 'Explorador de arquivo' },
-            { type: 'separator' },
-            { label: 'Fechar janela', role: 'close' },
-            {
-                label: 'Desligar a Aplicação',
-                icon: app.Config.desktop.tray + '/x.png',
-                click: () => app.exit()
-            },
+            { role: 'cut' },
+            { role: 'copy' },
+            { role: 'paste' },
+            { role: 'pasteAndMatchStyle' },
+            { role: 'delete' },
+            { role: 'selectAll' },
             { type: 'separator' },
             {
                 label: 'Speech',
-                submenu: [{ role: 'startspeaking' },
-                { role: 'stopspeaking' }]
+                submenu: [
+                    { role: 'startSpeaking' },
+                    { role: 'stopSpeaking' }
+                ]
             }
         ]
     }, {
-        label: 'Edição',
+        label: 'View',
         submenu: [
-            { role: 'close' },
+            { role: 'reload' },
+            { role: 'forceReload' },
+            { role: 'toggleDevTools' },
+            { type: 'separator' },
+            { role: 'resetZoom' },
+            { role: 'zoomIn' },
+            { role: 'zoomOut' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+        ]
+    }, {
+        label: 'Window',
+        submenu: [
             { role: 'minimize' },
             { role: 'zoom' },
             { type: 'separator' },
-            { role: 'front' }
+            { role: 'front' },
+            { type: 'separator' },
+            { role: 'window' }
         ]
     }, {
-        label: 'Electronize',
+        role: 'help',
         submenu: [
             {
-                label: 'Github do projeto',
-                icon: app.Config.desktop.tray + '/icon16.png',
-                click: () => shell.openExternal('https://github.com/pedra/electronize')
-            }, { label: 'Verificar atualização' },
-            {
-                label: 'Ajuda (online)',
-                click: () => shell.openExternal('https://github.com/pedra/electronize#readme')
-            },
-            { type: 'separator' },
-            { role: 'reload' },
-            { role: 'forcereload' },
-            { role: 'toggledevtools' },
-            { type: 'separator' },
-            { role: 'resetzoom', enabled: false },
-            { role: 'zoomin', enabled: false },
-            { role: 'zoomout', enabled: false },
-            { type: 'separator' },
-            { role: 'togglefullscreen', enabled: false },
-            { role: 'minimize', enabled: false },
-            { role: 'close' },
-            { type: 'separator' },
-            {
-                label: 'Sobre o Electronize',
-                click: () => shell.openExternal('https://github.com/pedra/electronize#readme')
-
+                label: 'Learn More',
+                click: async () => await shell.openExternal('https://electronjs.org')
             }
         ]
     }

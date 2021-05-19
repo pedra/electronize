@@ -11,7 +11,7 @@ const { app, shell } = require('electron')
 
 module.exports = [
     {
-        label: 'Arquivo',
+        label: '&Arquivo',
         submenu: [
             { label: 'Diretório base' },
             { type: 'separator' },
@@ -27,7 +27,7 @@ module.exports = [
             }
         ]
     }, {
-        label: 'Usuário',
+        label: '&Usuário',
         submenu: [
             { label: 'Criar usuário' },
             { label: 'Resetar senha' },
@@ -37,7 +37,7 @@ module.exports = [
             { label: 'Visualizar usuários do sistema' }
         ]
     }, {
-        label: 'Mensagens',
+        label: '&Mensagens',
         submenu: [
             { label: 'Criar mensagem para todos' },
             { label: 'Ver mensagens por usuário' },
@@ -48,23 +48,8 @@ module.exports = [
             { label: 'Visualizar chat em tempo real', enabled: false },
             { label: 'Chat em modo espião', enabled: false }
         ]
-    },
-    // }, {
-    //     label: 'Edição',
-    //     submenu: [
-    //         { role: 'undo' },
-    //         { role: 'redo' },
-    //         { type: 'separator' },
-    //         { role: 'cut' },
-    //         { role: 'copy' },
-    //         { role: 'paste' },
-    //         { role: 'pasteandmatchstyle' },
-    //         { role: 'delete' },
-    //         { role: 'selectall' }
-    //     ]
-    // }, 
-    {
-        label: 'Relatório',
+    }, {
+        label: '&Relatório',
         submenu: [
             { label: 'Mensagens por usuário' },
             { type: 'separator' },
@@ -73,16 +58,16 @@ module.exports = [
             { label: 'Login/acessos por usuário' }
         ]
     }, {
-        label: 'Electronize',
+        label: '&Electronize',
         submenu: [
             {
                 label: 'Github do projeto',
                 icon: app.Config.desktop.tray + '/icon16.png',
-                click: () => shell.openExternal('https://github.com/pedra/electronize')
+                click: async () => await shell.openExternal('https://github.com/pedra/electronize')
             }, { label: 'Verificar atualização' },
             {
                 label: 'Ajuda (online)',
-                click: () => shell.openExternal('https://github.com/pedra/electronize#readme')
+                click: async () => await shell.openExternal('https://github.com/pedra/electronize#readme')
             },
             { type: 'separator' },
             { role: 'reload' },
@@ -99,8 +84,7 @@ module.exports = [
             { type: 'separator' },
             {
                 label: 'Sobre o Electronize',
-                click: () => shell.openExternal('https://github.com/pedra/electronize#readme')
-
+                click: async () => await shell.openExternal('https://github.com/pedra/electronize#readme')
             }
         ]
     }

@@ -14,6 +14,6 @@ const Menu = require(path.join(app.Config.desktop.module, 'menu', 'index'))
 module.exports = function () {
 
     // Add a menu to Window
-    app.Menu = new Menu(process.platform == 'darwin' ? 'mac' : 'default')
+    Menu.set(process.platform == 'darwin' ? 'mac' : 'default')
 
 }

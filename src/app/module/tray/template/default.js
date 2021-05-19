@@ -11,6 +11,7 @@ const path = require('path')
 const { app, shell } = require('electron')
 const { Notify } = require(path.join(app.Config.app.module, 'notify'))
 const Window = app.Window.getInstance('main')
+const Menu = require(path.join(app.Config.desktop.module, 'menu', 'index'))
 
 module.exports = [
     {
@@ -48,6 +49,12 @@ module.exports = [
         ]
     }, {
         type: 'separator'
+    }, {
+        label: 'Carregar Menu Mac',
+        click: () => Menu.set('mac')
+    }, {
+        label: 'Carregar Menu Windows',
+        click: () => Menu.set('default')
     }, {
         label: 'Desconectar (logout)',
         icon: app.Config.desktop.tray + '/l.png',

@@ -11,13 +11,16 @@ const path = require('path')
 const fs = require('fs')
 const { Menu } = require('electron')
 
-module.exports = function (template) {
+module.exports = {
 
-    template = template || 'default'
+    set: (template) => {
+        template = template || 'default'
 
-    const file = path.resolve(__dirname, `template/${template}.js`),
-        menu = fs.existsSync(file) ? require(file) : [] // carrega o template menu
+        const file = path.resolve(__dirname, `template/${template}.js`),
+            menu = fs.existsSync(file) ? require(file) : [] // carrega o template menu
 
-    const winMenu = Menu.buildFromTemplate(menu)
-    Menu.setApplicationMenu(winMenu)
+        const winMenu = Menu.buildFromTemplate(menu)
+        Menu.setApplicationMenu(winMenu)
+    }
+
 }
