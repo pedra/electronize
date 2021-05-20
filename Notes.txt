@@ -1,10 +1,9 @@
-Atenção desenvolvedor no Windows!!!
+Atenção!!!
 
-Altere a linha 10 para: 
+Para roda a aplicação em modo de desenvolvimento:
 
-"start": "set ELECTRON_ENV=1 && electron src/start"
-
-No windows o comando para criar/modificar uma variável de ambiente é "set".
+No Windows      > npm run elize
+No Linux & Mac  > npm start
 
 
 -----------------------------------------------------

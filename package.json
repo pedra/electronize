@@ -7,7 +7,8 @@
         "postinstall": "install-app-deps",
         "build": "electron-builder --dir",
         "dist": "electron-builder",
-        "start": "set ELECTRON_ENV=1 && electron src/start"
+        "start": "export ELECTRON_ENV=1 && clear && electron src/start",
+        "elize": "set ELECTRON_ENV=1 && cls && electron src/start"
     },
     "babel": {
         "presets": [

@@ -19,7 +19,7 @@ module.exports = function (template) {
         menu = fs.existsSync(file) ? require(file) : [] // carrega o template menu
 
     let tray = new Tray(app.Config.desktop.tray + '/icon32.png'), //application icon
-        Window = app.Window.getInstance('main'),
+        Window = app.Window.get('main'),
         contextMenu = Menu.buildFromTemplate(menu)
 
     tray.setToolTip('Electronize')

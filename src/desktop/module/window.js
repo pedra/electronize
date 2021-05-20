@@ -21,17 +21,70 @@ module.exports = function () {
                 instance: null // Objeto criado com -> new janela()
             }, ...]
      */
-    let Window = null
+    let Janelas = [],
+        Main = null
+
+
+    /**
+     * Create a window or return your previously created instance
+     * @returns Object Returns the window
+     */
+    const create = window => {
+        if (window == 'main') {
+            if (Main == null || Main.isDestroyed()) {
+                Main = new janela('main')
+                return Main
+            } else {
+                throw new Error('Main window already exists!')
+                process.exit(1)
+            }
+        }
+
+        // Create a window
+        return !Janelas[window] || Janelas[window].isDestroyed() ?
+            (Janelas[window] = new janela(window)) :
+            Janelas[window]
+    }
+
+    /**
+     * Returns a window 
+     * @param {String} window Name of the window to
+     * @returns Object
+     */
+    const get = window => {
+        if (window == 'main') return Main
+        return !Janelas[window] || Janelas[window].isDestroyed() ? false : Janelas[window]
+    }
+
+    /**
+     * Returns an instance of the main application window
+     * @returns Object  The application Main window or null
+     */
+    // const getMainInstance = () => Main
+
+
+    // /**
+    //  * Return a previously created instance or create a new window
+    //  * @param {String} html Name of window to
+    //  * @returns Object Return a new window or a instance of previously created window with same name
+    //  */
+    // const getInstanceOrCreate = (html) => {
+    //     if (html == 'main') return false
+    //     return !Janelas[html] || Janelas[html].isDestroyed() ?
+    //         (Janelas[html] = new janela(html)) :
+    //         Janelas[html]
+    // }
+
 
     /* Cria e/ou retorna a instância do Window (janela principal)
 
         TODO: criar mais janelas e gravar em um "pool" (array) de Windows.
            As janelas seriam referenciadas pela chamada a getInstance('nome da janela')          
     */
-    const getInstance = (html) =>
-        Window == null || Window.isDestroyed() ?
-            (Window = new janela(html)) :
-            Window
+    // const getInstanceOrCreate = (html) =>
+    //     Window == null || Window.isDestroyed() ?
+    //         (Window = new janela(html)) :
+    //         Window
 
     // Cria uma janela (Window)
     const janela = function (html) {
@@ -69,10 +122,8 @@ module.exports = function () {
         // Abre o DevTools - debug only
         //win.webContents.openDevTools()
 
-        // e carrega index.html do app.
-        const htmlPath = path.join(app.Config.desktop.assets, 'html')
-        const htmlFile = fs.existsSync(`${htmlPath}/${html}.html`) ? `${htmlPath}/${html}.html` : `${htmlPath}/main.html`
-        win.loadFile(htmlFile)
+        // Carrega o arquivo HTML da janela.
+        var lf = win.loadFile(path.join(app.Config.desktop.assets, 'html', html + '.html'))
 
         // Mostra a janela
         win.once('ready-to-show', () => win.show())
@@ -148,8 +199,11 @@ module.exports = function () {
         return win
     }
 
+    // Creates a Main application window
+    app.on('ready', () => create('main'))
+
     return {
-        getInstance
+        create, get
     }
 
 }

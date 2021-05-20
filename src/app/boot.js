@@ -40,7 +40,7 @@ module.exports = async function () {
     else app.on('second-instance', () => {
         console.log("second-instance!!!")
 
-        var Window = app.Window.getInstance('main')
+        var Window = app.Window.get('main')
         if (Window.isMinimized()) Window.restore()
         Window.show()
         Window.focus()

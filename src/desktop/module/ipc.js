@@ -4,7 +4,7 @@ const { Notify } = require(path.join(app.Config.app.module, 'notify'))
 
 module.exports = function () {
 
-    let Window = app.Window.getInstance('main')
+    let Window = app.Window.get('main')
 
     // Carrega uma página na janela principal
     ipcMain.on('loadPage', (event, url) => Window.loadURL(url))

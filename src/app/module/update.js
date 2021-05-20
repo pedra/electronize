@@ -12,9 +12,13 @@ const { autoUpdater } = require("electron-updater")
 const { Notify } = require('./notify')
 
 module.exports = function () {
+
+    // Se estiver em modo de desenvolvimento
+    if (process.env.ELECTRON_ENV == 1) return { UpTimer: false, autoUpdater: false, }
+
     // Checa por update na inicialização do aplicativo
     autoUpdater.checkForUpdatesAndNotify()
-    let Window = app.Window.getInstance('main')
+    let Window = app.Window.get('main')
 
     // Checa por update a cada 3 minutos (60s * 3 * 1000 = 180.000) - 10 minutos em produção (600.000)
     let UpTimer = setInterval(() => {
