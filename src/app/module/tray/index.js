@@ -1,9 +1,9 @@
 /*
-    Electronize
+    Electronizer
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
-    Git: https://github.com/pedra/electronize
+    Git: https://github.com/pedra/electronizer
 
  */
 
@@ -22,7 +22,7 @@ module.exports = function (template) {
         Window = app.Window.get('main'),
         contextMenu = Menu.buildFromTemplate(menu)
 
-    tray.setToolTip('Electronize')
+    tray.setToolTip('Electronizer')
     tray.setContextMenu(contextMenu)
     tray.on('click', () => Window.show())
     tray.on('balloon-click', () => Window.show())

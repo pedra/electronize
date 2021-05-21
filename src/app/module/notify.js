@@ -1,9 +1,9 @@
 /*
-    Electronize
+    Electronizer
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
-    Git: https://github.com/pedra/electronize
+    Git: https://github.com/pedra/electronizer
 
  */
 
@@ -13,7 +13,7 @@ const path = require('path')
 module.exports = {
 
     Notify: (titulo, mensagem) => {
-        titulo = titulo || 'Electronize'
+        titulo = titulo || 'Electronizer'
         mensagem = mensagem || 'Hello Word!'
 
         if (app.Tray != null) {

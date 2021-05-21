@@ -1,9 +1,9 @@
 /*
-    Electronize
+    Electronizer
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
-    Git: https://github.com/pedra/electronize
+    Git: https://github.com/pedra/electronizer
 
  */
 
@@ -15,7 +15,7 @@ const Menu = require(path.join(app.Config.desktop.module, 'menu', 'index'))
 
 module.exports = [
     {
-        label: 'Abrir Electronize',
+        label: 'Abrir Electronizer',
         icon: app.Config.desktop.tray + '/icon16.png',
         click: () => Window.show()
     }, {

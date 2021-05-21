@@ -1,9 +1,9 @@
 /*
-    Electronize
+    Electronizer
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
-    Git: https://github.com/pedra/electronize
+    Git: https://github.com/pedra/electronizer
 
  */
 

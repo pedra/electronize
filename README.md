@@ -1,4 +1,4 @@
-# Electronize
+# Electronizer
 Template to start an Electron project!
 
 ### Directories 
@@ -26,7 +26,7 @@ The **application** is divided into three parts, which can be seen in the ./src 
 
 ## Install
 
-Electronize has two layers: the **development** layer, which is installed in the ./src folder and the **build** layer, at the root of the project.
+Electronizer has two layers: the **development** layer, which is installed in the ./src folder and the **build** layer, at the root of the project.
 
 You need to install NPM dependencies on these two layers:
 

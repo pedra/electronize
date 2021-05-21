@@ -3,9 +3,9 @@
 // Pages
 const Config = {
     app: {
-        id: 'electronize',
+        id: 'electronizer',
         version: '0.0.1',
-        name: 'Electronize',
+        name: 'Electronizer',
         core: 'http://localhost',
         assets: 'http://localhost',
         html: {
@@ -114,7 +114,7 @@ const Config = {
         },
         {
             id: 'empty',
-            title: 'Electronize',
+            title: 'Electronizer',
             efect: 'down',
             trail: false,
             bmenu: false,

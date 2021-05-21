@@ -1,5 +1,5 @@
 {
-    "name": "electronize",
+    "name": "electronizer",
     "version": "0.0.1",
     "description": "Structure to start an electron project - Package",
     "main": "./",
@@ -8,7 +8,7 @@
         "build": "electron-builder --dir",
         "dist": "electron-builder",
         "start": "export ELECTRON_ENV=1 && clear && electron src/start",
-        "elize": "set ELECTRON_ENV=1 && cls && electron src/start"
+        "elizer": "set ELECTRON_ENV=1 && cls && electron src/start"
     },
     "babel": {
         "presets": [
@@ -17,10 +17,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pedra/electronize.git"
+        "url": "git+https://github.com/pedra/electronizer.git"
     },
     "build": {
-        "productName": "Electronize",
+        "productName": "Electronizer",
         "appId": "com.netlify.billrocha",
         "copyright": "Copyright © 2021 BillRocha",
         "asar": true,
@@ -62,7 +62,7 @@
             "installerIcon": "pack/icon.ico",
             "uninstallerIcon": "pack/icon.ico",
             "installerSidebar": "pack/sidebar.bmp",
-            "uninstallDisplayName": "Electronize",
+            "uninstallDisplayName": "Electronizer",
             "license": "pack/license.txt",
             "oneClick": false,
             "allowToChangeInstallationDirectory": true
@@ -81,9 +81,9 @@
     "funding": "https://billrocha.netlify.com",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/pedra/electronize/issues"
+        "url": "https://github.com/pedra/electronizer/issues"
     },
-    "homepage": "https://github.com/pedra/electronize#readme",
+    "homepage": "https://github.com/pedra/electronizer#readme",
     "devDependencies": {
         "@babel/cli": "^7.13.14",
         "@babel/core": "^7.13.14",

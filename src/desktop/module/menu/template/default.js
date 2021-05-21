@@ -1,9 +1,9 @@
 /*
-    Electronize
+    Electronizer
 
     Copyright (c) 2021, Bill Rocha
     Developer: Bill Rocha <prbr@ymail.com> | billrocha.netlify.com
-    Git: https://github.com/pedra/electronize
+    Git: https://github.com/pedra/electronizer
 
  */
 
@@ -58,16 +58,16 @@ module.exports = [
             { label: 'Login/acessos por usuário' }
         ]
     }, {
-        label: '&Electronize',
+        label: '&Electronizer',
         submenu: [
             {
                 label: 'Github do projeto',
                 icon: app.Config.desktop.tray + '/icon16.png',
-                click: async () => await shell.openExternal('https://github.com/pedra/electronize')
+                click: async () => await shell.openExternal('https://github.com/pedra/electronizer')
             }, { label: 'Verificar atualização' },
             {
                 label: 'Ajuda (online)',
-                click: async () => await shell.openExternal('https://github.com/pedra/electronize#readme')
+                click: async () => await shell.openExternal('https://github.com/pedra/electronizer#readme')
             },
             { type: 'separator' },
             { role: 'reload' },
@@ -83,8 +83,8 @@ module.exports = [
             { role: 'close' },
             { type: 'separator' },
             {
-                label: 'Sobre o Electronize',
-                click: async () => await shell.openExternal('https://github.com/pedra/electronize#readme')
+                label: 'Sobre o Electronizer',
+                click: async () => await shell.openExternal('https://github.com/pedra/electronizer#readmer')
             }
         ]
     }

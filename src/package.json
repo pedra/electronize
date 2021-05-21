@@ -1,5 +1,5 @@
 {
-    "name": "electronize",
+    "name": "electronizer",
     "version": "0.0.1",
     "description": "Structure to start an electron project - Application",
     "main": "start.js",

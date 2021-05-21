@@ -1,21 +1,21 @@
-Licença MIT
+Licenï¿½a MIT
 
 Copyright (c) 2021 Bill (Paulo) Rocha
 
-A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste software e arquivos de documentação associados (o "Software"), para lidar com o Software sem restrição, incluindo, sem limitação, os direitos para usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender cópias do Software, e para permitir que as pessoas a quem o Software é fornecido para fazê-lo, sujeito às seguintes condições:
+A permissï¿½o ï¿½ concedida, gratuitamente, a qualquer pessoa que obtenha uma cï¿½pia deste software e arquivos de documentaï¿½ï¿½o associados (o "Software"), para lidar com o Software sem restriï¿½ï¿½o, incluindo, sem limitaï¿½ï¿½o, os direitos para usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender cï¿½pias do Software, e para permitir que as pessoas a quem o Software ï¿½ fornecido para fazï¿½-lo, sujeito ï¿½s seguintes condiï¿½ï¿½es:
 
-O aviso de direitos autorais acima e este aviso de permissão devem ser incluídos em todas as cópias ou partes substanciais do Software.
+O aviso de direitos autorais acima e este aviso de permissï¿½o devem ser incluï¿½dos em todas as cï¿½pias ou partes substanciais do Software.
 
-O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS DE COMERCIALIZAÇÃO, ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA E NÃO VIOLAÇÃO. EM NENHUMA HIPÓTESE OS AUTORES OU TITULARES DE DIREITOS AUTORAIS SÃO RESPONSÁVEIS POR QUALQUER RECLAMAÇÃO, DANOS OU OUTRAS RESPONSABILIDADES, SEJA EM AÇÃO DE CONTRATO, DELITO OU DE OUTRA FORMA, DECORRENTE DE, FORA DE OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES COM O SOFTWARE.
+O SOFTWARE ï¿½ FORNECIDO "COMO ESTï¿½", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLï¿½CITA, INCLUINDO, MAS Nï¿½O SE LIMITANDO ï¿½S GARANTIAS DE COMERCIALIZAï¿½ï¿½O, ADEQUAï¿½ï¿½O A UMA FINALIDADE ESPECï¿½FICA E Nï¿½O VIOLAï¿½ï¿½O. EM NENHUMA HIPï¿½TESE OS AUTORES OU TITULARES DE DIREITOS AUTORAIS Sï¿½O RESPONSï¿½VEIS POR QUALQUER RECLAMAï¿½ï¿½O, DANOS OU OUTRAS RESPONSABILIDADES, SEJA EM Aï¿½ï¿½O DE CONTRATO, DELITO OU DE OUTRA FORMA, DECORRENTE DE, FORA DE OU EM CONEXï¿½O COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAï¿½ï¿½ES COM O SOFTWARE.
 
-ENDEREÇO ORIGINAL DO PROJETO NA INTERNET: https://github.com/pedra/electronize
+ENDEREï¿½O ORIGINAL DO PROJETO NA INTERNET: https://github.com/pedra/electronizer
 
 
 ---------------------------------------------------
-(fim da licença obrigatória para uso do software)
+(fim da licenï¿½a obrigatï¿½ria para uso do software)
 
 
-Para fins legais de conferência de tradução, segue o texto original em inglês:
+Para fins legais de conferï¿½ncia de traduï¿½ï¿½o, segue o texto original em inglï¿½s:
 
 
 MIT License
@@ -28,4 +28,4 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-ORIGINAL PROJECT ADDRESS ON THE INTERNET: https://github.com/pedra/electronize
+ORIGINAL PROJECT ADDRESS ON THE INTERNET: https://github.com/pedra/electronizer

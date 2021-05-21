@@ -33,7 +33,7 @@ Ou:
             "installerIcon": "pack/icon.ico",
             "uninstallerIcon": "pack/icon.ico",
             "installerSidebar": "pack/sidebar.bmp",
-            "uninstallDisplayName": "Electronize",
+            "uninstallDisplayName": "Electronizer",
             "license": "pack/license.txt",
             "oneClick": false,
             "allowToChangeInstallationDirectory": true

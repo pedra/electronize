@@ -1,9 +1,9 @@
 {
-    "name": "Electronize",
-    "short_name": "Electronize",
+    "name": "Electronizer",
+    "short_name": "Electronizer",
     "lang": "pt-br",
     "start_url": "/",
-    "description": "Electron ToolBox",
+    "description": "Structure to start an electron project",
     "icons": [
         {
             "src": "/icon/android-chrome-192x192.png",
