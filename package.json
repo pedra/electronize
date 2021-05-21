@@ -31,6 +31,10 @@
             "app": "src"
         },
         "extraFiles": "assets",
+        "files": [
+            "!**/desktop/assets/${/*}/src/${/*}",
+            "!**/host/public/${/*}/src/${/*}"
+        ],
         "mac": {
             "target": [
                 "dmg",
@@ -100,7 +104,6 @@
         "gulp-imagemin": "^7.1.0",
         "gulp-javascript-obfuscator": "^1.1.6",
         "gulp-uglify": "^3.0.2",
-        "gulp-watch": "^4.2.4",
         "install": "^0.13.0",
         "streamqueue": "^1.1.2",
         "uglify-es": "^3.3.9",

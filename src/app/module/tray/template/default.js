@@ -21,7 +21,7 @@ module.exports = [
     }, {
         label: 'Site da Aplicação',
         icon: app.Config.desktop.tray + '/h.png',
-        click: () => shell.openExternal(app.Config.site)
+        click: () => shell.openExternal(app.Config.site + ':' + app.Config.host.port)
     }, {
         label: 'Chat (status)',
         icon: app.Config.desktop.tray + '/a.png',
