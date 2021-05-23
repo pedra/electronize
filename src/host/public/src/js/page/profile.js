@@ -7,7 +7,7 @@ const _Profile = function (config) {
     const show = () => {
         App.Storage.me().then(me => {
             if (!me) return false
-            _(html.themestyle).href = `css/src/theme-${me.theme}.css`
+            _(html.themestyle).href = `src/css/theme/${me.theme}.css`
             _(html.theme).innerHTML = me.theme
             _(html.access).innerHTML = me.access
             _(html.download).innerHTML = me.download
@@ -22,7 +22,7 @@ const _Profile = function (config) {
     const theme = async () => {
         var me = await (App.Storage.me())
         me.theme = me.theme == 'dark' ? 'light' : 'dark'
-        _(html.themestyle).href = `css/src/theme-${me.theme}.css`
+        _(html.themestyle).href = `src/css/theme/${me.theme}.css`
         _(html.theme).innerHTML = me.theme
 
         await App.Storage.upd(me)

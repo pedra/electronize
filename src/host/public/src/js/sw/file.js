@@ -7,9 +7,8 @@ const FILES = [
 	'/icon/android-chrome-512x512.png',
 	'/icon/apple-touch-icon.png',
 	'/icon/safari-pinned-tab.svg',
-	'/icon/site.json',
+	'/icon/site.webmanifest',
 
 	'/img/f.png',
-	'/img/l.gif',
-	'/img/u/1/photo.jpg'
+	'/img/l.gif'
 ]

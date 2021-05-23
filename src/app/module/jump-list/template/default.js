@@ -25,7 +25,7 @@ module.exports = [
             {
                 type: 'task',
                 title: 'Site',
-                program: app.Config.site,
+                program: app.Config.host.site,
                 args: '',
                 iconPath: path.join(app.Config.desktop.ico, 'burn.ico'),
                 iconIndex: 0,

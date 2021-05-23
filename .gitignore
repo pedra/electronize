@@ -63,5 +63,6 @@ typings/
 # Electronizer --------------- [begin]
 dist/
 .vscode/
+__backup
 
 # Electronizer --------------- [end]

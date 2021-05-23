@@ -12,8 +12,8 @@ const jump = process.env.ELECTRON_ENV ? '../' : '../../'
 const root = path.resolve(__dirname, '../')
 
 module.exports = {
+    mode: process.env.ELECTRON_ENV ? 'dev' : 'prod',
     visible: false,
-    site: "http://localhost",
     download: "https://billrocha.netlify.com/download",
     external: {
         file: `${root}/${jump}/assets/file`,
@@ -35,15 +35,17 @@ module.exports = {
         ico: `${root}/desktop/assets/img/ico`,
     },
     host: {
-        path: `${root}/host`,
         enable: true,
+        path: `${root}/host`,
+        module: `${root}/host/module`,
         view: `${root}/host/view`,
-        public: `${root}/host/public`,
+        static: `${root}/host/public`,
+        site: "http://localhost",
         port: 8080
     },
     socket: {
+        enable: true,
         path: `${root}/host/module/message`,
-        channel: 'qzc',
-        enable: true
+        channel: 'qzc'
     }
 }

@@ -1,6 +1,6 @@
 const FILES = [
 	'/',
-	'/icon/site.json',
+	'/icon/site.webmanifest',
 
 	'/icon/favicon.ico',
 	'/favicon.ico',
@@ -11,11 +11,12 @@ const FILES = [
 	'/icon/apple-touch-icon.png',
 	'/icon/safari-pinned-tab.svg',
 
-	'/img/fb.png',
-	'/img/go.png',
-	'/img/tw.png',
-	'/img/bg.jpg',
+	'/img/l.gif',
+	'/img/f.png',
 
 	'/css/style.css',
-	'/js/script.js'
+	'/css/light.css',
+	'/css/dark.css',
+
+	'/script.js'
 ]

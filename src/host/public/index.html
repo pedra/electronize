@@ -26,213 +26,187 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
 
     <!-- Style Sheets -->
-    <link rel="stylesheet" href="css/font.css">
-    <link rel="stylesheet" href="css/src/theme-light.css" id="themeStyle">
-    <link rel="stylesheet" href="css/src/style.css">
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="/src/css/font.css">
+    <link rel="stylesheet" href="/src/css/theme/light.css" id="themeStyle">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/layout.css">
 
     <!-- CSS Parts -->
-    <link rel=" stylesheet" href="css/src/part/keyframe.css">
-    <link rel="stylesheet" href="css/src/part/bmenu.css">
-    <link rel="stylesheet" href="css/src/part/report.css">
-    <link rel="stylesheet" href="css/src/part/page.css">
+    <link rel="stylesheet" href="/src/css/part/keyframe.css">
+    <link rel="stylesheet" href="/src/css/part/bmenu.css">
+    <link rel="stylesheet" href="/src/css/part/report.css">
+    <link rel="stylesheet" href="/src/css/part/page.css">
 
     <!-- CSS Pages -->
-    <link rel="stylesheet" href="css/src/page/empty.css">
-    <link rel="stylesheet" href="css/src/page/auth.css">
-    <link rel="stylesheet" href="css/src/page/profile.css">
-    <link rel="stylesheet" href="css/src/page/notify.css">
-    <link rel="stylesheet" href="css/src/page/chat.css">
-    <link rel="stylesheet" href="css/file.css">
+    <link rel="stylesheet" href="/src/css/page/empty.css">
+    <link rel="stylesheet" href="/src/css/page/auth.css">
+    <link rel="stylesheet" href="/src/css/page/profile.css">
+    <link rel="stylesheet" href="/src/css/page/notify.css">
+    <link rel="stylesheet" href="/src/css/page/chat.css">
+    <link rel="stylesheet" href="/src/css/page/file.css">
 
     <!-- Javascript -->
-    <script src="js/src/utils.js" defer></script>
-    <script src="js/src/config.js" defer></script>
+    <script src="/src/js/utils.js" defer></script>
+    <script src="/src/js/config.js" defer></script>
 
     <!-- JS Libs -->
-    <script src="js/src/lib/storage.js" defer></script>
-    <script src="js/src/lib/event.js" defer></script>
-    <script src="js/src/lib/page.js" defer></script>
-    <script src="js/src/lib/bmenu.js" defer></script>
+    <script src="/src/js/lib/page.js" defer></script>
+    <script src="/src/js/lib/event.js" defer></script>
+    <script src="/src/js/lib/storage.js" defer></script>
+    <script src="/src/js/lib/bmenu.js" defer></script>
 
     <!-- JS Entities -->
-    <script src="js/src/entity/app.js" defer></script>
-    <script src="js/src/entity/me.js" defer></script>
-    <script src="js/src/entity/user.js" defer></script>
+    <script src="/src/js/entity/app.js" defer></script>
+    <script src="/src/js/entity/me.js" defer></script>
+    <script src="/src/js/entity/user.js" defer></script>
 
     <!-- JS Pages -->
-    <script src="js/src/page/auth.js" defer></script>
-    <script src="js/src/page/chat.js" defer></script>
-    <script src="js/src/page/file.js" defer></script>
-    <script src="js/src/page/profile.js" defer></script>
-    <script src="js/src/page/notify.js" defer></script>
+    <script src="/src/js/page/auth.js" defer></script>
+    <script src="/src/js/page/chat.js" defer></script>
+    <script src="/src/js/page/file.js" defer></script>
+    <script src="/src/js/page/profile.js" defer></script>
+    <script src="/src/js/page/notify.js" defer></script>
 
     <!-- JS Vendors ... -->
-    <script src="/socket.io/socket.io.js" defer></script>
-    <script src="/js/src/vendor/index-min.js" defer></script>
+    <script src="/src/js/vendor/socket.io.min.js" defer></script>
+    <script src="/src/js/vendor/index-min.js" defer></script>
 
     <!-- JS Main -->
-    <script src="js/src/main.js" defer></script>
+    <script src="/src/js/main.js" defer></script>
 </head>
 
 <body>
 
     <main>
-        <div class="page empty on" id="pg-empty">
-            <div class="container">
-                <img src="\icon\android-chrome-192x192.png" class="pulse" alt="loading...">
-                <span id="ept-title">Carregando...</span>
+<div class="page empty on" id="pg-empty">
+    <div class="container">
+        <img src="\icon\android-chrome-192x192.png" class="pulse" alt="loading...">
+        <span id="ept-title">Carregando...</span>
+    </div>
+</div>
+<!-- USER-LOGIN - PAGE --------------------------------------------------------------- -->
+<div class="page auth" id="pg-auth">
+    <div class="container">
+        <form onsubmit="return false" class="aut-form" id="aut-form">
+
+            <div class="aut-logo" id="aut-logo">
+                <i class="material-icons">account_circle</i>
+            </div>
+
+            <label for="aut-login">Login</label>
+            <input type="text" id="aut-login" placeholder="Login...">
+
+            <label for="aut-password">Senha</label>
+            <input type="text" id="aut-password" placeholder="Senha...">
+
+            <div class="control right">
+                <button type="submit">Entrar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- USER-PROFILE - PAGE ------------------------------------------------------------- -->
+<div class="page profile" id="pg-profile">
+    <div class="container">
+        <div class="pfl-avatar" id="pfl-avatar"></div>
+        <div class="pfl-name" id="pfl-name">Délcio Guedes Alencar</div>
+        <div class="pfl-status" id="pfl-status">
+            <div title="Downloads">
+                <i class="material-icons">cloud_download</i>
+                <span id="pfl-status-download">0</span>
+            </div>
+            <div title="Uploads">
+                <i class="material-icons">cloud_upload</i>
+                <span id="pfl-status-upload">0</span>
+            </div>
+            <div title="Acessos">
+                <i class="material-icons">lock</i>
+                <span id="pfl-status-access">0</span>
+            </div>
+            <div title="Notificações">
+                <i class="material-icons">notifications</i>
+                <span id="pfl-status-notify">0</span>
             </div>
         </div>
 
-        <!-- USER-LOGIN - PAGE --------------------------------------------------------------- -->
-        <div class="page auth" id="pg-auth">
-            <div class="container">
-                <form onsubmit="return false" class="aut-form" id="aut-form">
-
-                    <div class="aut-logo" id="aut-logo">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-
-                    <label for="aut-login">Login</label>
-                    <input type="text" id="aut-login" placeholder="Login...">
-
-                    <label for="aut-password">Senha</label>
-                    <input type="text" id="aut-password" placeholder="Senha...">
-
-                    <div class="control right">
-                        <button type="submit">Entrar</button>
-                    </div>
-
-                </form>
-            </div>
+        <div class="control">
+            <button type="button" id="pfl-theme" onclick="App.Profile.theme()">Dark</button>
         </div>
 
-        <!-- USER-INDEX - PAGE --------------------------------------------------------------- -->
-        <div class="page notify" id="pg-notify">
-            <div class="container"></div>
-        </div>
-
-        <!-- USER-PROFILE - PAGE ------------------------------------------------------------- -->
-        <div class="page profile" id="pg-profile">
-            <div class="container">
-                <div class="pfl-avatar" id="pfl-avatar"></div>
-                <div class="pfl-name" id="pfl-name">Délcio Guedes Alencar</div>
-                <div class="pfl-status" id="pfl-status">
-                    <div title="Downloads">
-                        <i class="material-icons">cloud_download</i>
-                        <span id="pfl-status-download">0</span>
-                    </div>
-                    <div title="Uploads">
-                        <i class="material-icons">cloud_upload</i>
-                        <span id="pfl-status-upload">0</span>
-                    </div>
-                    <div title="Acessos">
-                        <i class="material-icons">lock</i>
-                        <span id="pfl-status-access">0</span>
-                    </div>
-                    <div title="Notificações">
-                        <i class="material-icons">notifications</i>
-                        <span id="pfl-status-notify">0</span>
-                    </div>
-                </div>
-
-                <div class="control">
-                    <button type="button" id="pfl-theme" onclick="App.Profile.theme()">Dark</button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- FILE - PAGE --------------------------------------------------------------------- -->
-        <div class="page file" id="pg-file">
-            <div class="container">
-                <div class="breadcrumbs" id="file-breadcrumbs"></div>
-                <ul class="file-list" id="file-list"></ul>
-                <div class="file-menu" id="file-menu">
-                    <div class="file-menu-content">
-                        <div class="file-menu-title" id="file-menu-title">Nome do arquivo</div>
-                        <ul class="file-menu-control">
-                            <li onclick="App.File.editMenu()">
-                                <i class="material-icons">edit</i>
-                                <span>Editar</span>
-                            </li>
-                            <li onclick="App.File.deleteMenu()">
-                                <i class="material-icons">delete_forever</i>
-                                <span>Excluir</span>
-                            </li>
-                            <li onclick="App.File.downloadMenu()">
-                                <i class="material-icons">save_alt</i>
-                                <span>Baixar</span>
-                            </li>
-                            <li onclick="App.File.closeMenu()">
-                                <i class="material-icons">close</i>
-                                <span>Fechar</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CHAT - PAGE --------------------------------------------------------------------- -->
-        <div class="page chat" id="pg-chat">
-            <div class="container">
-                <div class="cht-top-bar">
-                    <div class="avatar">
-                        <img id="cht-top-bar-avatar" src="/img/u/3/avatar.png" alt="avatar">
-                    </div>
-                    <div class="data">
-                        <h2 id="cht-top-bar-name">Délcio Guedes Alencar</h2>
-                    </div>
-                    <div class="icon" onclick="App.Page.back()">
-                        <i class="material-icons">arrow_forward</i>
-                    </div>
-                </div>
-                <img src="/img/l.gif" class="cht-loader hide" id="cht-loader" />
-                <div class="cht-content" id="cht-content"></div>
-
-                <div class="cht-bottom-bar">
-                    <div class="container">
-                        <div class="cht-emojis" id="cht-emojis">
-                            <span>&#128512;</span><span>&#128513;</span><span>&#128514;</span><span>&#128515;</span><span>&#128516;</span><span>&#128517;</span><span>&#128518;</span><span>&#128519;</span><span>&#128520;</span><span>&#128521;</span><span>&#128522;</span><span>&#128523;</span><span>&#128524;</span><span>&#128525;</span><span>&#128526;</span><span>&#128527;</span><span>&#128528;</span><span>&#128529;</span><span>&#128530;</span><span>&#128531;</span><span>&#128532;</span><span>&#128533;</span><span>&#128534;</span><span>&#128535;</span><span>&#128536;</span><span>&#128537;</span><span>&#128538;</span><span>&#128539;</span><span>&#128540;</span><span>&#128541;</span><span>&#128542;</span><span>&#128543;</span><span>&#128544;</span><span>&#128545;</span><span>&#128546;</span><span>&#128547;</span><span>&#128548;</span><span>&#128549;</span><span>&#128550;</span><span>&#128551;</span><span>&#128552;</span><span>&#128553;</span><span>&#128554;</span><span>&#128555;</span><span>&#128556;</span><span>&#128557;</span><span>&#128558;</span><span>&#128559;</span><span>&#128560;</span><span>&#128561;</span><span>&#128562;</span><span>&#128563;</span><span>&#128564;</span><span>&#128565;</span><span>&#128566;</span><span>&#128567;</span><span>&#128577;</span><span>&#128578;</span><span>&#128579;</span><span>&#128580;</span><span>&#129296;</span><span>&#129297;</span><span>&#129298;</span><span>&#129299;</span><span>&#129300;</span><span>&#129301;</span><span>&#129312;</span><span>&#129313;</span><span>&#129314;</span><span>&#129315;</span><span>&#129316;</span><span>&#129317;</span><span>&#129319;</span><span>&#129320;</span><span>&#129321;</span><span>&#129322;</span><span>&#129323;</span><span>&#129324;</span><span>&#129325;</span><span>&#129326;</span><span>&#129327;</span><span>&#129488;</span>
-                            <i class="material-icons">close</i>
-                        </div>
-                        <div class="cht-control">
-                            <div class="cht-emoji" id="cht-emoji">
-                                <i class="material-icons">insert_emoticon</i>
-                            </div>
-                            <div class="cht-text" id="cht-text" contenteditable="true"></div>
-                            <div class="cht-send" id="cht-send">
-                                <i class="material-icons">send</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- <div class="page chatx" id="pg-chatx">
-            <div class="container">
-                <div class="chat-userdata" id="chat-userdata"></div>
-
-                <img src="/img/l.gif" class="chat-loader hide" id="chat-loader" />
-                <div class="chat-msg" id="chat-msg">
-                    <div class="chat-content" id="chat-content"></div>
-                </div>
-                <div class="chat-sendform">
-                    <div class="chat-emojis" id="chat-emojis">
-                        <span>&#128512;</span><span>&#128513;</span><span>&#128514;</span><span>&#128515;</span><span>&#128516;</span><span>&#128517;</span><span>&#128518;</span><span>&#128519;</span><span>&#128520;</span><span>&#128521;</span><span>&#128522;</span><span>&#128523;</span><span>&#128524;</span><span>&#128525;</span><span>&#128526;</span><span>&#128527;</span><span>&#128528;</span><span>&#128529;</span><span>&#128530;</span><span>&#128531;</span><span>&#128532;</span><span>&#128533;</span><span>&#128534;</span><span>&#128535;</span><span>&#128536;</span><span>&#128537;</span><span>&#128538;</span><span>&#128539;</span><span>&#128540;</span><span>&#128541;</span><span>&#128542;</span><span>&#128543;</span><span>&#128544;</span><span>&#128545;</span><span>&#128546;</span><span>&#128547;</span><span>&#128548;</span><span>&#128549;</span><span>&#128550;</span><span>&#128551;</span><span>&#128552;</span><span>&#128553;</span><span>&#128554;</span><span>&#128555;</span><span>&#128556;</span><span>&#128557;</span><span>&#128558;</span><span>&#128559;</span><span>&#128560;</span><span>&#128561;</span><span>&#128562;</span><span>&#128563;</span><span>&#128564;</span><span>&#128565;</span><span>&#128566;</span><span>&#128567;</span><span>&#128577;</span><span>&#128578;</span><span>&#128579;</span><span>&#128580;</span><span>&#129296;</span><span>&#129297;</span><span>&#129298;</span><span>&#129299;</span><span>&#129300;</span><span>&#129301;</span><span>&#129312;</span><span>&#129313;</span><span>&#129314;</span><span>&#129315;</span><span>&#129316;</span><span>&#129317;</span><span>&#129319;</span><span>&#129320;</span><span>&#129321;</span><span>&#129322;</span><span>&#129323;</span><span>&#129324;</span><span>&#129325;</span><span>&#129326;</span><span>&#129327;</span><span>&#129488;</span>
+    </div>
+</div>
+<!-- FILE - PAGE --------------------------------------------------------------------- -->
+<div class="page file" id="pg-file">
+    <div class="container">
+        <div class="breadcrumbs" id="file-breadcrumbs"></div>
+        <ul class="file-list" id="file-list"></ul>
+        <div class="file-menu" id="file-menu">
+            <div class="file-menu-content">
+                <div class="file-menu-title" id="file-menu-title">Nome do arquivo</div>
+                <ul class="file-menu-control">
+                    <li onclick="App.File.editMenu()">
+                        <i class="material-icons">edit</i>
+                        <span>Editar</span>
+                    </li>
+                    <li onclick="App.File.deleteMenu()">
+                        <i class="material-icons">delete_forever</i>
+                        <span>Excluir</span>
+                    </li>
+                    <li onclick="App.File.downloadMenu()">
+                        <i class="material-icons">save_alt</i>
+                        <span>Baixar</span>
+                    </li>
+                    <li onclick="App.File.closeMenu()">
                         <i class="material-icons">close</i>
+                        <span>Fechar</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- USER-INDEX - PAGE --------------------------------------------------------------- -->
+<div class="page notify" id="pg-notify">
+    <div class="container"></div>
+</div>
+<!-- CHAT - PAGE --------------------------------------------------------------------- -->
+<div class="page chat" id="pg-chat">
+    <div class="container">
+        <div class="cht-top-bar">
+            <div class="avatar">
+                <img id="cht-top-bar-avatar" src="/img/u/3/avatar.png" alt="avatar">
+            </div>
+            <div class="data">
+                <h2 id="cht-top-bar-name">Délcio Guedes Alencar</h2>
+            </div>
+            <div class="icon" onclick="App.Page.back()">
+                <i class="material-icons">arrow_forward</i>
+            </div>
+        </div>
+        <img src="/img/l.gif" class="cht-loader hide" id="cht-loader" />
+        <div class="cht-content" id="cht-content"></div>
+
+        <div class="cht-bottom-bar">
+            <div class="container">
+                <div class="cht-emojis" id="cht-emojis">
+                    <span>&#128512;</span><span>&#128513;</span><span>&#128514;</span><span>&#128515;</span><span>&#128516;</span><span>&#128517;</span><span>&#128518;</span><span>&#128519;</span><span>&#128520;</span><span>&#128521;</span><span>&#128522;</span><span>&#128523;</span><span>&#128524;</span><span>&#128525;</span><span>&#128526;</span><span>&#128527;</span><span>&#128528;</span><span>&#128529;</span><span>&#128530;</span><span>&#128531;</span><span>&#128532;</span><span>&#128533;</span><span>&#128534;</span><span>&#128535;</span><span>&#128536;</span><span>&#128537;</span><span>&#128538;</span><span>&#128539;</span><span>&#128540;</span><span>&#128541;</span><span>&#128542;</span><span>&#128543;</span><span>&#128544;</span><span>&#128545;</span><span>&#128546;</span><span>&#128547;</span><span>&#128548;</span><span>&#128549;</span><span>&#128550;</span><span>&#128551;</span><span>&#128552;</span><span>&#128553;</span><span>&#128554;</span><span>&#128555;</span><span>&#128556;</span><span>&#128557;</span><span>&#128558;</span><span>&#128559;</span><span>&#128560;</span><span>&#128561;</span><span>&#128562;</span><span>&#128563;</span><span>&#128564;</span><span>&#128565;</span><span>&#128566;</span><span>&#128567;</span><span>&#128577;</span><span>&#128578;</span><span>&#128579;</span><span>&#128580;</span><span>&#129296;</span><span>&#129297;</span><span>&#129298;</span><span>&#129299;</span><span>&#129300;</span><span>&#129301;</span><span>&#129312;</span><span>&#129313;</span><span>&#129314;</span><span>&#129315;</span><span>&#129316;</span><span>&#129317;</span><span>&#129319;</span><span>&#129320;</span><span>&#129321;</span><span>&#129322;</span><span>&#129323;</span><span>&#129324;</span><span>&#129325;</span><span>&#129326;</span><span>&#129327;</span><span>&#129488;</span>
+                    <i class="material-icons">close</i>
+                </div>
+                <div class="cht-control">
+                    <div class="cht-emoji" id="cht-emoji">
+                        <i class="material-icons">insert_emoticon</i>
                     </div>
-                    <button id="chat-show-emoji"><i class="material-icons">mood</i></button>
-                    <div contenteditable="true" id="chat-text"></div>
-                    <button id="chat-send"><i class="material-icons">send</i></button>
+                    <div class="cht-text" id="cht-text" contenteditable="true"></div>
+                    <div class="cht-send" id="cht-send">
+                        <i class="material-icons">send</i>
+                    </div>
                 </div>
             </div>
-        </div> -->
+        </div>
+    </div>
+</div>
     </main>
-</body>
+    </body>
 
-</html>
+    </html>
