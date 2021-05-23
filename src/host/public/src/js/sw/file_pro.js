@@ -1,9 +1,9 @@
 const FILES = [
 	'/',
+	'/favicon.ico',
 	'/icon/site.webmanifest',
 
 	'/icon/favicon.ico',
-	'/favicon.ico',
 	'/icon/favicon-16x16.png',
 	'/icon/favicon-32x32.png',
 	'/icon/android-chrome-192x192.png',

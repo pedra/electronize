@@ -151,7 +151,7 @@ const style_theme = () =>
 const js = () =>
 	src([
 		`${target}/src/js/utils.js`,
-		`${target}/src/js/utils.js`,
+		`${target}/src/js/config.js`,
 		// Libs -----------------------------------
 		`${target}/src/js/lib/page.js`,
 		`${target}/src/js/lib/event.js`,

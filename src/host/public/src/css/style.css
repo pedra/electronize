@@ -17,11 +17,11 @@ label,
 table,
 textarea {
     font-size: 16px;
-    font-family: Roboto;
-    /*'Open Sans Condensed';
-    /* font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", system-ui, Roboto,
+    /* font-family: Roboto; */
+    /* font-family: 'Open Sans Condensed'; */
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", system-ui, Roboto,
         "Helvetica Neue", Ubuntu, Tahoma, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol"; */
+        "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 html,
