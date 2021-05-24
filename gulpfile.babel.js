@@ -8,7 +8,7 @@
 	npm i --save-dev gulp@4 gulp-autoprefixer gulp-clean-css gulp-concat gulp-html-minifier2 gulp-if gulp-watch gulp-babel
 	npm i --save-dev gulp-javascript-obfuscator gulp-sass gulp-uglify uglify-es del yargs
 
-	adicione essas linhas no seu package.js
+	adicione essas linhas ao seu package.js
 
 	"babel": {
 		"presets": [ "@babel/preset-env"]
@@ -82,7 +82,7 @@ const html_compress = (files, output = 'index.html', destination = target) =>
 const html = () => {
 	return html_compress(
 		[
-			`${target}/src/html/inc/header${PRO ? '' : '_dev'}.html`, // carrega os css - quando cirar um novo adicionar nesse arquivo
+			`${target}/src/html/inc/header${PRO ? '' : '_dev'}.html`,
 			`${target}/src/html/page/empty.html`,
 			`${target}/src/html/page/auth.html`,
 			`${target}/src/html/page/profile.html`,
@@ -167,7 +167,7 @@ const js = () =>
 		`${target}/src/js/page/file.js`,
 		`${target}/src/js/page/profile.js`,
 		`${target}/src/js/page/notify.js`,
-		// Main -------------------------------
+		// Main -----------------------------------
 		`${target}/src/js/main.js`,
 	])
 		.pipe(gulpif(BABEL, babel()))
@@ -204,8 +204,6 @@ const vendor = () =>
 	])
 		.pipe(dest(`${target}/src/js/vendor`))
 
-
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -222,8 +220,6 @@ const sw = () => src([
 	.pipe(gulpif(PRO, uglify()))
 	.pipe(gulpif(OBF, javascriptObfuscator({ compact: true, sourceMap: false })))
 	.pipe(dest(target))
-
-
 
 // ----------------------------------------------------------------------------
 
@@ -246,7 +242,7 @@ exports.js = series(js, js_final)
 exports.sw = sw
 
 /* ATT!!
-	Copy the node_modules files to src / js / vendor
+	Copy the node_modules files to src/js/vendor
 	Use only when installing (npm i) or updating any "vendor".
 */
 exports.vendor = vendor
