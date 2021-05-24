@@ -34,18 +34,18 @@ module.exports = {
             ico: `${root}/app/assets/img/ico`
         }
     },
-    host: {
+    net: {
         enable: true,
-        path: `${root}/host`,
-        module: `${root}/host/module`,
-        view: `${root}/host/view`,
-        static: `${root}/host/public`,
+        path: `${root}/net`,
+        module: `${root}/net/module`,
+        view: `${root}/net/view`,
+        static: `${root}/net/public`,
         site: "http://localhost",
-        port: 8080
+        port: 8080,
+        socket: {
+            enable: true,
+            path: `${root}/net/module/message`,
+            channel: 'qzc'
+        }
     },
-    socket: {
-        enable: true,
-        path: `${root}/host/module/message`,
-        channel: 'qzc'
-    }
 }

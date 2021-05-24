@@ -4,7 +4,7 @@
 const { app } = require('electron')
 const { Server } = require("socket.io")
 const db = require('./db')()
-const channel = app.Config.socket.channel
+const channel = app.Config.net.socket.channel
 
 module.exports = () => {
     let io

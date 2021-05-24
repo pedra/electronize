@@ -20,25 +20,25 @@ module.exports = () => {
 
     let Http,
         Socket,
-        CH = app.Config.host,
-        CS = app.Config.socket
+        CH = app.Config.net,
+        CS = app.Config.net.socket
 
-    const Host = express()
-    const http = createServer(Host)
+    const Net = express()
+    const http = createServer(Net)
 
-    Host.use(express.static(CH.static))
-    Host.use(cors('*'))
-    Host.set('views', CH.view)
-    Host.set('view engine', 'ejs')
+    Net.use(express.static(CH.static))
+    Net.use(cors('*'))
+    Net.set('views', CH.view)
+    Net.set('view engine', 'ejs')
 
     // Requests from JSON...
-    Host.use(express.json())
+    Net.use(express.json())
 
     // Routers
-    Host.use('/file', require(`${CH.module}/file/route`))
-    Host.use('/auth', require(`${CH.module}/user/route`))
-    Host.use('/user', require(`${CH.module}/user/route`))
-    Host.use('/msg', require(`${CH.module}/message/route`))
+    Net.use('/file', require(`${CH.module}/file/route`))
+    Net.use('/auth', require(`${CH.module}/user/route`))
+    Net.use('/user', require(`${CH.module}/user/route`))
+    Net.use('/msg', require(`${CH.module}/message/route`))
 
     // Creating server ...
     Http = http.listen(CH.port)
@@ -58,5 +58,5 @@ module.exports = () => {
         Socket.listen(http)
     }
 
-    return { Host, Http, Socket }
+    return { Net, Http, Socket }
 }

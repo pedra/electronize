@@ -17,21 +17,21 @@ const Tray = require(path.join(app.Config.app.module, 'tray', 'index'))
 const JumpList = os == "win32" ? require(path.join(app.Config.app.module, 'jump-list', 'index')) : false
 const Update = os != "linux" ? require(path.join(app.Config.app.module, 'update')) : false
 
-// Host and Message
-const Host = require(path.join(app.Config.host.path, 'host'))
+// Net and Message
+const Net = require(path.join(app.Config.net.path, 'net'))
 const { exit } = require('yargs')
 
 
 module.exports = async function () {
 
-    if (app.Config.host.enable) {
-        // Servidor Host para acesso remoto
-        let hst = Host()
+    if (app.Config.net.enable) {
+        // Servidor para acesso remoto
+        let hst = Net()
         if (hst.Server === false) return exit() //Sai da aplicação
 
-        // Adicionando o Host, Server e Message à aplicação
+        // Adicionando Server e Message à aplicação
         //app.Server = hst.Server
-        app.Host = hst.Host
+        app.Net = hst.Net
         //app.Socket = hst.Socket
     }
 
