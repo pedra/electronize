@@ -57,7 +57,7 @@ module.exports = function () {
 
             show: false,
             paintWhenInitiallyHidden: false,
-            icon: path.join(app.Config.desktop.img, 'icon.png'),
+            icon: path.join(app.Config.app.assets.img, 'icon.png'),
 
             backgroundColor: '#000000',
             frame: true,
@@ -74,7 +74,7 @@ module.exports = function () {
         //win.webContents.openDevTools()
 
         // Carrega o arquivo HTML da janela.
-        win.loadFile(`${app.Config.desktop.assets}/html/${html}.html`)
+        win.loadFile(`${app.Config.app.assets.path}/html/${html}.html`)
 
         // Mostra a janela
         win.once('ready-to-show', () => win.show())

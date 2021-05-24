@@ -40,23 +40,23 @@ module.exports = function () {
     // ---- TESTE ---- DELETAR
 
     ipcMain.on('teste', (e, a, b, c) => {
-        Window.setOverlayIcon(path.join(app.Config.desktop.tray, 'on.png'), 'Description for overlay')
+        Window.setOverlayIcon(path.join(app.Config.app.assets.tray, 'on.png'), 'Description for overlay')
 
         Window.flashFrame(true)
         // Thumbnails
         Window.setThumbarButtons([
             {
                 tooltip: 'button1',
-                icon: path.join(app.Config.desktop.tray, 'l.png'),
+                icon: path.join(app.Config.app.assets.tray, 'l.png'),
                 click() { console.log('button1 clicked') }
             }, {
                 tooltip: 'button2',
-                icon: path.join(app.Config.desktop.tray, 'l.png'),
+                icon: path.join(app.Config.app.assets.tray, 'l.png'),
                 flags: ['enabled', 'dismissonclick'],
                 click() { console.log('button2 clicked.') }
             }])
 
-        e.returnValue = path.join(app.Config.desktop.tray, 'on.png')
+        e.returnValue = path.join(app.Config.app.assets.tray, 'on.png')
     })
 
     return { Notify }

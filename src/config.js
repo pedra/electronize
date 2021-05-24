@@ -8,31 +8,31 @@
  */
 
 const path = require('path')
-const jump = process.env.ELECTRON_ENV ? '../' : '../../'
-const root = path.resolve(__dirname, '../')
+const jump = process.env.ELECTRON_ENV ? '' : '../'
+const root = __dirname
+const external = path.resolve(__dirname, process.env.ELECTRON_ENV ? '../' : '../../')
+
+console.log('root: ' + root, '\nexternal: ' + external, '\n')
 
 module.exports = {
     mode: process.env.ELECTRON_ENV ? 'dev' : 'prod',
     visible: false,
     download: "https://billrocha.netlify.com/download",
     external: {
-        file: `${root}/${jump}/assets/file`,
-        db: `${root}/${jump}/assets/db`,
-        bin: `${root}/${jump}/assets/bin`
+        file: `${external}/assets/file`,
+        db: `${external}/assets/db`,
+        bin: `${external}/assets/bin`
     },
     path: root,
     app: {
         path: `${root}/app`,
-        db: `${root}/app/db.js`,
-        module: `${root}/app/module`
-    },
-    desktop: {
-        path: `${root}/desktop`,
-        assets: `${root}/desktop/assets`,
-        module: `${root}/desktop/module`,
-        img: `${root}/desktop/assets/img`,
-        tray: `${root}/desktop/assets/img/tray`,
-        ico: `${root}/desktop/assets/img/ico`,
+        module: `${root}/app/module`,
+        assets: {
+            path: `${root}/app/assets`,
+            img: `${root}/app/assets/img`,
+            tray: `${root}/app/assets/img/tray`,
+            ico: `${root}/app/assets/img/ico`
+        }
     },
     host: {
         enable: true,

@@ -27,7 +27,7 @@ module.exports = [
                 title: 'Site',
                 program: app.Config.host.site,
                 args: '',
-                iconPath: path.join(app.Config.desktop.ico, 'burn.ico'),
+                iconPath: path.join(app.Config.app.assets.ico, 'burn.ico'),
                 iconIndex: 0,
                 description: 'Abrir o site'
             },
@@ -36,7 +36,7 @@ module.exports = [
                 title: 'Downloads',
                 program: app.Config.download,
                 args: '',
-                iconPath: path.join(app.Config.desktop.ico, 'icon.ico'),
+                iconPath: path.join(app.Config.app.assets.ico, 'icon.ico'),
                 iconIndex: 0,
                 description: 'Abrir navegador na página de Downloads'
             },

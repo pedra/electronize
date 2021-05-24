@@ -10,7 +10,7 @@
 var os = require('os').platform()
 const path = require('path')
 const { app } = require('electron')
-const Ipc = require(path.join(app.Config.desktop.module, 'ipc'))
+const Ipc = require(path.join(app.Config.app.module, 'ipc'))
 const Tray = require(path.join(app.Config.app.module, 'tray', 'index'))
 
 // Modules by platforms...

@@ -10,7 +10,7 @@
 const os = require('os-utils');
 const path = require('path')
 const { app } = require('electron')
-const Menu = require(path.join(app.Config.desktop.module, 'menu', 'index'))
+const Menu = require(path.join(app.Config.app.module, 'menu', 'index'))
 
 module.exports = function () {
 
@@ -31,8 +31,4 @@ module.exports = function () {
             if (About) About.webContents.send('cpu', JSON.stringify(data))
         })
     }, 1000)
-
-
-
-
 }

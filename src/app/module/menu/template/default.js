@@ -22,7 +22,7 @@ module.exports = [
             { label: 'Fechar janela', role: 'close' },
             {
                 label: 'Desligar a Aplicação',
-                icon: app.Config.desktop.tray + '/x.png',
+                icon: app.Config.app.assets.tray + '/x.png',
                 click: () => app.exit()
             }
         ]
@@ -62,7 +62,7 @@ module.exports = [
         submenu: [
             {
                 label: 'Github do projeto',
-                icon: app.Config.desktop.tray + '/icon16.png',
+                icon: app.Config.app.assets.tray + '/icon16.png',
                 click: async () => await shell.openExternal('https://github.com/pedra/electronizer')
             }, { label: 'Verificar atualização' },
             {
