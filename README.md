@@ -15,13 +15,11 @@ Template to start an Electron project!
 
 ### Application
 
-The **application** is divided into three parts, which can be seen in the ./src folder:
+The **application** is divided into two parts, which can be seen in the ./src folder:
 
 **./src/app** - Electron's encapsulation (systray, boot, OS configurations ...). This is the base that supports the application on your OS;
 
-**./src/desktop** - if the application will have one (or more) windows on the desktop, this will be programmed here (eg: admin, user access management, data monitoring ...);
-
-**./src/host** - if the application has a web server, where other network users can access via API, Socket or simple PWA/WEB applications, here is your working directory. 
+**./src/net** - if the application has a web server, where other network users can access via API, socket or simple PWA/WEB applications, here is your working directory. 
 
 
 ## Install
