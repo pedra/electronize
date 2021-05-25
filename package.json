@@ -8,7 +8,7 @@
         "build": "electron-builder --dir",
         "dist": "electron-builder",
         "start": "export ELECTRON_ENV=1 && clear && electron src/start",
-        "elizer": "set ELECTRON_ENV=1 && cls && gulp html && electron src/start"
+        "elizer": "set ELECTRON_ENV=1 && cls && electron src/start"
     },
     "babel": {
         "presets": [

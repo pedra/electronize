@@ -18,7 +18,7 @@ module.exports = function (template) {
     const file = path.resolve(__dirname, `template/${template}.js`),
         menu = fs.existsSync(file) ? require(file) : [] // carrega o template menu
 
-    let tray = new Tray(app.Config.desktop.tray + '/icon32.png'), //application icon
+    let tray = new Tray(app.Config.app.assets.tray + '/icon32.png'), //application icon
         Window = app.Window.get('main'),
         contextMenu = Menu.buildFromTemplate(menu)
 
