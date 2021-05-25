@@ -42,7 +42,7 @@ To run the code under development, type this at the root of the project (not ins
 npm start 
 ```
 
-If your operating system is **Windows**, enter the following command to start:
+If your operating system is **Windows**, enter the following command to run:
 
 ```
 npm run elizer 
