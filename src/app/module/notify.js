@@ -17,10 +17,10 @@ module.exports = {
         mensagem = mensagem || 'Hello Word!'
 
         if (app.Tray != null) {
-            app.Tray.setImage(path.join(app.Config.desktop.tray, 'icon32.png'))
+            app.Tray.setImage(path.join(app.Config.app.assets.tray, 'icon32.png'))
 
             app.Tray.displayBalloon({
-                icon: path.join(app.Config.desktop.tray, 'icon32.png'),
+                icon: path.join(app.Config.app.assets.tray, 'icon32.png'),
                 title: titulo,
                 content: mensagem
             })
