@@ -13,8 +13,6 @@ const { app } = require('electron')
 app.Config = require(`${__dirname}/config`)
 app.Window = require(`${app.Config.app.module}/window`)()
 
-console.log('\nConfig: ', app.Config, '\n\n')
-
 // Load modules...
 const Boot = require(`${app.Config.app.module}/boot`)
 const Application = require(`${app.Config.app.path}/app`)

@@ -4,7 +4,7 @@
 @import url(./part/radio.css);
 @import url(./part/range.css);
 @import url(./part/scrollbar.css);
-@import url(./part/select.css);
+/* @import url(./part/select.css); */
 @import url(./part/statusbar.css);
 @import url(./part/table.css);
 @import url(./part/treeview.css);
@@ -15,9 +15,8 @@
 *:after {
     outline: none;
     box-sizing: border-box;
-    /* -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none; */
+    /*-webkit-appearance: none;
+    appearance: none;*/
 }
 
 html,
@@ -56,6 +55,8 @@ body {
 
 hr {
     clear: both;
+    border-top: 1px solid var(--white-3);
+    border-bottom: 1px solid var(--white);
 }
 
 sup {
@@ -108,7 +109,7 @@ textarea {
     -webkit-font-smoothing: antialiased;
 }
 
-input,
+input:not(type=ranger),
 textarea {
     border: 1px solid var(--white-4);
     border-radius: var(--radius);
@@ -125,16 +126,20 @@ label {
 }
 
 fieldset {
-    padding: 10px;
-    padding-block-start: 8px;
+    padding: 1rem;
+    padding-block-start: 1rem;
     margin: 0;
     box-shadow: none;
     background: var(--white);
     border: 1px solid var(--white-3);
-    border-radius: var(--radius);
+    border-radius: var(--radius-1);
 }
 
 legend {
-    background: transparent;
-    color: var(--color-7);
+    color: var(--text);
+    font-weight: bold;
+    padding: 0 1rem;
+    background: var(--white);
+    border: 1px solid var(--white-3);
+    border-radius: var(--radius-2);
 }

@@ -36,7 +36,7 @@ input[type=radio]+label:before {
 }
 
 input[type=radio]:not([disabled]):not(:active)+label:hover:before {
-    box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
+    box-shadow: inset -1px -1px #f8b636, inset 2px 2px #fedf9c;
 }
 
 input[type=radio]:checked+label:after {

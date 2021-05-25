@@ -7,7 +7,6 @@
 
  */
 
-const path = require('path')
 const { app, BrowserWindow } = require('electron')
 
 module.exports = function () {
@@ -17,51 +16,56 @@ module.exports = function () {
 
     /**
      * Create a window or return your previously created instance
+     * @param {String} name Name of the window
+     * @param {Object} option Options
      * @returns Object Returns the window
      */
-    const create = window => !Janelas[window] || Janelas[window].isDestroyed() ?
-        (Janelas[window] = new janela(window)) :
-        Janelas[window]
+    const create = (name, option) => !Janelas[name] || Janelas[name].isDestroyed() ?
+        (Janelas[name] = new janela(name, option)) :
+        Janelas[name]
 
     /**
      * Returns a window 
-     * @param {String} window Name of the window to
-     * @returns Object
+     * @param {String} name Name of the window to
+     * @returns Object Returns the window
      */
-    const get = window => {
-        if (window == 'main') return Main
-        return !Janelas[window] || Janelas[window].isDestroyed() ? false : Janelas[window]
+    const get = name => {
+        if (name == 'main') return Main
+        return !Janelas[name] || Janelas[name].isDestroyed() ? false : Janelas[name]
     }
 
     /**
      * Creates a window
-     * @param {String} html Name of the window
-     * @returns Object
+     * @param {String} name Name of the window
+     * @param {Object} option Options
+     * @returns Object Returns the window
      */
-    const janela = function (html) {
+    const janela = function (name, option = {}) {
+
+        const opt = (key, def) => null == option[key] || undefined == typeof option[key] ? def : option[key]
 
         // novo Browser...
         const win = new BrowserWindow({
-            width: 480,
-            minWidth: 370,
-            maxWidth: 800,
+            width: opt('width', 480),
+            minWidth: opt('minWidth', 370),
+            maxWidth: opt('maxWidth', 800),
 
-            height: 720,
-            minHeight: 640,
+            height: opt('height', 720),
+            minHeight: opt('minHeight', 640),
 
             //x: 10,
             //y: 150,
-            center: true,
-            fullscreenable: false,
-            maximizable: false,
+            center: opt('center', true),
+            fullscreenable: opt('fullscreenable', false),
+            maximizable: opt('maximizable', false),
 
-            show: false,
+            show: opt('show', false),
             paintWhenInitiallyHidden: false,
-            icon: path.join(app.Config.app.assets.img, 'icon.png'),
+            icon: opt('icon', `${app.Config.app.assets.img}/icon.png`),
 
-            backgroundColor: '#000000',
-            frame: true,
-            darkTheme: true,
+            backgroundColor: opt('backgroundColor', '#000000'),
+            frame: opt('frame', true),
+            darkTheme: opt('darkTheme', true),
 
             webPreferences: {
                 nativeWindowOpen: true,
@@ -74,7 +78,7 @@ module.exports = function () {
         //win.webContents.openDevTools()
 
         // Carrega o arquivo HTML da janela.
-        win.loadFile(`${app.Config.app.assets.path}/html/${html}.html`)
+        win.loadFile(`${app.Config.app.assets.path}/html/${name}.html`)
 
         // Mostra a janela
         win.once('ready-to-show', () => win.show())
@@ -110,7 +114,7 @@ module.exports = function () {
             win.hide()
             app.Config.visible = false
 
-            console.log(`\nminimize | (${html}) trabalhando em background! | Visible: `, app.Config.visible)
+            console.log(`\nminimize | (${name}) trabalhando em background! | Visible: `, app.Config.visible)
         })
 
         // Ao fechar a janela ...
@@ -119,28 +123,28 @@ module.exports = function () {
             win.hide()
             app.Config.visible = false
 
-            console.log(`\nclose | (${html}) trabalhando em background! | Visible:`, app.Config.visible)
+            console.log(`\nclose | (${name}) trabalhando em background! | Visible:`, app.Config.visible)
         })
 
         // Emitido quando a janela é destruída.
         win.on('closed', e => {
-            console.log(`\nclosed | A Janela (${html}) foi destruída!`)
+            console.log(`\nclosed | A Janela (${name}) foi destruída!`)
         })
 
         // Quando mostrar a janela
         win.on('show', e => {
-            console.log(`\nshow | (${html}) trabalhando com janela! | Visible: `, app.Config.visible)
+            console.log(`\nshow | (${name}) trabalhando com janela! | Visible: `, app.Config.visible)
         })
 
         // Janela obteve foco
         win.on('focus', () => {
-            console.log(`\nfocus | A Janela (${html}) obteve foco.`)
+            console.log(`\nfocus | A Janela (${name}) obteve foco.`)
             setTimeout(() => win.flashFrame(false), 1500)
         })
 
         // Janela perdeu foco
         win.on('blur', () => {
-            console.log(`\nblur | A Janela (${html}) perdeu foco.`)
+            console.log(`\nblur | A Janela (${name}) perdeu foco.`)
             if (!win.isDestroyed()) {
                 win.flashFrame(true)
                 setTimeout(() => !win.isDestroyed() ? win.flashFrame(false) : false, 1500)

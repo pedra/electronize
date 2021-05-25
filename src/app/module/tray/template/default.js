@@ -51,10 +51,13 @@ module.exports = [
         type: 'separator'
     }, {
         label: 'About',
-        click: () => app.Window.create('about').show()
+        click: () => app.Window.create('about', { frame: false }).show()
     }, {
         label: 'Fechar a janela "About"',
-        click: () => app.Window.get('about').destroy()
+        click: () => {
+            var about = app.Window.get('about')
+            about && about.destroy()
+        }
     }, {
         label: 'Desconectar (logout)',
         icon: app.Config.app.assets.tray + '/l.png',
