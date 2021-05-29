@@ -10,14 +10,12 @@
 const path = require('path')
 const { app, shell } = require('electron')
 const { Notify } = require(path.join(app.Config.app.module, 'notify'))
-const Window = app.Window.get('main')
-const Menu = require(path.join(app.Config.app.module, 'menu', 'index'))
 
 module.exports = [
     {
         label: 'Abrir Electronizer',
-        icon: app.Config.app.assets.tray + '/icon16.png',
-        click: () => Window.show()
+        icon: app.Config.app.assets.tray + '/icon32.png',
+        click: () => app.Window.getOrCreate('main').show()
     }, {
         label: 'Site da Aplicação',
         icon: app.Config.app.assets.tray + '/h.png',
@@ -51,7 +49,7 @@ module.exports = [
         type: 'separator'
     }, {
         label: 'About',
-        click: () => app.Window.create('about', { frame: false }).show()
+        click: () => app.Window.getOrCreate('about', { frame: false }).show()
     }, {
         label: 'Fechar a janela "About"',
         click: () => {
@@ -62,14 +60,15 @@ module.exports = [
         label: 'Desconectar (logout)',
         icon: app.Config.app.assets.tray + '/l.png',
         click: () => {
-            Window.webContents.send('logout', true)
-            Window.show()
+            let win = app.Window.getOrCreate('main')
+            win.webContents.send('logout', true)
+            win.show()
         }
     }, {
         type: 'separator'
     }, {
         label: 'Sair e fechar',
         icon: app.Config.app.assets.tray + '/x.png',
-        click: () => app.exit()
+        click: () => app.quit()
     }
 ]

@@ -4,7 +4,6 @@
     "description": "Structure to start an electron project - Application",
     "main": "start.js",
     "scripts": {
-        "postinstallxx": "install-app-deps",
         "start": "export ELECTRON_ENV=1 && clear && electron start",
         "elize": "set ELECTRON_ENV=1 && cls && electron start"
     },

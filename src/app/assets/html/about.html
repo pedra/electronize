@@ -11,11 +11,95 @@
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/src/style.css">
 
+    <style>
+        .titlebar {
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+            position: relative;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: .5rem;
+
+            font-size: 1rem;
+            color: var(--color-3);
+            background: var(--white-2);
+            border-bottom: 1px solid var(--white-3);
+            cursor: pointer;
+        }
+
+        .titlebar .title h1 {
+            font-size: 1.1rem;
+            margin: 0;
+            padding: 0;
+            padding: 0 0 0 2rem;
+        }
+
+        .titlebar .title .logo {
+            position: absolute;
+            width: 1.2rem;
+            margin: .2rem .4rem 0 .4rem;
+        }
+
+        .titlebar .wintitle {
+            font-weight: bold;
+        }
+
+        .titlebar .action {
+            -webkit-app-region: none;
+        }
+
+        .titlebar .action i {
+            padding: .3rem .5rem;
+            color: var(--white-5);
+            font-size: 1.5rem;
+        }
+
+        .titlebar .action i:hover {
+            color: var(--color-3);
+        }
+
+        .titlebar.on {
+            display: flex;
+        }
+
+        .att {
+            font-style: italic;
+            font-size: .9rem;
+            color: var(--color-4);
+            display: flex;
+            align-items: center;
+        }
+
+        .att i {
+            font-size: 1rem;
+            margin: 0 .5rem 0 0;
+        }
+    </style>
+
     <script src="../js/utils.js" defer></script>
     <script src="../js/main.js" defer></script>
 </head>
 
 <body>
+
+    <div class="titlebar on" id="titlebar">
+        <div class="title">
+            <img src="../img/tray/icon32.png" alt="logo" class="logo">
+            <h1>Electronizer</h1>
+        </div>
+        <div class="wintitle" id="wintitle">
+            Título da Página Ativa
+        </div>
+        <div class="action">
+            <i class="material-icons" title="Usuários" onclick="teste()">person_outline</i>
+            <i class="material-icons" title="Mensagens">chat</i>
+            <i class="material-icons" title="Configurações">tune</i>
+            <i class="material-icons" title="Fechar" onclick="winClose()">close</i>
+        </div>
+    </div>
+
+
     <div class="page">
         <div class="container">
 
@@ -23,6 +107,15 @@
             <p>Structure to start an Electron project.</p>
 
             <p><a href="https://github.com/pedra/electronizer" rel="github">Project Github</a></p>
+
+            <h2>Trocar Layout</h2>
+            <p>Mostrar ou esconder o menu e o frame da janela atual</p>
+            <div class="att"><i class="material-icons">info</i> Isso forçará o recarregamento da janela e perda de dados
+                não salvos.</i></div>
+            <div class="control border">
+                <button type="button" onclick="showMenu(true)">Mostra menu</button>
+                <button type="button" onclick="showMenu(false)">Ocultar menu</button>
+            </div>
         </div>
 
         <div class="status-bar">

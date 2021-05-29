@@ -24,8 +24,8 @@ module.exports = function (template) {
 
     tray.setToolTip('Electronizer')
     tray.setContextMenu(contextMenu)
-    tray.on('click', () => Window.show())
-    tray.on('balloon-click', () => Window.show())
+    tray.on('click', () => app.Window.getOrCreate('main').show())
+    tray.on('balloon-click', () => app.Window.getOrCreate('main').show())
 
     return tray
 }

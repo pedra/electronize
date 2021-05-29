@@ -88,29 +88,31 @@ module.exports = function () {
     }
 
     const setSocket = (user, to, socket, cb) => {
-        let stm = db.prepare(`update ${USER_TABLE} set socket=$socket where id=$user`)
-        stm.run({ $socket: socket, $user: user }, e => cb(e ? 0 : stm.lastID))
+        var stm = db.prepare(`update ${USER_TABLE} set socket=$socket where id=$user`)
+            .run({ $socket: socket, $user: user }, e => cb(e ? 0 : stm.lastID))
     }
 
+
     const offSocket = (socket, cb) => {
-        let stm = db.prepare(`UPDATE ${USER_TABLE} SET socket=NULL WHERE socket=$socket`)
-        stm.run({ $socket: socket }, e => cb(e ? 0 : stm.lastID))
+        var stm = db.prepare(`UPDATE ${USER_TABLE} SET socket=NULL WHERE socket=$socket`)
+            .run({ $socket: socket }, e => cb(e ? 0 : stm.lastID))
     }
+
 
     const pushMsg = (m, cb) => {
         var stm = db.prepare(`INSERT INTO ${MESSAGE_TABLE} 
 			(user_to, user_from, created, type, content) 
 			VALUES ($user_to, $user_from, $created, $type, $content)`)
-        stm.run(
-            {
-                $user_to: m.to,
-                $user_from: m.from,
-                $created: new Date(),
-                $type: 'chat',
-                $content: JSON.stringify(m.content)
-            },
-            e => cb(e ? 0 : stm.lastID)
-        )
+            .run(
+                {
+                    $user_to: m.to,
+                    $user_from: m.from,
+                    $created: new Date(),
+                    $type: 'chat',
+                    $content: JSON.stringify(m.content)
+                },
+                e => cb(e ? 0 : stm.lastID)
+            )
     }
 
     const popMsg = (user, cb) =>
@@ -119,11 +121,11 @@ module.exports = function () {
             (e, r) => cb(!e && r && r[0] ? r[0].socket : false))
 
     const setParam = (id, param, value, cb) => {
-        let stm = db.prepare('UPDATE ' + MESSAGE_TABLE + ' SET ' + param + '=$value WHERE id=$id')
-        stm.run(
-            { $value: value, $id: id },
-            e => cb(e ? 0 : stm.lastID)
-        )
+        var stm = db.prepare('UPDATE ' + MESSAGE_TABLE + ' SET ' + param + '=$value WHERE id=$id')
+            .run(
+                { $value: value, $id: id },
+                e => cb(e ? 0 : stm.lastID)
+            )
     }
 
     const getParam = (id, param, cb) =>
@@ -137,5 +139,4 @@ module.exports = function () {
         pushMsg, popMsg,
         setParam, getParam
     }
-
 }

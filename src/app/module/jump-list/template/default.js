@@ -24,21 +24,21 @@ module.exports = [
         items: [
             {
                 type: 'task',
-                title: 'Site',
-                program: app.Config.net.site,
+                title: 'Site da aplicação',
+                program: app.Config.net.site + ':' + app.Config.net.port,
                 args: '',
                 iconPath: path.join(app.Config.app.assets.ico, 'burn.ico'),
                 iconIndex: 0,
-                description: 'Abrir o site'
+                description: 'Abrir o site da aplicação na rede local'
             },
             {
                 type: 'task',
-                title: 'Downloads',
+                title: 'Downloads (internet)',
                 program: app.Config.download,
                 args: '',
                 iconPath: path.join(app.Config.app.assets.ico, 'icon.ico'),
                 iconIndex: 0,
-                description: 'Abrir navegador na página de Downloads'
+                description: 'Abrir navegador na página de downloads do projeto (internet).'
             },
             { type: 'separator' },
             {

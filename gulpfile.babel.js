@@ -39,7 +39,7 @@ import composer from 'gulp-uglify/composer'
 const uglify = composer(uglifyes, console)
 const argv = yargs.argv
 
-const target = 'src/host/public'
+const target = 'src/net/public'
 
 // args
 let PRO = argv.p !== undefined // gulp -p (production mode)

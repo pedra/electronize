@@ -10,7 +10,6 @@
 var os = require('os').platform()
 const path = require('path')
 const { app } = require('electron')
-const Ipc = require(path.join(app.Config.app.module, 'ipc'))
 const Tray = require(path.join(app.Config.app.module, 'tray', 'index'))
 
 // Modules by platforms...
@@ -46,10 +45,28 @@ module.exports = async function () {
         Window.focus()
     })
 
+    // Previne o fechamento - destruição - de TODAS as janelas
+    app.on('window-all-closed', e => {
+        console.log('\nTodas as janelas foram fechadas - window-all-closed\n')
+        e.preventDefault()
+    })
+
+    /** Antes de fechar a aplicação...
+    *  Uma sequencia de ações podem ser empilhadas para executar tarefas antes de fechar totalmente a aplicação.
+    */
+    app.on('will-quit', e => {
+        console.log('Antes de fechar tudo - will-quit')
+        e.preventDefault()
+
+        // TESTE .... 
+        setTimeout(() => { app.exit() }, 3000)
+    })
+
     // Finaliza quando todas as janelas estiverem fechadas.
-    app.on('quit', () => {
-        console.log("Quit!")
-        if (app.Tray) app.Tray.destroy()
+    app.on('quit', e => {
+        console.log("---> Quit!")
+        if (app.Tray)
+            app.Tray.destroy()
     })
 
     // Quando a aplicação é "ativada" (novamente?) - para MacOS
@@ -57,7 +74,7 @@ module.exports = async function () {
         console.log("Activate")
     })
 
-    // Aplicação pronta: Monta sysTray, Updater, JumpList e IPC
+    // Aplicação pronta: Monta sysTray, Updater, JumpList
     return new Promise(
         function (resolve, reject) {
             app.on('ready', () => {
@@ -68,9 +85,6 @@ module.exports = async function () {
 
                     // Aciana o monitor de UPDATE - Windows & Mac only
                     app.UpTimer = Update === false ? false : Update().UpTimer
-
-                    // Montando o IPC Center
-                    const { ipcMain, Notify } = Ipc()
 
                     // Montando a Jump List - Windows only
                     JumpList && new JumpList('default')

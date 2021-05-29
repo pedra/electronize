@@ -16,8 +16,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#0082ae",
-    "background_color": "#0082ae",
+    "theme_color": "#005773",
+    "background_color": "#005773",
     "display": "standalone",
     "orientation": "portrait",
     "gcm_sender_id": "103953800507"

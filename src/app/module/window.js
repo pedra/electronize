@@ -44,8 +44,7 @@ module.exports = function () {
 
         const opt = (key, def) => null == option[key] || undefined == typeof option[key] ? def : option[key]
 
-        // novo Browser...
-        const win = new BrowserWindow({
+        const config = {
             width: opt('width', 480),
             minWidth: opt('minWidth', 370),
             maxWidth: opt('maxWidth', 800),
@@ -67,12 +66,17 @@ module.exports = function () {
             frame: opt('frame', true),
             darkTheme: opt('darkTheme', true),
 
+            parent: opt('parent', null),
+
             webPreferences: {
                 nativeWindowOpen: true,
                 nodeIntegration: true,
                 contextIsolation: false
             }
-        })
+        }
+
+        // novo Browser...
+        const win = new BrowserWindow(config)
 
         // Abre o DevTools - debug only
         //win.webContents.openDevTools()
@@ -139,7 +143,7 @@ module.exports = function () {
         // Janela obteve foco
         win.on('focus', () => {
             console.log(`\nfocus | A Janela (${name}) obteve foco.`)
-            setTimeout(() => win.flashFrame(false), 1500)
+            setTimeout(() => !win.isDestroyed() ? win.flashFrame(false) : false, 1500)
         })
 
         // Janela perdeu foco
@@ -155,16 +159,17 @@ module.exports = function () {
     }
 
     // Creates a Main application window
-    app.on('ready', () => {
-        if (Main == null || Main.isDestroyed()) {
-            Main = new janela('main')
-        } else {
-            throw new Error('Main window already exists!')
-            process.exit(1)
-        }
-    })
+    // app.on('ready', () => {
+    //     if (Main == null || Main.isDestroyed()) {
+    //         Main = new janela('main')
+    //     } else {
+    //         throw new Error('Main window already exists!')
+    //         process.exit(1)
+    //     }
+    // })
 
     return {
-        create, get
+        create, get,
+        getOrCreate: create //Semantic name option for "create" function
     }
 }
