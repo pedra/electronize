@@ -9,7 +9,7 @@
 
 const { app } = require('electron')
 const { autoUpdater } = require("electron-updater")
-const { Notify } = require('./notify')
+const { Notify } = require(app.Config.app.module + '/notify')
 
 module.exports = function () {
 

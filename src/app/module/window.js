@@ -9,7 +9,7 @@
 
 const { app, BrowserWindow } = require('electron')
 
-module.exports = function () {
+module.exports = (function () {
 
     let Janelas = [],   // Window array 
         Main = null     // Them application main window
@@ -172,4 +172,4 @@ module.exports = function () {
         create, get,
         getOrCreate: create //Semantic name option for "create" function
     }
-}
+})()

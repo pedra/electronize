@@ -1,7 +1,6 @@
-const path = require('path')
 const { app } = require('electron')
 const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database(path.resolve(app.Config.external.db, 'magic.db'))
+const db = new sqlite3.Database(app.Config.external.db + '/magic.db')
 const USER_TABLE = 'user'
 const MESSAGE_TABLE = 'message'
 

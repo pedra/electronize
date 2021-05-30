@@ -1,9 +1,7 @@
 
-const path = require('path')
 const { app } = require('electron')
-const { route } = require('../file/route')
 var router = require('express').Router()
-const Utils = require(path.resolve(app.Config.app.module, 'utils'))()
+const { tokey } = require(app.Config.path + '/util')
 const db = new require('./db')()
 
 /** ERROS
@@ -24,7 +22,7 @@ router.post('/login', (req, res) => {
     db.login(login, password, data => {
         if (data.length > 0) {
             r = data[0]
-            r.token = Utils.tokey()
+            r.token = tokey()
             r.access++
             db.set({ token: r.token, access: r.access }, r.id, () => res.json(r))
         } else {

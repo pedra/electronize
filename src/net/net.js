@@ -7,14 +7,10 @@
 
  */
 
-const path = require('path')
 const express = require('express')
 const { createServer } = require('http')
-
 const cors = require('cors')
-//const MobileDetect = require('mobile-detect')
 const { app } = require('electron')
-
 
 module.exports = () => {
 
@@ -35,10 +31,10 @@ module.exports = () => {
     Net.use(express.json())
 
     // Routers
-    Net.use('/file', require(`${CH.module}/file/route`))
-    Net.use('/auth', require(`${CH.module}/user/route`))
-    Net.use('/user', require(`${CH.module}/user/route`))
-    Net.use('/msg', require(`${CH.module}/message/route`))
+    Net.use('/file', require(CH.module + '/file/route'))
+    Net.use('/auth', require(CH.module + '/user/route'))
+    Net.use('/user', require(CH.module + '/user/route'))
+    Net.use('/msg', require(CH.module + '/message/route'))
 
     // Creating server ...
     Http = http.listen(CH.port)
@@ -47,14 +43,12 @@ module.exports = () => {
         console.log(`Port ${CH.port} already in use!`)
         Http = false
     } else {
-        console.log(`Host listening in ${CH.site +
-            (CH.port == 80 ? '' : ':' + CH.port)}`
-        )
+        console.log('Host listening in ' + CH.site + (CH.port == 80 ? '' : ':' + CH.port))
     }
 
     // Inicia a central de mensagens (socket, etc) se estiver habilitado.
     if (Http && CS.enable) {
-        Socket = require(`${CS.path}/socket`)()
+        Socket = require(CS.path + '/socket')()
         Socket.listen(http)
     }
 

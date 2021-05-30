@@ -7,9 +7,8 @@
 
  */
 
-const path = require('path')
 const { app, shell } = require('electron')
-const { Notify } = require(path.join(app.Config.app.module, 'notify'))
+const { Notify } = require(app.Config.app.module + '/notify')
 
 module.exports = [
     {

@@ -8,14 +8,15 @@
  */
 
 const { app } = require('electron')
+const { req } = require(__dirname + '/util')
 
 // Injetando objetos no "electron.app"
-app.Config = require(`${__dirname}/config`)
-app.Window = require(`${app.Config.app.module}/window`)()
+app.Config = require(__dirname + '/config')
+app.Window = req(app.Config.app.module + '/window')
 
-// Load modules...
-const Boot = require(`${app.Config.app.module}/boot`)
-const Application = require(`${app.Config.app.path}/app`)
+// Loading modules...
+const Boot = require(app.Config.app.module + '/boot')
+const Application = require(app.Config.app.path + '/app')
 
 
 // Running application root!

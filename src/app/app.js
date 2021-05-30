@@ -7,10 +7,9 @@
 
  */
 
-const os = require('os-utils');
-const path = require('path')
+const os = require('os-utils')
 const { app, ipcMain: ipc } = require('electron')
-const Menu = require(path.join(app.Config.app.module, 'menu', 'index'))
+const Menu = require(app.Config.app.module + '/menu/index')
 //const Ipc = require(path.join(app.Config.app.path, 'ipc-handler'))
 
 module.exports = function () {

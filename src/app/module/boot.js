@@ -7,19 +7,14 @@
 
  */
 
-var os = require('os').platform()
-const path = require('path')
 const { app } = require('electron')
-const Tray = require(path.join(app.Config.app.module, 'tray', 'index'))
-
-// Modules by platforms...
-const JumpList = os == "win32" ? require(path.join(app.Config.app.module, 'jump-list', 'index')) : false
-const Update = os != "linux" ? require(path.join(app.Config.app.module, 'update')) : false
-
-// Net and Message
-const Net = require(path.join(app.Config.net.path, 'net'))
+const { req } = require(app.Config.path + '/util')
 const { exit } = require('yargs')
 
+const Tray = req(app.Config.app.module + '/tray/index')
+const JumpList = req(app.Config.app.module + '/jump-list/index', process.platform == "win32")
+const Update = req(app.Config.app.module + '/update', process.platform != "linux")
+const Net = req(app.Config.net.path + '/net')
 
 module.exports = async function () {
 
@@ -81,13 +76,13 @@ module.exports = async function () {
 
                 try {
                     // Monta o Tray Menu
-                    app.Tray = new Tray()
-
-                    // Aciana o monitor de UPDATE - Windows & Mac only
-                    app.UpTimer = Update === false ? false : Update().UpTimer
+                    app.Tray = new Tray('default')
 
                     // Montando a Jump List - Windows only
                     JumpList && new JumpList('default')
+
+                    // Aciana o monitor de UPDATE - Windows & Mac only
+                    app.UpTimer = Update === false ? false : Update().UpTimer
 
                 } catch (e) {
                     return reject(e)
