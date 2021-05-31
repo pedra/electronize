@@ -9,13 +9,13 @@
 
 const os = require('os-utils')
 const { app, ipcMain: ipc } = require('electron')
-const Menu = require(app.Config.app.module + '/menu/index')
+const Menu = require(app.Config.app.module + '/menu')
 //const Ipc = require(path.join(app.Config.app.path, 'ipc-handler'))
 
 module.exports = function () {
 
     // Add a menu to Window
-    Menu.set(process.platform == 'darwin' ? 'mac' : 'default')
+    Menu.setMenu(process.platform == 'darwin' ? 'mac' : 'default')
 
     setInterval(() => {
         let Main = app.Window.get('main')
@@ -28,6 +28,7 @@ module.exports = function () {
                 tmem: (os.totalmem() / 1024).toFixed(2)
             }
 
+            if (!Main || Main.isDestroyed()) return false
             Main.webContents.send('cpu', JSON.stringify(data))
 
             let About = app.Window.get('about')

@@ -11,12 +11,13 @@ const path = require('path')
 const root = __dirname
 const external = path.resolve(__dirname, process.env.ELECTRON_ENV ? '../' : '../../')
 
-console.log('\n=================== CONFIG ====================\nroot:     ' + root, '\nexternal: ' + external, '\n===============================================\n')
+console.log('\n=================== CONFIG ====================\nroot:     ' + root,
+    '\nexternal: ' + external, '\n===============================================\n')
 
 module.exports = {
     mode: process.env.ELECTRON_ENV ? 'dev' : 'prod',
     path: root,
-    visible: false,
+    title: 'Electronizer',
     download: "https://billrocha.netlify.com/download",
     external: {
         file: external + '/assets/file',
@@ -26,6 +27,8 @@ module.exports = {
     app: {
         path: root + '/app',
         module: root + '/app/module',
+        tray: root + '/app/assets/img/tray/icon.png',
+        config: root + '/app/config',
         assets: {
             path: root + '/app/assets',
             img: root + '/app/assets/img',

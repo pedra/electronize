@@ -11,8 +11,10 @@ const { app } = require('electron')
 const { req } = require(app.Config.path + '/util')
 const { exit } = require('yargs')
 
-const Tray = req(app.Config.app.module + '/tray/index')
-const JumpList = req(app.Config.app.module + '/jump-list/index', process.platform == "win32")
+//const Tray = req(app.Config.app.module + '/tray/index')
+//const JumpList = req(app.Config.app.module + '/jump-list/index', process.platform == "win32")
+
+const Menu = require(app.Config.app.module + '/menu')
 const Update = req(app.Config.app.module + '/update', process.platform != "linux")
 const Net = req(app.Config.net.path + '/net')
 
@@ -60,8 +62,10 @@ module.exports = async function () {
     // Finaliza quando todas as janelas estiverem fechadas.
     app.on('quit', e => {
         console.log("---> Quit!")
-        if (app.Tray)
-            app.Tray.destroy()
+
+        // Destroy Tray
+        let a = Menu.get('tray')
+        if (a) a.destroy()
     })
 
     // Quando a aplicação é "ativada" (novamente?) - para MacOS
@@ -75,11 +79,8 @@ module.exports = async function () {
             app.on('ready', () => {
 
                 try {
-                    // Monta o Tray Menu
-                    app.Tray = new Tray('default')
-
-                    // Montando a Jump List - Windows only
-                    JumpList && new JumpList('default')
+                    Menu.setTray() // Monta o Tray Menu                    
+                    Menu.setJumplist() // Montando a Jump List - Windows only
 
                     // Aciana o monitor de UPDATE - Windows & Mac only
                     app.UpTimer = Update === false ? false : Update().UpTimer
