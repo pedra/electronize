@@ -1,5 +1,8 @@
 # Electronizer
+
 Template to start an Electron project!
+
+ <img align="right" src="https://billrocha.netlify.app/Handmade.png" alt="Hand Made">
 
 ### Directories 
 
