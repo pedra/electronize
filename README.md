@@ -9,7 +9,7 @@ Template to start an Electron project!
 
 **./pack** - application files required by Electron-Builder;
 
-**./assets** - "external" files added to the distribution package (not compressed in the ASA).
+**./assets** - "external" files added to the distribution package (not compressed in the ASAR).
 
 <sub><i>TODO: write usage documentation and settings (next commits).</i></sub> 
 
@@ -33,6 +33,8 @@ npm i
 cd src
 npm i
 ```
+
+<sub><i>Depending on the version, just run "npm i" on the top layer and it will be identified and installed on the bottom layers. See if this is your case.</i></sub>
 
 ## Start
 
