@@ -48,8 +48,8 @@ module.exports = function () {
         console.log('Menu: ', true, win.frame)
 
         win.destroy()
-        win = app.Window.create(menu.window, { frame: menu.show })
-        win.show()
+        win = app.Window.create(menu.window, { frame: menu.show, maxWidth: 1920, maxHeight: 1080, width: 1200, devTools: true })
+        //win.show()
         win.webContents.send('menu', menu.show)
 
         return menu

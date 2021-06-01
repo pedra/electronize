@@ -12,63 +12,75 @@
     <link rel="stylesheet" href="../css/src/style.css">
 
     <style>
-        .titlebar {
+        .tb-title-bar {
             -webkit-user-select: none;
             -webkit-app-region: drag;
             position: relative;
             display: none;
             align-items: center;
             justify-content: space-between;
-            padding: .5rem;
-
+            padding: .2rem .5rem;
             font-size: 1rem;
             color: var(--color-3);
-            background: var(--white-2);
+            background: var(--white-1);
             border-bottom: 1px solid var(--white-3);
-            cursor: pointer;
         }
 
-        .titlebar .title h1 {
-            font-size: 1.1rem;
+        .tb-title-bar .tb-left,
+        .tb-title-bar .tb-title,
+        .tb-title-bar .tb-title-a,
+        .tb-title-bar .tb-title-b,
+        .tb-title-bar .tb-right,
+        .tb-title-bar.on,
+        .att {
+            display: flex;
+            align-items: center;
+        }
+
+        .tb-title-bar .tb-left {
+            flex: 1;
+        }
+
+        .tb-title-bar .tb-logo {
+            width: 1.3rem;
+            margin: 0 .8rem 0 .4rem;
+        }
+
+        .tb-title-bar .tb-title {
             margin: 0;
-            padding: 0;
-            padding: 0 0 0 2rem;
+            flex-wrap: wrap;
         }
 
-        .titlebar .title .logo {
-            position: absolute;
-            width: 1.2rem;
-            margin: .2rem .4rem 0 .4rem;
-        }
-
-        .titlebar .wintitle {
+        .tb-title-bar .tb-title-a {
             font-weight: bold;
+            margin-right: .5rem;
         }
 
-        .titlebar .action {
+        .tb-title-bar .tb-title-b {
+            border-left: 1px solid var(--color-5);
+            padding: 0 0 0 .5rem;
+        }
+
+        .tb-title-bar .tb-right {
             -webkit-app-region: none;
+            justify-content: flex-end;
+            flex-wrap: wrap;
         }
 
-        .titlebar .action i {
+        .tb-title-bar .tb-right i {
             padding: .3rem .5rem;
             color: var(--white-5);
             font-size: 1.5rem;
         }
 
-        .titlebar .action i:hover {
+        .tb-title-bar .tb-right i:hover {
             color: var(--color-3);
-        }
-
-        .titlebar.on {
-            display: flex;
         }
 
         .att {
             font-style: italic;
             font-size: .9rem;
             color: var(--color-4);
-            display: flex;
-            align-items: center;
         }
 
         .att i {
@@ -83,15 +95,15 @@
 
 <body>
 
-    <div class="titlebar on" id="titlebar">
-        <div class="title">
-            <img src="../img/tray/icon32.png" alt="logo" class="logo">
-            <h1>Electronizer</h1>
+    <div class="tb-title-bar" id="tb-title-bar">
+        <div class="tb-left">
+            <img src="../img/tray/icon32.png" alt="logo" class="tb-logo" id="tb-logo">
+            <div class="tb-title" id="tb-title">
+                <div class="tb-title-a" id="tb-title-a">Electronizer</div>
+                <div class="tb-title-b" id="tb-title-b">Título da Página Ativa</div>
+            </div>
         </div>
-        <div class="wintitle" id="wintitle">
-            Título da Página Ativa
-        </div>
-        <div class="action">
+        <div class="tb-right">
             <i class="material-icons" title="Usuários" onclick="teste()">person_outline</i>
             <i class="material-icons" title="Mensagens">chat</i>
             <i class="material-icons" title="Configurações">tune</i>
@@ -110,7 +122,8 @@
 
             <h2>Trocar Layout</h2>
             <p>Mostrar ou esconder o menu e o frame da janela atual</p>
-            <div class="att"><i class="material-icons">info</i> Isso forçará o recarregamento da janela e perda de dados
+            <div class="att"><i class="material-icons">info</i> Isso forçará o recarregamento da janela e perda de
+                dados
                 não salvos.</i></div>
             <div class="control border">
                 <button type="button" onclick="showMenu(true)">Mostra menu</button>

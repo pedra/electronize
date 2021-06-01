@@ -120,7 +120,8 @@ module.exports = (function () {
         if (opt('tbutton', false)) win.setThumbarButtons(opt('tbutton'))
 
         // Abre o DevTools - debug only
-        //win.webContents.openDevTools()
+        if (opt('devTools', false))
+            win.webContents.openDevTools()
 
         // Carrega o arquivo HTML da janela.
         win.loadFile(app.Config.app.assets.path + `/html/${name}.html`)

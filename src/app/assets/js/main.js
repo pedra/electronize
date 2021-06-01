@@ -9,7 +9,10 @@ window.onload = () => {
     })
 
     // mostra ou esconde a barra de controle (para janelas sem frame)
-    ipc.on('menu', (e, show) => _('#titlebar').classList[show ? 'remove' : 'add']('on'))
+    ipc.on('menu', (e, show) => {
+        console.log('Menu: ', e, show)
+        _('#tb-title-bar').classList[show ? 'remove' : 'add']('on')
+    })
 }
 
 const showMenu = show => ipc.invoke('menu', { window: 'about', show })

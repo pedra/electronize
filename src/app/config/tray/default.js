@@ -50,7 +50,7 @@ module.exports = [
         type: 'separator'
     }, {
         label: 'About',
-        click: () => app.Window.getOrCreate('about', { frame: false }).show()
+        click: () => app.Window.getOrCreate('about', { frame: false, maxWidth: 1920, maxHeight: 1080 }).show()
     }, {
         label: 'Fechar a janela "About"',
         click: () => {
@@ -62,23 +62,8 @@ module.exports = [
         click: () => {
             let w = app.Window.get('main')
             if (w) {
-                w.setOverlayIcon(
-                    app.Config.app.assets.tray + '/on.png',
-                    'Description for overlay'
-                )
-
+                w.setOverlayIcon(app.Config.app.assets.tray + '/on.png', 'Description for overlay')
                 Menu.setThumbar('main')
-                // w.setThumbarButtons([
-                //     {
-                //         tooltip: 'button1',
-                //         icon: app.Config.app.assets.tray + '/g_old.png',
-                //         click() { console.log('button1 clicked') }
-                //     }, {
-                //         tooltip: 'button2',
-                //         icon: app.Config.app.assets.tray + '/a_old.png',
-                //         click() { console.log('button2 clicked.') }
-                //     }
-                // ])
                 modal = w.openModal('https://billrocha.netlify.com', { frame: false, width: 360 })
             }
         }
