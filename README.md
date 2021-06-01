@@ -76,7 +76,7 @@ And check the ./dist directory.
 --- 
 
 <p><b>Elize</b> - a CLI to use with this template!<br>
-Coming soon in <a href="https://github.com/pedra/elize">https://github.com/pedra/elize</a></p>
+Coming soon in <a href="https://github.com/pedra/elizer">https://github.com/pedra/elizer</a></p>
 
 --- 
 <p>The code is partially in Brazilian <b>Portuguese</b>.<br>
