@@ -6,14 +6,16 @@ description: Template to start an Electron project!
 
 ### Directories
 
-* **./src** - development codes;
-* **./dist** - compiled distribution files;
-* **./pack** - application files required by Electron-Builder;
-* **./assets** - "external" files added to the distribution package \(not compressed in the ASA\).
+| Path | Description |
+| :--- | :--- |
+| **./src** | development codes |
+| **./dist** | compiled distribution files |
+| **./pack** | application files required by Electron-Builde |
+| **./assets** | "external" files added to the distribution package \(not compressed in the ASA\) |
 
 The **application** is divided into two parts, which can be seen in the ./src folder:
 
-|  |  |
+| Path | Description |
 | :--- | :--- |
 | **./src/app** | Electron's encapsulation \(systray, boot, OS configurations ...\). This is the base that supports the application on your OS. |
 | **./src/net** | If the application has a web server, where other network users can access via API, socket or simple PWA/WEB applications, here is your working directory. |
@@ -67,10 +69,8 @@ And check the ./dist directory.
 
 
 **Elize** - a CLI to use with this template!  
- Coming soon in [https://github.com/pedra/elize](https://github.com/pedra/elize)
+Coming soon in [https://github.com/pedra/elize](https://github.com/pedra/elize)
 
-{% hint style="warning" %}
-The code is partially in Brazilian **Portuguese**.  
- Help to **translate** is very much desired!
-{% endhint %}
+The code is partially in Brazilian **Portuguese**.   
+Help to **translate** is very much desired!
 
