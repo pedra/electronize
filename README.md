@@ -66,7 +66,7 @@ npm run dist
 
 And check the ./dist directory.
 
-
+### More
 
 **Elize** - a CLI to use with this template!  
 Coming soon in [https://github.com/pedra/elize](https://github.com/pedra/elize)
