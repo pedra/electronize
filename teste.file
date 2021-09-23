@@ -1,0 +1,16 @@
+total 1185
+   4 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:29 .
+   0 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:21 ..
+   4 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:29 .git
+   4 -rwxrwx---+ 1 paulo paulo    1084 Sep 23 15:21 .gitignore
+   4 -rwxrwx---+ 1 paulo paulo    2658 Sep 23 15:21 LICENSE
+   4 -rwxrwx---+ 1 paulo paulo    1249 Sep 23 15:21 Notes.txt
+   4 -rwxrwx---+ 1 paulo paulo    2019 Sep 23 15:21 README.md
+   1 -rwxrwx---+ 1 paulo paulo      54 Sep 23 15:21 SUMMARY.md
+   0 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:21 assets
+   8 -rwxrwx---+ 1 paulo paulo    7310 Sep 23 15:21 gulpfile.babel.js
+   0 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:21 pack
+1144 -rwxrwx---+ 1 paulo paulo 1169091 Sep 23 15:21 package-lock.json
+   4 -rwxrwx---+ 1 paulo paulo    3523 Sep 23 15:21 package.json
+   4 drwxrwx---+ 1 paulo paulo       0 Sep 23 15:21 src
+   0 -rwxrw-r--+ 1 paulo paulo       0 Sep 23 15:29 teste.file
