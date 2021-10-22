@@ -1,6 +1,6 @@
 Atenção!!!
 
-Para roda a aplicação em modo de desenvolvimento:
+Para rodar a aplicação em modo de desenvolvimento:
 
 No Windows      > npm run elizer
 No Linux & Mac  > npm start
