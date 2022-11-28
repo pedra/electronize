@@ -91,7 +91,7 @@
         "@babel/preset-env": "^7.13.12",
         "@babel/register": "^7.13.14",
         "del": "^6.0.0",
-        "electron": "19.0.2",
+        "electron": "19.0.11",
         "electron-builder": "^23.0.3",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^6.1.0",
