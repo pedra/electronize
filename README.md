@@ -1,8 +1,8 @@
----
-description: Template to start an Electron project!
----
-
 # Electronizer
+
+Template to start an Electron project with integrated nodejs server (express 4) to serve local web pages (http://localhost). Access to systray, jumplist (Windows), thumbar, desktop menu, etc.
+
+I included a (fake) application that can be modified with your own code or completely eliminated to start from scratch.
 
 ### Directories
 
@@ -58,13 +58,13 @@ Check ./dist directory.
 
 ### Pack
 
-This command creates the packaged files to be sent to users to install the application. We will soon have more details in the documentation on packaging particularities for different operating systems \(MacOs, Linux and Windows\).
+This command creates the packaged files to be sent to users to install the application. We will soon have more details in the <a href="https://www.electron.build">documentation</a> on packaging particularities for different operating systems \(MacOs, Linux and Windows\).
 
 ```text
 npm run dist
 ```
 
-And check the ./dist directory.
+Than, check the ./dist directory.
 
 ### More
 
@@ -74,3 +74,10 @@ Coming soon in [https://github.com/pedra/elize](https://github.com/pedra/elize)
 The code is partially in Brazilian **Portuguese**.   
 Help to **translate** is very much desired!
 
+----
+
+### Bill Rocha 
+
+prbr@ymail.com | https://billrocha.netlify.app
+
+Feel invited to buy me a coffee 👋 - please!
